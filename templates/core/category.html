@@ -1,0 +1,524 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }} - Natural Herbs & Wellness | NaturalBio{% endblock %}
+
+{% block meta_description %}{{ category.description|truncatewords:25 }} Shop premium {{ category.name|lower }} products from Benin and Africa. 100% natural and organic options available.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <nav class="flex items-center space-x-2 text-sm text-neutral-600">
+            <a href="/" class="hover:text-primary transition-colors">Home</a>
+            <i class="fas fa-chevron-right text-xs"></i>
+            <a href="/shop" class="hover:text-primary transition-colors">Shop</a>
+            <i class="fas fa-chevron-right text-xs"></i>
+            <span class="text-neutral-900 font-medium">Tisanes</span>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Category Header -->
+<section class="bg-gradient-to-r from-primary/5 to-accent/5 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl font-heading font-bold text-neutral-900 mb-4">Tisanes</h1>
+            <p class="text-lg text-neutral-600 max-w-3xl mx-auto mb-6">
+                Discover our premium collection of natural tisanes and herbal teas. Each blend is carefully crafted from the finest herbs sourced directly from West African gardens, offering you authentic flavors and traditional wellness benefits.
+            </p>
+            <div class="flex items-center justify-center space-x-4 text-sm text-neutral-500">
+                <span class="flex items-center">
+                    <i class="fas fa-leaf text-success mr-1"></i>
+                    24 Products
+                </span>
+                <span class="flex items-center">
+                    <i class="fas fa-certificate text-warning mr-1"></i>
+                    Organic Available
+                </span>
+                <span class="flex items-center">
+                    <i class="fas fa-globe-africa text-primary mr-1"></i>
+                    From Benin
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Filters Sidebar -->
+        <aside class="lg:w-64 space-y-6" id="filters-sidebar">
+            <!-- Mobile Filters Toggle -->
+            <div class="lg:hidden">
+                <button onclick="toggleFilters()" class="flex items-center justify-between w-full bg-white border border-neutral-300 rounded-lg px-4 py-3 text-left focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <span class="font-medium">Filters</span>
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+            </div>
+
+            <div class="hidden lg:block" id="filters-content">
+                <!-- Subcategories Filter -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Tisane Types</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Single Herb (12)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Blended (8)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Traditional Mix (4)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Price Range</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <input type="number" placeholder="Min" class="w-full px-3 py-2 border border-neutral-300 rounded text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <span class="text-neutral-500">-</span>
+                            <input type="number" placeholder="Max" class="w-full px-3 py-2 border border-neutral-300 rounded text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm">Under $15</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm">$15 - $30</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm">$30 - $50</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm">Over $50</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Filter -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Health Benefits</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Digestive Support</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Relaxation</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Immune Boost</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Energy & Focus</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Sleep Support</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Packaging -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Packaging</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Loose Leaf</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Tea Bags</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Gift Sets</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Origin -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Origin</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Benin (18)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Togo (4)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Ghana (2)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Organic -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Certifications</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Organic Certified</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Fair Trade</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Non-GMO</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Clear Filters -->
+                <button onclick="clearAllFilters()" class="w-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium py-2 px-4 rounded-lg transition-colors">
+                    Clear All Filters
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-2">Tisane Products</h2>
+                    <p class="text-neutral-600" id="results-count">Showing 1-12 of 24 products</p>
+                </div>
+                
+                <!-- Sort Options -->
+                <div class="mt-4 sm:mt-0">
+                    <select onchange="handleSort(this.value)" class="border border-neutral-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="relevance">Sort by Relevance</option>
+                        <option value="newest">Newest First</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="bestsellers">Best Sellers</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="hidden">
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    {% for i in "123456789" %}
+                    <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden animate-pulse">
+                        <div class="w-full h-48 bg-neutral-200"></div>
+                        <div class="p-4">
+                            <div class="h-4 bg-neutral-200 rounded mb-2"></div>
+                            <div class="h-3 bg-neutral-200 rounded w-2/3 mb-4"></div>
+                            <div class="flex justify-between items-center">
+                                <div class="h-5 bg-neutral-200 rounded w-16"></div>
+                                <div class="h-8 bg-neutral-200 rounded w-24"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+                <!-- Tisane Product 1 -->
+                <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=200&fit=crop&crop=center" 
+                             alt="Ginger Lemon Tisane" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute top-3 left-3 flex space-x-2">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Organic</span>
+                            <span class="bg-primary text-white text-xs px-2 py-1 rounded-full font-medium">Best Seller</span>
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
+                            <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-heading font-semibold text-lg mb-1">Ginger Lemon Tisane</h3>
+                        <p class="text-neutral-600 text-sm mb-2">Warming blend with fresh ginger and lemon</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex items-center space-x-1">
+                                {% for i in "12345" %}
+                                <i class="fas fa-star text-warning text-xs"></i>
+                                {% endfor %}
+                            </div>
+                            <span class="text-neutral-500 text-sm ml-2">(42 reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-bold text-primary">$22.99</span>
+                                <div class="text-xs text-neutral-400 line-through">$27.99</div>
+                            </div>
+                            <button onclick="addToCart(1)" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tisane Product 2 -->
+                <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=200&fit=crop&crop=center" 
+                             alt="Hibiscus Mint Tisane" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Organic</span>
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
+                            <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-heading font-semibold text-lg mb-1">Hibiscus Mint Tisane</h3>
+                        <p class="text-neutral-600 text-sm mb-2">Refreshing hibiscus flower with mint leaves</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex items-center space-x-1">
+                                {% for i in "12345" %}
+                                <i class="fas fa-star text-warning text-xs"></i>
+                                {% endfor %}
+                            </div>
+                            <span class="text-neutral-500 text-sm ml-2">(28 reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-bold text-primary">$18.99</span>
+                            </div>
+                            <button onclick="addToCart(2)" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continue with more tisane products... -->
+                {% for i in "12345678910" %}
+                <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=200&fit=crop&crop=center" 
+                             alt="Tisane Product {{ forloop.counter|add:2 }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        {% if forloop.counter|divisibleby:3 %}
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Organic</span>
+                        </div>
+                        {% endif %}
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
+                            <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-heading font-semibold text-lg mb-1">Traditional Tisane {{ forloop.counter|add:2 }}</h3>
+                        <p class="text-neutral-600 text-sm mb-2">Premium herbal blend for wellness</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex items-center space-x-1">
+                                {% for star in "12345" %}
+                                <i class="fas fa-star text-warning text-xs"></i>
+                                {% endfor %}
+                            </div>
+                            <span class="text-neutral-500 text-sm ml-2">({{ forloop.counter|add:15 }} reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-bold text-primary">${{ forloop.counter|add:18 }}.99</span>
+                                {% if forloop.counter|divisibleby:4 %}
+                                <div class="text-xs text-neutral-400 line-through">${{ forloop.counter|add:23 }}.99</div>
+                                {% endif %}
+                            </div>
+                            <button onclick="addToCart({{ forloop.counter|add:2 }})" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-12">
+                <div class="mb-6">
+                    <i class="fas fa-leaf text-6xl text-neutral-300"></i>
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-4">No tisanes found</h2>
+                <p class="text-neutral-600 mb-6">Sorry, we couldn't find any tisanes matching your criteria. Try adjusting your filters.</p>
+                <button onclick="clearAllFilters()" class="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                    Clear All Filters
+                </button>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="flex items-center justify-center space-x-2">
+                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="px-3 py-2 bg-primary text-white rounded-lg">1</button>
+                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">2</button>
+                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Category FAQ Section -->
+    <section class="mt-16 bg-neutral-50 rounded-lg p-8">
+        <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-6">Frequently Asked Questions about Tisanes</h2>
+        <div class="space-y-4">
+            <div class="bg-white rounded-lg p-4">
+                <button onclick="toggleFAQ(1)" class="flex items-center justify-between w-full text-left">
+                    <h3 class="font-semibold text-lg text-neutral-900">What are tisanes?</h3>
+                    <i class="fas fa-plus text-neutral-500" id="faq-icon-1"></i>
+                </button>
+                <div id="faq-content-1" class="hidden mt-3 text-neutral-600">
+                    <p>Tisanes are herbal teas made from various plants, flowers, leaves, and spices that don't contain tea leaves from the Camellia sinensis plant. Our tisanes are carefully crafted from premium herbs sourced from West Africa, offering natural wellness benefits and delicious flavors.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-4">
+                <button onclick="toggleFAQ(2)" class="flex items-center justify-between w-full text-left">
+                    <h3 class="font-semibold text-lg text-neutral-900">How do I prepare tisanes?</h3>
+                    <i class="fas fa-plus text-neutral-500" id="faq-icon-2"></i>
+                </button>
+                <div id="faq-content-2" class="hidden mt-3 text-neutral-600">
+                    <p>For best results, steep 1-2 teaspoons of loose tisane in 8oz of hot water (not boiling) for 5-7 minutes. Adjust steeping time based on desired strength. Each product includes specific brewing instructions.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-4">
+                <button onclick="toggleFAQ(3)" class="flex items-center justify-between w-full text-left">
+                    <h3 class="font-semibold text-lg text-neutral-900">Are your tisanes organic?</h3>
+                    <i class="fas fa-plus text-neutral-500" id="faq-icon-3"></i>
+                </button>
+                <div id="faq-content-3" class="hidden mt-3 text-neutral-600">
+                    <p>Many of our tisanes are certified organic, clearly marked with the organic badge. We work directly with farmers in Benin and West Africa who use sustainable, traditional growing methods without harmful chemicals.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-4">
+                <button onclick="toggleFAQ(4)" class="flex items-center justify-between w-full text-left">
+                    <h3 class="font-semibold text-lg text-neutral-900">What health benefits do tisanes offer?</h3>
+                    <i class="fas fa-plus text-neutral-500" id="faq-icon-4"></i>
+                </button>
+                <div id="faq-content-4" class="hidden mt-3 text-neutral-600">
+                    <p>Our tisanes offer various traditional wellness benefits including digestive support, relaxation, immune system support, and more. Please consult with a healthcare professional before using herbal products for medicinal purposes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Filter functionality
+    function toggleFilters() {
+        const filtersContent = document.getElementById('filters-content');
+        filtersContent.classList.toggle('hidden');
+    }
+
+    function clearAllFilters() {
+        // Reset all checkboxes and inputs
+        document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
+        document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+        document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
+        
+        // Reset results
+        filterProducts();
+    }
+
+    function handleSort(value) {
+        console.log('Sorting by:', value);
+        // Implementation would sort products based on selected value
+        showLoadingState();
+        setTimeout(() => {
+            hideLoadingState();
+        }, 1000);
+    }
+
+    function filterProducts() {
+        console.log('Filtering products...');
+        showLoadingState();
+        
+        // Simulate API call
+        setTimeout(() => {
+            hideLoadingState();
+            updateResultsCount();
+        }, 800);
+    }
+
+    function showLoadingState() {
+        document.getElementById('loading-state').classList.remove('hidden');
+        document.getElementById('product-grid').classList.add('hidden');
+        document.getElementById('pagination').classList.add('hidden');
+    }
+
+    function hideLoadingState() {
+        document.getElementById('loading-state').classList.add('hidden');
+        document.getElementById('product-grid').classList.remove('hidden');
+        document.getElementById('pagination').classList.remove('hidden');
+    }
+
+    function updateResultsCount() {
+        // This would update based on actual filtered results
+        document.getElementById('results-count').textContent = 'Showing 1-12 of 24 products';
+    }
+
+    // FAQ functionality
+    function toggleFAQ(faqNumber) {
+        const content = document.getElementById(`faq-content-${faqNumber}`);
+        const icon = document.getElementById(`faq-icon-${faqNumber}`);
+        
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+        } else {
+            content.classList.add('hidden');
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
+        }
+    }
+
+    // Add event listeners to filters
+    document.addEventListener('DOMContentLoaded', function() {
+        // Listen to all filter inputs
+        document.querySelectorAll('input[type="checkbox"], input[type="radio"], input[type="number"]').forEach(input => {
+            input.addEventListener('change', filterProducts);
+        });
+        
+        // Mobile filters
+        if (window.innerWidth < 1024) {
+            document.getElementById('filters-content').classList.add('hidden');
+        }
+    });
+
+    // Responsive filters
+    window.addEventListener('resize', function() {
+        const filtersContent = document.getElementById('filters-content');
+        if (window.innerWidth >= 1024) {
+            filtersContent.classList.remove('hidden');
+        } else {
+            filtersContent.classList.add('hidden');
+        }
+    });
+</script>
+{% endblock %}

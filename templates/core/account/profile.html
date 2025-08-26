@@ -1,0 +1,423 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile - Account Settings - NaturalBio Ressources{% endblock %}
+
+{% block meta_description %}Manage your account information, addresses, order preferences and wellness profile on NaturalBio Ressources.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-50 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li>
+                    <a href="{% url 'home' %}" class="text-neutral-500 hover:text-primary transition-colors">Home</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li class="text-neutral-900 font-medium" aria-current="page">My Profile</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Profile Header -->
+    <div class="bg-gradient-to-r from-primary/5 to-accent/10 rounded-2xl p-8 mb-8">
+        <div class="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-6">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b3c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                     alt="Profile Picture" 
+                     class="w-24 h-24 rounded-full object-cover shadow-lg">
+                <button class="absolute -bottom-2 -right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                    <i class="fas fa-camera text-sm"></i>
+                </button>
+            </div>
+            <div class="flex-1">
+                <h1 class="text-2xl font-heading font-bold text-neutral-900 mb-2">Aminata Johnson</h1>
+                <p class="text-neutral-600 mb-2">Customer since January 2023</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full">Wellness Enthusiast</span>
+                    <span class="bg-success/10 text-success text-xs font-medium px-3 py-1 rounded-full">15 Orders Completed</span>
+                    <span class="bg-warning/10 text-warning text-xs font-medium px-3 py-1 rounded-full">Premium Member</span>
+                </div>
+            </div>
+            <div class="flex space-x-3">
+                <button onclick="editProfile()" class="px-6 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary-600 transition-colors">
+                    Edit Profile
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Sections -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Personal Information -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- Basic Information -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-heading font-bold text-neutral-900">Personal Information</h2>
+                    <button onclick="toggleEdit('personal')" class="text-primary hover:text-primary-600 text-sm font-medium">
+                        <i class="fas fa-edit mr-1"></i> Edit
+                    </button>
+                </div>
+                
+                <div id="personal-view" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-700 mb-1">First Name</label>
+                        <p class="text-neutral-900 font-medium">Aminata</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-700 mb-1">Last Name</label>
+                        <p class="text-neutral-900 font-medium">Johnson</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-700 mb-1">Email Address</label>
+                        <p class="text-neutral-900 font-medium">aminata.johnson@email.com</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-700 mb-1">Phone Number</label>
+                        <p class="text-neutral-900 font-medium">+229 XX XX XX XX</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-700 mb-1">Date of Birth</label>
+                        <p class="text-neutral-900 font-medium">March 15, 1985</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-700 mb-1">Gender</label>
+                        <p class="text-neutral-900 font-medium">Female</p>
+                    </div>
+                </div>
+                
+                <div id="personal-edit" class="hidden">
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">First Name</label>
+                            <input type="text" value="Aminata" class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Last Name</label>
+                            <input type="text" value="Johnson" class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Email Address</label>
+                            <input type="email" value="aminata.johnson@email.com" class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Phone Number</label>
+                            <input type="tel" value="+229 XX XX XX XX" class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Date of Birth</label>
+                            <input type="date" value="1985-03-15" class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Gender</label>
+                            <select class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="female" selected>Female</option>
+                                <option value="male">Male</option>
+                                <option value="other">Other</option>
+                                <option value="prefer-not-to-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2 flex space-x-3 mt-4">
+                            <button type="submit" class="px-6 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary-600 transition-colors">
+                                Save Changes
+                            </button>
+                            <button type="button" onclick="cancelEdit('personal')" class="px-6 py-2 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 transition-colors">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Addresses -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-heading font-bold text-neutral-900">Delivery Addresses</h2>
+                    <button onclick="addAddress()" class="text-primary hover:text-primary-600 text-sm font-medium">
+                        <i class="fas fa-plus mr-1"></i> Add Address
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Primary Address -->
+                    <div class="border border-neutral-200 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-3">
+                            <div>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <h3 class="font-semibold text-neutral-900">Home Address</h3>
+                                    <span class="bg-primary/10 text-primary text-xs font-medium px-2 py-1 rounded-full">Primary</span>
+                                </div>
+                                <p class="text-neutral-700 text-sm">
+                                    123 Market Street<br>
+                                    Cotonou, Littoral<br>
+                                    Republic of Benin
+                                </p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="text-neutral-600 hover:text-primary text-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="text-neutral-600 hover:text-danger text-sm">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Address -->
+                    <div class="border border-neutral-200 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-3">
+                            <div>
+                                <h3 class="font-semibold text-neutral-900 mb-2">Office Address</h3>
+                                <p class="text-neutral-700 text-sm">
+                                    456 Business District<br>
+                                    Porto-Novo, Ouémé<br>
+                                    Republic of Benin
+                                </p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="text-neutral-600 hover:text-primary text-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="text-neutral-600 hover:text-danger text-sm">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order History -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100">
+                <h2 class="text-xl font-heading font-bold text-neutral-900 mb-6">Recent Orders</h2>
+                
+                <!-- Order Item -->
+                <div class="border border-neutral-200 rounded-lg p-4 mb-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                        <div>
+                            <h3 class="font-semibold text-neutral-900">Order #NB-2024-001</h3>
+                            <p class="text-sm text-neutral-600">January 15, 2024</p>
+                        </div>
+                        <span class="bg-success/10 text-success-800 px-3 py-1 rounded-full text-sm font-medium w-fit">
+                            Delivered
+                        </span>
+                    </div>
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-neutral-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-leaf text-primary"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-medium text-neutral-900 text-sm">Moringa Powder + 1 other item</h4>
+                            <p class="text-xs text-neutral-600">Total: 24,500 XOF</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="text-primary hover:text-primary-600 text-xs font-medium">View Details</button>
+                        <button class="text-primary hover:text-primary-600 text-xs font-medium">Reorder</button>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#" class="text-primary hover:text-primary-600 font-medium text-sm">
+                        View All Orders →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+            <!-- Account Stats -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100">
+                <h2 class="text-lg font-heading font-bold text-neutral-900 mb-6">Account Overview</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">Total Orders</span>
+                        <span class="font-bold text-neutral-900">15</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">Total Spent</span>
+                        <span class="font-bold text-primary">127,500 XOF</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">Wishlist Items</span>
+                        <span class="font-bold text-neutral-900">8</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">Loyalty Points</span>
+                        <span class="font-bold text-warning">1,275</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100">
+                <h2 class="text-lg font-heading font-bold text-neutral-900 mb-6">Quick Actions</h2>
+                <div class="space-y-3">
+                    <a href="{% url 'orders' %}" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors">
+                        <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-box text-primary text-sm"></i>
+                        </div>
+                        <span class="font-medium text-neutral-900">View Orders</span>
+                        <i class="fas fa-chevron-right text-neutral-400 text-sm ml-auto"></i>
+                    </a>
+                    
+                    <a href="{% url 'wishlist' %}" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors">
+                        <div class="w-8 h-8 bg-danger/10 rounded-lg flex items-center justify-center">
+                            <i class="far fa-heart text-danger text-sm"></i>
+                        </div>
+                        <span class="font-medium text-neutral-900">Wishlist</span>
+                        <div class="flex items-center space-x-2 ml-auto">
+                            <span class="bg-danger text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">8</span>
+                            <i class="fas fa-chevron-right text-neutral-400 text-sm"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="{% url 'contact' %}" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors">
+                        <div class="w-8 h-8 bg-success/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-headset text-success text-sm"></i>
+                        </div>
+                        <span class="font-medium text-neutral-900">Support</span>
+                        <i class="fas fa-chevron-right text-neutral-400 text-sm ml-auto"></i>
+                    </a>
+                    
+                    <a href="{% url 'blog' %}" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors">
+                        <div class="w-8 h-8 bg-warning/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-book-open text-warning text-sm"></i>
+                        </div>
+                        <span class="font-medium text-neutral-900">Wellness Blog</span>
+                        <i class="fas fa-chevron-right text-neutral-400 text-sm ml-auto"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Preferences -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-heading font-bold text-neutral-900">Preferences</h2>
+                    <button onclick="toggleEdit('preferences')" class="text-primary hover:text-primary-600 text-sm font-medium">
+                        <i class="fas fa-edit mr-1"></i> Edit
+                    </button>
+                </div>
+                
+                <div id="preferences-view" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-700 mb-1">Language</label>
+                        <p class="text-neutral-900 font-medium">English</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-700 mb-1">Currency</label>
+                        <p class="text-neutral-900 font-medium">XOF</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-700 mb-3">Wellness Interests</label>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">Digestive Health</span>
+                            <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">Energy & Vitality</span>
+                            <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">Stress Relief</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="preferences-edit" class="hidden">
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Language</label>
+                            <select class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="en" selected>English</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Currency</label>
+                            <select class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="XOF" selected>XOF (West African CFA franc)</option>
+                                <option value="USD">USD (US Dollar)</option>
+                                <option value="EUR">EUR (Euro)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-3">Notifications</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary">
+                                    <span class="ml-2 text-neutral-700 text-sm">Email notifications</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary">
+                                    <span class="ml-2 text-neutral-700 text-sm">SMS notifications</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary">
+                                    <span class="ml-2 text-neutral-700 text-sm">Newsletter subscription</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button type="submit" class="px-6 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary-600 transition-colors">
+                                Save Changes
+                            </button>
+                            <button type="button" onclick="cancelEdit('preferences')" class="px-6 py-2 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 transition-colors">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Edit functionality
+function toggleEdit(section) {
+    const viewElement = document.getElementById(section + '-view');
+    const editElement = document.getElementById(section + '-edit');
+    
+    if (viewElement && editElement) {
+        viewElement.classList.toggle('hidden');
+        editElement.classList.toggle('hidden');
+    }
+}
+
+function cancelEdit(section) {
+    const viewElement = document.getElementById(section + '-view');
+    const editElement = document.getElementById(section + '-edit');
+    
+    if (viewElement && editElement) {
+        viewElement.classList.remove('hidden');
+        editElement.classList.add('hidden');
+    }
+}
+
+function editProfile() {
+    toggleEdit('personal');
+}
+
+function addAddress() {
+    showToast('Address form would open here', 'info');
+}
+
+// Form submissions
+document.addEventListener('DOMContentLoaded', function() {
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            showToast('Profile updated successfully!', 'success');
+            
+            // Hide edit form and show view
+            const section = this.closest('[id$="-edit"]').id.replace('-edit', '');
+            cancelEdit(section);
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,460 @@
+{% extends 'base.html' %}
+
+{% block title %}Frequently Asked Questions - NaturalBio{% endblock %}
+
+{% block meta_description %}Find answers to common questions about NaturalBio's natural herbs, shipping, orders, and wellness products. Get expert advice on our organic products from Benin.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-50 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li>
+                    <a href="/" class="text-neutral-500 hover:text-primary transition-colors">Home</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li class="text-neutral-900 font-medium" aria-current="page">FAQ</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-question-circle text-white text-3xl"></i>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-neutral-900 mb-6">
+            Frequently Asked Questions
+        </h1>
+        <p class="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
+            Find answers to common questions about our natural herbs, orders, shipping, and wellness products.
+        </p>
+        
+        <!-- Search FAQ -->
+        <div class="max-w-md mx-auto">
+            <div class="relative">
+                <input type="search" placeholder="Search FAQ..." 
+                       class="w-full px-4 py-3 pl-12 pr-4 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary focus:border-transparent"
+                       onkeyup="searchFAQ(this.value)">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center">
+                    <i class="fas fa-search text-neutral-400"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Categories -->
+<section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Category Navigation -->
+        <div class="mb-12">
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4">
+                <button onclick="filterFAQ('all')" class="faq-filter active px-6 py-2 rounded-full border transition-colors">
+                    All Questions
+                </button>
+                <button onclick="filterFAQ('products')" class="faq-filter px-6 py-2 rounded-full border transition-colors">
+                    Products
+                </button>
+                <button onclick="filterFAQ('orders')" class="faq-filter px-6 py-2 rounded-full border transition-colors">
+                    Orders & Shipping
+                </button>
+                <button onclick="filterFAQ('wellness')" class="faq-filter px-6 py-2 rounded-full border transition-colors">
+                    Wellness & Usage
+                </button>
+                <button onclick="filterFAQ('account')" class="faq-filter px-6 py-2 rounded-full border transition-colors">
+                    Account
+                </button>
+            </div>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="space-y-4" id="faq-container">
+            <!-- Products Category -->
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="products">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq1')">
+                    <span class="font-medium text-neutral-900">Are your herbs 100% organic and natural?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq1-icon"></i>
+                </button>
+                <div id="faq1" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">
+                            Yes! All our herbs are certified organic and sourced directly from small-scale farmers in Benin and West Africa. 
+                            We maintain strict quality control standards and work only with suppliers who follow organic farming practices.
+                        </p>
+                        <p>
+                            Each product comes with certification details, and we can provide certificates of analysis upon request.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="products">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq2')">
+                    <span class="font-medium text-neutral-900">How should I store my herbal products?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq2-icon"></i>
+                </button>
+                <div id="faq2" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">Store your herbal products in a cool, dry place away from direct sunlight. Here are specific guidelines:</p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li><strong>Powders:</strong> Keep in airtight containers, use within 2 years</li>
+                            <li><strong>Oils:</strong> Store in dark glass bottles, refrigerate after opening</li>
+                            <li><strong>Tisanes:</strong> Keep in sealed containers, use within 3 years</li>
+                            <li><strong>Fresh herbs:</strong> Refrigerate and use within 1 week</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="products">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq3')">
+                    <span class="font-medium text-neutral-900">What's the difference between your tisanes and regular teas?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq3-icon"></i>
+                </button>
+                <div id="faq3" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">
+                            Tisanes are herbal infusions made from various parts of plants (leaves, flowers, roots, bark) that are naturally caffeine-free. 
+                            Unlike regular teas that come from the Camellia sinensis plant, our tisanes are:
+                        </p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>100% caffeine-free</li>
+                            <li>Made from traditional African herbs</li>
+                            <li>Blended for specific wellness benefits</li>
+                            <li>Can be enjoyed any time of day</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders & Shipping Category -->
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="orders">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq4')">
+                    <span class="font-medium text-neutral-900">What are your shipping options and delivery times?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq4-icon"></i>
+                </button>
+                <div id="faq4" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-neutral-900 mb-2">Standard Shipping</h4>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• 5-7 business days</li>
+                                    <li>• $5.99 or FREE over $50</li>
+                                    <li>• Tracking included</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-neutral-900 mb-2">Express Shipping</h4>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• 2-3 business days</li>
+                                    <li>• $12.99</li>
+                                    <li>• Priority handling</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="orders">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq5')">
+                    <span class="font-medium text-neutral-900">Can I track my order?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq5-icon"></i>
+                </button>
+                <div id="faq5" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">
+                            Yes! Once your order ships, you'll receive an email with tracking information. You can also track your order by:
+                        </p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>Logging into your account and viewing "My Orders"</li>
+                            <li>Using the tracking number provided in your shipping confirmation email</li>
+                            <li>Contacting our customer service team</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="orders">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq6')">
+                    <span class="font-medium text-neutral-900">What is your return policy?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq6-icon"></i>
+                </button>
+                <div id="faq6" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">We want you to be completely satisfied with your purchase. Our return policy includes:</p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li><strong>30-day return window</strong> from delivery date</li>
+                            <li><strong>Unopened products only</strong> for safety and quality reasons</li>
+                            <li><strong>Free return shipping</strong> for defective or incorrect items</li>
+                            <li><strong>Full refund</strong> processed within 5-7 business days</li>
+                        </ul>
+                        <p class="mt-4">
+                            Contact our customer service team to initiate a return.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wellness & Usage Category -->
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="wellness">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq7')">
+                    <span class="font-medium text-neutral-900">How do I know which herbs are right for me?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq7-icon"></i>
+                </button>
+                <div id="faq7" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">
+                            We recommend consulting with a healthcare professional before starting any herbal regimen. However, you can also:
+                        </p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>Read our detailed product descriptions and traditional uses</li>
+                            <li>Start with our popular wellness bundles</li>
+                            <li>Contact our herbalist team for personalized recommendations</li>
+                            <li>Begin with smaller quantities to test your response</li>
+                        </ul>
+                        <p class="mt-4 text-sm">
+                            <em>Disclaimer: Our products are not intended to diagnose, treat, cure, or prevent any disease.</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="wellness">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq8')">
+                    <span class="font-medium text-neutral-900">Are there any side effects or interactions I should know about?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq8-icon"></i>
+                </button>
+                <div id="faq8" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">
+                            While our herbs are natural, they can still interact with medications or cause reactions in sensitive individuals. 
+                            Please consider:
+                        </p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>Consult your healthcare provider if you're pregnant, nursing, or taking medications</li>
+                            <li>Start with small amounts to test your tolerance</li>
+                            <li>Check each product page for specific warnings and contraindications</li>
+                            <li>Stop use and consult a doctor if you experience adverse reactions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="wellness">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq9')">
+                    <span class="font-medium text-neutral-900">How should I prepare and consume the herbs?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq9-icon"></i>
+                </button>
+                <div id="faq9" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">Preparation methods vary by product type:</p>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-neutral-900">Tisanes (Herbal Teas)</h4>
+                                <p>Steep 1 teaspoon in hot water for 5-10 minutes. Add honey to taste.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-neutral-900">Powders</h4>
+                                <p>Mix into smoothies, yogurt, or water. Start with ½ teaspoon daily.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-neutral-900">Oils</h4>
+                                <p>For external use only. Apply small amounts to skin. Always do a patch test first.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Category -->
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="account">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq10')">
+                    <span class="font-medium text-neutral-900">How do I create an account?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq10-icon"></i>
+                </button>
+                <div id="faq10" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">Creating an account is quick and easy:</p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>Click the user icon in the top navigation</li>
+                            <li>Select "Sign Up" in the modal that appears</li>
+                            <li>Fill in your basic information</li>
+                            <li>Verify your email address</li>
+                        </ul>
+                        <p class="mt-4">
+                            Benefits of having an account include order tracking, faster checkout, wishlist, and exclusive offers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border border-neutral-200 rounded-lg" data-category="account">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors" onclick="toggleFAQ('faq11')">
+                    <span class="font-medium text-neutral-900">Can I change or cancel my order?</span>
+                    <i class="fas fa-chevron-down transition-transform text-neutral-500" id="faq11-icon"></i>
+                </button>
+                <div id="faq11" class="hidden px-6 pb-6 text-neutral-600 border-t border-neutral-100">
+                    <div class="pt-4">
+                        <p class="mb-4">
+                            We process orders quickly, but we'll do our best to accommodate changes:
+                        </p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li><strong>Within 1 hour of ordering:</strong> Contact us immediately for changes or cancellation</li>
+                            <li><strong>Order processing:</strong> Limited changes possible, contact customer service</li>
+                            <li><strong>Already shipped:</strong> Changes not possible, but returns are accepted</li>
+                        </ul>
+                        <p class="mt-4">
+                            Contact our customer service team at <a href="mailto:support@naturalbio.com" class="text-primary hover:underline">support@naturalbio.com</a> or call us during business hours.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Still Have Questions -->
+<section class="py-16 bg-neutral-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-headset text-white text-2xl"></i>
+        </div>
+        <h2 class="text-3xl font-heading font-bold text-neutral-900 mb-4">
+            Still Have Questions?
+        </h2>
+        <p class="text-lg text-neutral-600 mb-8 max-w-2xl mx-auto">
+            Our customer support team is here to help. Get personalized answers to your questions about our products and services.
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <a href="{% url 'contact' %}" class="flex items-center justify-center px-6 py-4 bg-primary hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors">
+                <i class="fas fa-envelope mr-2"></i>
+                Contact Support
+            </a>
+            <a href="tel:+229xxxxxxxx" class="flex items-center justify-center px-6 py-4 border border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-lg transition-colors">
+                <i class="fas fa-phone mr-2"></i>
+                Call Us
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function toggleFAQ(faqId) {
+    const content = document.getElementById(faqId);
+    const icon = document.getElementById(faqId + '-icon');
+    
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        content.classList.add('hidden');
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
+function filterFAQ(category) {
+    const items = document.querySelectorAll('.faq-item');
+    const filters = document.querySelectorAll('.faq-filter');
+    
+    // Update filter buttons
+    filters.forEach(filter => {
+        filter.classList.remove('active');
+        if (filter.textContent.toLowerCase().includes(category) || category === 'all') {
+            // Find the correct button and add active class
+            if (category === 'all' && filter.textContent.includes('All Questions')) {
+                filter.classList.add('active');
+            } else if (category === 'products' && filter.textContent.includes('Products')) {
+                filter.classList.add('active');
+            } else if (category === 'orders' && filter.textContent.includes('Orders')) {
+                filter.classList.add('active');
+            } else if (category === 'wellness' && filter.textContent.includes('Wellness')) {
+                filter.classList.add('active');
+            } else if (category === 'account' && filter.textContent.includes('Account')) {
+                filter.classList.add('active');
+            }
+        }
+    });
+    
+    // Find and set active filter
+    filters.forEach(filter => {
+        filter.addEventListener('click', function() {
+            const text = this.textContent.toLowerCase();
+            if (text.includes('all')) this.classList.add('active');
+            else if (text.includes('products') && category === 'products') this.classList.add('active');
+            else if (text.includes('orders') && category === 'orders') this.classList.add('active');
+            else if (text.includes('wellness') && category === 'wellness') this.classList.add('active');
+            else if (text.includes('account') && category === 'account') this.classList.add('active');
+        });
+    });
+    
+    // Show/hide items
+    items.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function searchFAQ(query) {
+    const items = document.querySelectorAll('.faq-item');
+    query = query.toLowerCase();
+    
+    items.forEach(item => {
+        const question = item.querySelector('button span').textContent.toLowerCase();
+        const answer = item.querySelector('div[id^="faq"]').textContent.toLowerCase();
+        
+        if (question.includes(query) || answer.includes(query) || query === '') {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+// Initialize filters
+document.addEventListener('DOMContentLoaded', function() {
+    // Set initial active filter
+    document.querySelector('.faq-filter').classList.add('active');
+    
+    // Add click handlers to filter buttons
+    document.querySelectorAll('.faq-filter').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.faq-filter').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
+</script>
+
+<style>
+.faq-filter.active {
+    background-color: #10B981;
+    color: white;
+    border-color: #10B981;
+}
+
+.faq-filter {
+    border-color: #D1D5DB;
+    color: #6B7280;
+}
+
+.faq-filter:hover:not(.active) {
+    background-color: #F3F4F6;
+    border-color: #9CA3AF;
+}
+</style>
+{% endblock %}

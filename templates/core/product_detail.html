@@ -1,0 +1,815 @@
+{% extends 'base.html' %}
+
+{% block title %}Organic Moringa Powder - Premium Superfood - NaturalBio{% endblock %}
+
+{% block meta_description %}Premium organic moringa powder from Benin. Rich in vitamins, minerals and antioxidants. Pure, natural superfood for energy and wellness. Free shipping available.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-50 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li>
+                    <a href="/" class="text-neutral-500 hover:text-primary transition-colors">Home</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li>
+                    <a href="/shop" class="text-neutral-500 hover:text-primary transition-colors">Shop</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li>
+                    <a href="/category/powders" class="text-neutral-500 hover:text-primary transition-colors">Herbal Powders</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li class="text-neutral-900 font-medium" aria-current="page">Organic Moringa Powder</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Back Button -->
+    <button onclick="history.back()" class="mb-6 flex items-center text-neutral-600 hover:text-primary transition-colors">
+        <i class="fas fa-arrow-left mr-2"></i>
+        <span>Back to Products</span>
+    </button>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Product Images -->
+        <div class="space-y-4">
+            <!-- Main Image -->
+            <div class="aspect-square bg-neutral-100 rounded-2xl overflow-hidden relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
+                    <i class="fas fa-leaf text-primary text-8xl"></i>
+                </div>
+                <!-- Badges -->
+                <div class="absolute top-4 left-4 space-y-2">
+                    <div class="bg-success text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        ORGANIC CERTIFIED
+                    </div>
+                    <div class="bg-danger text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        -20% OFF
+                    </div>
+                    <div class="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        BEST SELLER
+                    </div>
+                </div>
+                <!-- Zoom Icon -->
+                <button class="absolute top-4 right-4 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                    <i class="fas fa-search-plus text-neutral-600"></i>
+                </button>
+            </div>
+            
+            <!-- Thumbnail Images -->
+            <div class="grid grid-cols-4 gap-4">
+                <div class="aspect-square bg-neutral-100 rounded-xl overflow-hidden cursor-pointer border-2 border-primary">
+                    <div class="w-full h-full bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
+                        <i class="fas fa-leaf text-primary text-2xl"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-neutral-100 rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-neutral-300">
+                    <div class="w-full h-full bg-gradient-to-br from-accent/20 to-accent/30 flex items-center justify-center">
+                        <i class="fas fa-seedling text-primary text-2xl"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-neutral-100 rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-neutral-300">
+                    <div class="w-full h-full bg-gradient-to-br from-warning/5 to-warning/10 flex items-center justify-center">
+                        <i class="fas fa-mortar-pestle text-warning text-2xl"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-neutral-100 rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-neutral-300">
+                    <div class="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+                        <i class="fas fa-certificate text-primary text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="space-y-6">
+            <!-- Product Title & Rating -->
+            <div>
+                <h1 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">
+                    Organic Moringa Powder
+                </h1>
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="flex text-warning">
+                            <i class="fas fa-star text-sm"></i>
+                            <i class="fas fa-star text-sm"></i>
+                            <i class="fas fa-star text-sm"></i>
+                            <i class="fas fa-star text-sm"></i>
+                            <i class="fas fa-star text-sm"></i>
+                        </div>
+                        <span class="text-sm text-neutral-600">(47 reviews)</span>
+                    </div>
+                    <div class="text-sm text-neutral-500">
+                        <span class="text-success font-medium">In Stock</span> - 25 available
+                    </div>
+                </div>
+                <p class="text-lg text-neutral-600">
+                    Premium organic moringa leaf powder sourced directly from Benin. Rich in vitamins, minerals, and antioxidants for natural energy and wellness.
+                </p>
+            </div>
+
+            <!-- Price -->
+            <div class="flex items-baseline space-x-3">
+                <span class="text-4xl font-bold text-primary">8,000 XOF</span>
+                <span class="text-xl text-neutral-400 line-through">10,000 XOF</span>
+                <span class="bg-danger text-white text-sm font-semibold px-2 py-1 rounded">20% OFF</span>
+            </div>
+
+            <!-- Product Variations -->
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-3">Size Options</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <label class="relative">
+                            <input type="radio" name="size" value="100g" class="sr-only peer" checked>
+                            <div class="px-6 py-3 border-2 border-neutral-200 rounded-lg cursor-pointer peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
+                                <span class="font-medium">100g</span>
+                                <span class="block text-sm opacity-75">8,000 XOF</span>
+                            </div>
+                        </label>
+                        <label class="relative">
+                            <input type="radio" name="size" value="250g" class="sr-only peer">
+                            <div class="px-6 py-3 border-2 border-neutral-200 rounded-lg cursor-pointer peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
+                                <span class="font-medium">250g</span>
+                                <span class="block text-sm opacity-75">18,000 XOF</span>
+                            </div>
+                        </label>
+                        <label class="relative">
+                            <input type="radio" name="size" value="500g" class="sr-only peer">
+                            <div class="px-6 py-3 border-2 border-neutral-200 rounded-lg cursor-pointer peer-checked:border-primary peer-checked:text-white transition-all">
+                                <span class="font-medium">500g</span>
+                                <span class="block text-sm opacity-75">35,000 XOF</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Quantity -->
+                <div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-3">Quantity</h3>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center border border-neutral-300 rounded-lg">
+                            <button type="button" class="px-3 py-2 hover:bg-neutral-50 transition-colors" onclick="decrementQuantity()">
+                                <i class="fas fa-minus text-sm"></i>
+                            </button>
+                            <input type="number" id="quantity" value="1" min="1" max="10" class="w-16 text-center py-2 border-0 focus:ring-0">
+                            <button type="button" class="px-3 py-2 hover:bg-neutral-50 transition-colors" onclick="incrementQuantity()">
+                                <i class="fas fa-plus text-sm"></i>
+                            </button>
+                        </div>
+                        <span class="text-sm text-neutral-600">Maximum 10 per order</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="space-y-3">
+                <button onclick="addToCart('moringa-powder')" class="w-full bg-primary text-white font-semibold py-4 rounded-lg hover:bg-primary-600 transition-colors flex items-center justify-center">
+                    <i class="fas fa-shopping-bag mr-2"></i>
+                    Add to Cart - 8,000 XOF
+                </button>
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="border border-neutral-300 text-neutral-900 font-semibold py-3 rounded-lg hover:bg-neutral-50 transition-colors flex items-center justify-center">
+                        <i class="far fa-heart mr-2"></i>
+                        Add to Wishlist
+                    </button>
+                    <button class="border border-neutral-300 text-neutral-900 font-semibold py-3 rounded-lg hover:bg-neutral-50 transition-colors flex items-center justify-center">
+                        <i class="fas fa-share-alt mr-2"></i>
+                        Share Product
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Highlights -->
+            <div class="bg-neutral-50 rounded-2xl p-6">
+                <h3 class="font-heading font-semibold text-neutral-900 mb-4">Product Highlights</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-certificate text-primary"></i>
+                        <span>Organic Certified</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-map-marker-alt text-primary"></i>
+                        <span>Origin: Benin</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-shipping-fast text-primary"></i>
+                        <span>Free Shipping</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-shield-alt text-primary"></i>
+                        <span>Quality Guaranteed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stock Alert -->
+            <div class="bg-warning/10 border border-warning/20 rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                    <div>
+                        <p class="font-medium text-warning-800">Limited Stock!</p>
+                        <p class="text-sm text-warning-700">Only 25 items left. Order soon to avoid disappointment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Tabs -->
+    <div class="mt-16">
+        <div class="border-b border-neutral-200">
+            <nav class="flex space-x-8" aria-label="Tabs">
+                <button onclick="showTab('description')" class="tab-button active py-4 px-1 border-b-2 font-medium text-sm transition-colors" data-tab="description">
+                    Description
+                </button>
+                <button onclick="showTab('ingredients')" class="tab-button py-4 px-1 border-b-2 border-transparent text-neutral-500 hover:text-neutral-700 font-medium text-sm transition-colors" data-tab="ingredients">
+                    Ingredients & Origin
+                </button>
+                <button onclick="showTab('benefits')" class="tab-button py-4 px-1 border-b-2 border-transparent text-neutral-500 hover:text-neutral-700 font-medium text-sm transition-colors" data-tab="benefits">
+                    Health Benefits
+                </button>
+                <button onclick="showTab('usage')" class="tab-button py-4 px-1 border-b-2 border-transparent text-neutral-500 hover:text-neutral-700 font-medium text-sm transition-colors" data-tab="usage">
+                    Usage Instructions
+                </button>
+                <button onclick="showTab('precautions')" class="tab-button py-4 px-1 border-b-2 border-transparent text-neutral-500 hover:text-neutral-700 font-medium text-sm transition-colors" data-tab="precautions">
+                    Precautions
+                </button>
+                <button onclick="showTab('reviews')" class="tab-button py-4 px-1 border-b-2 border-transparent text-neutral-500 hover:text-neutral-700 font-medium text-sm transition-colors" data-tab="reviews">
+                    Reviews (47)
+                </button>
+            </nav>
+        </div>
+
+        <div class="py-8">
+            <!-- Description Tab -->
+            <div id="description" class="tab-content active">
+                <div class="prose max-w-none">
+                    <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-4">Product Description</h3>
+                    <p class="text-neutral-700 mb-6">
+                        Our premium organic moringa powder is made from carefully selected moringa oleifera leaves grown in the fertile soils of Benin. Known as the "Miracle Tree," moringa has been used for centuries in traditional African medicine for its exceptional nutritional profile and health benefits.
+                    </p>
+                    <p class="text-neutral-700 mb-6">
+                        This superfood powder contains over 90 nutrients, including 18 amino acids, 36 anti-inflammatory compounds, and high levels of iron, calcium, and vitamins A, C, and E. Our moringa is shade-dried at low temperatures to preserve maximum nutritional value and has a mild, earthy flavor that blends well with smoothies, juices, and food.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        <div class="bg-primary/5 rounded-xl p-6">
+                            <h4 class="font-heading font-semibold text-neutral-900 mb-3">Nutritional Profile</h4>
+                            <ul class="space-y-2 text-sm text-neutral-700">
+                                <li>• 7x more Vitamin C than oranges</li>
+                                <li>• 4x more Calcium than milk</li>
+                                <li>• 4x more Vitamin A than carrots</li>
+                                <li>• 3x more Potassium than bananas</li>
+                                <li>• 2x more protein than yogurt</li>
+                            </ul>
+                        </div>
+                        <div class="bg-accent/10 rounded-xl p-6">
+                            <h4 class="font-heading font-semibold text-neutral-900 mb-3">Quality Standards</h4>
+                            <ul class="space-y-2 text-sm text-neutral-700">
+                                <li>• Certified organic cultivation</li>
+                                <li>• No pesticides or chemicals</li>
+                                <li>• Third-party lab tested</li>
+                                <li>• Fair trade sourcing</li>
+                                <li>• Sustainable harvesting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ingredients Tab -->
+            <div id="ingredients" class="tab-content hidden">
+                <div class="prose max-w-none">
+                    <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-4">Ingredients & Origin</h3>
+                    <div class="bg-neutral-50 rounded-xl p-6 mb-6">
+                        <h4 class="font-heading font-semibold text-neutral-900 mb-3">Ingredients</h4>
+                        <p class="text-neutral-700 text-lg">100% Pure Organic Moringa Oleifera Leaf Powder</p>
+                        <p class="text-sm text-neutral-600 mt-2">No additives, preservatives, or artificial ingredients</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-heading font-semibold text-neutral-900 mb-3">Source Location</h4>
+                            <p class="text-neutral-700 mb-4">
+                                Our moringa is sourced from small-scale organic farms in the Zou and Collines departments of Benin, West Africa. These regions provide the ideal tropical climate and soil conditions for moringa cultivation.
+                            </p>
+                            <ul class="space-y-2 text-sm text-neutral-700">
+                                <li><strong>Country:</strong> Republic of Benin</li>
+                                <li><strong>Region:</strong> Zou & Collines Departments</li>
+                                <li><strong>Climate:</strong> Tropical savanna</li>
+                                <li><strong>Soil:</strong> Rich ferralitic soils</li>
+                                <li><strong>Harvest Season:</strong> Year-round</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-semibold text-neutral-900 mb-3">Processing Method</h4>
+                            <p class="text-neutral-700 mb-4">
+                                Our moringa leaves are carefully hand-picked in the early morning when nutrient levels are highest, then shade-dried using traditional methods to preserve maximum nutritional value.
+                            </p>
+                            <ol class="space-y-2 text-sm text-neutral-700">
+                                <li><strong>1. Harvesting:</strong> Hand-picked fresh leaves</li>
+                                <li><strong>2. Washing:</strong> Clean water rinse</li>
+                                <li><strong>3. Drying:</strong> Shade-dried at low temperature</li>
+                                <li><strong>4. Grinding:</strong> Fine powder consistency</li>
+                                <li><strong>5. Testing:</strong> Quality control checks</li>
+                                <li><strong>6. Packaging:</strong> Sealed for freshness</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits Tab -->
+            <div id="benefits" class="tab-content hidden">
+                <div class="prose max-w-none">
+                    <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-4">Health Benefits</h3>
+                    <p class="text-neutral-700 mb-6">
+                        Moringa has been studied extensively for its potential health benefits. While individual results may vary, research suggests moringa may support overall wellness in several ways:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-bolt text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-neutral-900 mb-2">Natural Energy Boost</h4>
+                                    <p class="text-neutral-700 text-sm">Rich in iron, magnesium, and B vitamins that may help combat fatigue and support natural energy levels.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-shield-alt text-success text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-neutral-900 mb-2">Immune System Support</h4>
+                                    <p class="text-neutral-700 text-sm">High in vitamin C, vitamin A, and antioxidants that may help support immune function.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-warning/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-heart text-danger text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-neutral-900 mb-2">Heart Health</h4>
+                                    <p class="text-neutral-700 text-sm">Contains compounds that may help maintain healthy cholesterol levels and support cardiovascular health.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-accent/30 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-bone text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-neutral-900 mb-2">Bone Health</h4>
+                                    <p class="text-neutral-700 text-sm">Rich in calcium, magnesium, and phosphorus that are essential for maintaining strong bones.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-brain text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-neutral-900 mb-2">Cognitive Function</h4>
+                                    <p class="text-neutral-700 text-sm">Antioxidants and nutrients that may help support brain health and cognitive function.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-spa text-success text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-neutral-900 mb-2">Skin & Hair Health</h4>
+                                    <p class="text-neutral-700 text-sm">Vitamins A and E plus other nutrients that may help maintain healthy skin and hair.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usage Tab -->
+            <div id="usage" class="tab-content hidden">
+                <div class="prose max-w-none">
+                    <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-4">Usage Instructions</h3>
+                    <div class="bg-neutral-50 rounded-xl p-6 mb-6">
+                        <h4 class="font-heading font-semibold text-neutral-900 mb-3">Recommended Dosage</h4>
+                        <p class="text-lg font-medium text-primary mb-2">1-2 teaspoons (3-6g) daily</p>
+                        <p class="text-sm text-neutral-600">Start with a smaller amount and gradually increase as your body adjusts</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-primary/5 rounded-xl p-6">
+                            <h4 class="font-heading font-semibold text-neutral-900 mb-4">Ways to Consume</h4>
+                            <ul class="space-y-3 text-sm text-neutral-700">
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-blender text-primary mt-1"></i>
+                                    <div>
+                                        <strong>Smoothies:</strong> Blend with fruits, vegetables, and your preferred liquid
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-glass text-primary mt-1"></i>
+                                    <div>
+                                        <strong>Juices:</strong> Mix into fresh juices or water
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-bowl-food text-primary mt-1"></i>
+                                    <div>
+                                        <strong>Food:</strong> Sprinkle on salads, yogurt, or cereal
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-mug-hot text-primary mt-1"></i>
+                                    <div>
+                                        <strong>Tea:</strong> Mix with warm (not hot) water or herbal teas
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-accent/10 rounded-xl p-6">
+                            <h4 class="font-heading font-semibold text-neutral-900 mb-4">Best Practices</h4>
+                            <ul class="space-y-2 text-sm text-neutral-700">
+                                <li>• Take on an empty stomach for best absorption</li>
+                                <li>• Consume in the morning for energy boost</li>
+                                <li>• Avoid mixing with very hot liquids</li>
+                                <li>• Store in a cool, dry place</li>
+                                <li>• Use within 24 months of opening</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-primary/5 rounded-xl p-6">
+                        <h4 class="font-heading font-semibold text-neutral-900 mb-4">Popular Recipes</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-medium text-neutral-900 mb-2">Green Energy Smoothie</h5>
+                                <ul class="text-sm text-neutral-700 space-y-1">
+                                    <li>• 1 tsp moringa powder</li>
+                                    <li>• 1 banana</li>
+                                    <li>• 1 cup spinach</li>
+                                    <li>• 1 cup coconut water</li>
+                                    <li>• 1 tbsp honey (optional)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-neutral-900 mb-2">Moringa Lemon Water</h5>
+                                <ul class="text-sm text-neutral-700 space-y-1">
+                                    <li>• 1 tsp moringa powder</li>
+                                    <li>• 1 cup lukewarm water</li>
+                                    <li>• Juice of 1/2 lemon</li>
+                                    <li>• 1 tsp honey</li>
+                                    <li>• Pinch of sea salt</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Precautions Tab -->
+            <div id="precautions" class="tab-content hidden">
+                <div class="prose max-w-none">
+                    <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-4">Precautions & Safety Information</h3>
+                    
+                    <div class="bg-warning/10 border border-warning/20 rounded-xl p-6 mb-6">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-exclamation-triangle text-warning text-2xl mt-1"></i>
+                            <div>
+                                <h4 class="font-heading font-semibold text-warning-800 mb-2">Important Health Disclaimer</h4>
+                                <p class="text-warning-700">
+                                    This product is not intended to diagnose, treat, cure, or prevent any disease. The information and products offered do not replace the advice of a healthcare professional. Consult your doctor before use, especially if you have medical conditions or take medications.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-heading font-semibold text-neutral-900 mb-4">Who Should Avoid</h4>
+                            <ul class="space-y-3 text-sm text-neutral-700">
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-times-circle text-danger mt-1"></i>
+                                    <span><strong>Pregnancy & Breastfeeding:</strong> Consult healthcare provider before use</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-times-circle text-danger mt-1"></i>
+                                    <span><strong>Children Under 18:</strong> Not recommended without medical supervision</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-times-circle text-danger mt-1"></i>
+                                    <span><strong>Blood Thinning Medications:</strong> May interact with anticoagulants</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-times-circle text-danger mt-1"></i>
+                                    <span><strong>Diabetes Medications:</strong> May affect blood sugar levels</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-heading font-semibold text-neutral-900 mb-4">Possible Side Effects</h4>
+                            <ul class="space-y-3 text-sm text-neutral-700">
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-info-circle text-neutral-400 mt-1"></i>
+                                    <span><strong>Digestive Upset:</strong> Start with small amounts to avoid stomach discomfort</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-info-circle text-neutral-400 mt-1"></i>
+                                    <span><strong>Allergic Reactions:</strong> Discontinue use if you experience any allergic symptoms</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-info-circle text-neutral-400 mt-1"></i>
+                                    <span><strong>Iron Overload:</strong> Don't exceed recommended dosage if taking iron supplements</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-neutral-50 rounded-xl p-6 mt-6">
+                        <h4 class="font-heading font-semibold text-neutral-900 mb-3">Storage & Handling</h4>
+                        <ul class="space-y-2 text-sm text-neutral-700">
+                            <li>• Store in a cool, dry place away from direct sunlight</li>
+                            <li>• Keep container tightly sealed when not in use</li>
+                            <li>• Use a dry spoon when measuring to prevent moisture</li>
+                            <li>• Best consumed within 24 months of opening</li>
+                            <li>• Keep away from children and pets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Tab -->
+            <div id="reviews" class="tab-content hidden">
+                <div class="prose max-w-none">
+                    <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-4">Customer Reviews</h3>
+                    
+                    <!-- Review Summary -->
+                    <div class="bg-neutral-50 rounded-xl p-6 mb-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="text-center">
+                                <div class="text-5xl font-bold text-primary mb-2">4.8</div>
+                                <div class="flex items-center justify-center mb-2">
+                                    <div class="flex text-warning text-lg">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <p class="text-neutral-600">Based on 47 reviews</p>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-sm">5 stars</span>
+                                    <div class="flex-1 bg-neutral-200 rounded-full h-2">
+                                        <div class="bg-warning h-2 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                    <span class="text-sm text-neutral-600">40</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-sm">4 stars</span>
+                                    <div class="flex-1 bg-neutral-200 rounded-full h-2">
+                                        <div class="bg-warning h-2 rounded-full" style="width: 10%"></div>
+                                    </div>
+                                    <span class="text-sm text-neutral-600">5</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-sm">3 stars</span>
+                                    <div class="flex-1 bg-neutral-200 rounded-full h-2">
+                                        <div class="bg-warning h-2 rounded-full" style="width: 4%"></div>
+                                    </div>
+                                    <span class="text-sm text-neutral-600">2</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-sm">2 stars</span>
+                                    <div class="flex-1 bg-neutral-200 rounded-full h-2">
+                                        <div class="bg-neutral-300 h-2 rounded-full" style="width: 0%"></div>
+                                    </div>
+                                    <span class="text-sm text-neutral-600">0</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-sm">1 star</span>
+                                    <div class="flex-1 bg-neutral-200 rounded-full h-2">
+                                        <div class="bg-neutral-300 h-2 rounded-full" style="width: 0%"></div>
+                                    </div>
+                                    <span class="text-sm text-neutral-600">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Individual Reviews -->
+                    <div class="space-y-6">
+                        <!-- Review 1 -->
+                        <div class="border-b border-neutral-200 pb-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <div class="flex items-center space-x-3 mb-2">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                            <span class="text-primary font-semibold text-sm">A</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-neutral-900">Aminata D.</p>
+                                            <p class="text-sm text-neutral-500">Verified Purchase • 2 weeks ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-warning text-sm mb-3">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="font-medium text-neutral-900 mb-2">Amazing energy boost!</h4>
+                            <p class="text-neutral-700">
+                                I've been using this moringa powder for about a month now, and the difference in my energy levels is incredible. I add it to my morning smoothie, and it keeps me energized throughout the day without any jitters. The quality is excellent - you can tell it's pure and fresh. Will definitely reorder!
+                            </p>
+                            <div class="flex items-center space-x-4 mt-4">
+                                <button class="text-sm text-neutral-500 hover:text-primary transition-colors">
+                                    <i class="far fa-thumbs-up mr-1"></i>
+                                    Helpful (23)
+                                </button>
+                                <button class="text-sm text-neutral-500 hover:text-primary transition-colors">
+                                    Report
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="border-b border-neutral-200 pb-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <div class="flex items-center space-x-3 mb-2">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                            <span class="text-primary font-semibold text-sm">K</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-neutral-900">Kofi M.</p>
+                                            <p class="text-sm text-neutral-500">Verified Purchase • 1 month ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-warning text-sm mb-3">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="font-medium text-neutral-900 mb-2">Great quality and fast shipping</h4>
+                            <p class="text-neutral-700">
+                                Excellent product! The powder is very fine and mixes well. I appreciate that it's sourced locally from Benin - you can taste the freshness. The packaging was secure and arrived quickly. Customer service was also very responsive when I had questions about dosage.
+                            </p>
+                            <div class="flex items-center space-x-4 mt-4">
+                                <button class="text-sm text-neutral-500 hover:text-primary transition-colors">
+                                    <i class="far fa-thumbs-up mr-1"></i>
+                                    Helpful (18)
+                                </button>
+                                <button class="text-sm text-neutral-500 hover:text-primary transition-colors">
+                                    Report
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="border-b border-neutral-200 pb-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <div class="flex items-center space-x-3 mb-2">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                            <span class="text-primary font-semibold text-sm">F</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-neutral-900">Fatou S.</p>
+                                            <p class="text-sm text-neutral-500">Verified Purchase • 3 weeks ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-warning text-sm mb-3">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="font-medium text-neutral-900 mb-2">Good product, strong taste</h4>
+                            <p class="text-neutral-700">
+                                The moringa powder is high quality and I can feel the health benefits. The only thing is that the taste is quite strong and earthy - took me a few days to get used to it. I recommend mixing it with fruit smoothies or juice to mask the taste if you're sensitive to it. Overall satisfied with the purchase.
+                            </p>
+                            <div class="flex items-center space-x-4 mt-4">
+                                <button class="text-sm text-neutral-500 hover:text-primary transition-colors">
+                                    <i class="far fa-thumbs-up mr-1"></i>
+                                    Helpful (12)
+                                </button>
+                                <button class="text-sm text-neutral-500 hover:text-primary transition-colors">
+                                    Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <button class="px-6 py-3 border border-neutral-300 text-neutral-900 font-semibold rounded-lg hover:bg-neutral-50 transition-colors">
+                            Load More Reviews
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <section class="mt-16 pt-16 border-t border-neutral-200">
+        <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-8">You May Also Like</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Similar products would go here -->
+        </div>
+    </section>
+</div>
+
+<!-- Quick Add to Cart Sticky -->
+<div class="fixed bottom-4 left-4 right-4 lg:hidden">
+    <div class="bg-white border border-neutral-200 rounded-2xl p-4 shadow-lg">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="font-semibold text-neutral-900">Organic Moringa Powder</p>
+                <p class="text-primary font-bold">8,000 XOF</p>
+            </div>
+            <button onclick="addToCart('moringa-powder')" class="bg-primary text-white px-6 py-3 rounded-lg font-semibold">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Tab functionality
+function showTab(tabName) {
+    // Hide all tab contents
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+        content.classList.remove('active');
+    });
+    
+    // Remove active state from all tab buttons
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active', 'border-primary', 'text-primary');
+        button.classList.add('border-transparent', 'text-neutral-500');
+    });
+    
+    // Show selected tab content
+    document.getElementById(tabName).classList.remove('hidden');
+    document.getElementById(tabName).classList.add('active');
+    
+    // Add active state to selected tab button
+    const activeButton = document.querySelector(`[data-tab="${tabName}"]`);
+    activeButton.classList.add('active', 'border-primary', 'text-primary');
+    activeButton.classList.remove('border-transparent', 'text-neutral-500');
+}
+
+// Quantity controls
+function incrementQuantity() {
+    const quantityInput = document.getElementById('quantity');
+    const currentValue = parseInt(quantityInput.value);
+    if (currentValue < 10) {
+        quantityInput.value = currentValue + 1;
+    }
+}
+
+function decrementQuantity() {
+    const quantityInput = document.getElementById('quantity');
+    const currentValue = parseInt(quantityInput.value);
+    if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+    }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    // Set default active tab styles
+    const activeButton = document.querySelector('[data-tab="description"]');
+    activeButton.classList.add('border-primary', 'text-primary');
+    activeButton.classList.remove('border-transparent', 'text-neutral-500');
+});
+</script>
+{% endblock %}

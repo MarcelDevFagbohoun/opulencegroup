@@ -1,0 +1,439 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Confirmation - Thank You! - NaturalBio{% endblock %}
+
+{% block meta_description %}Your order has been confirmed! Thank you for shopping with NaturalBio. Track your order and explore our natural herbs collection.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-50 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li>
+                    <a href="/" class="text-neutral-500 hover:text-primary transition-colors">Home</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li>
+                    <a href="/checkout" class="text-neutral-500 hover:text-primary transition-colors">Checkout</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li class="text-neutral-900 font-medium" aria-current="page">Order Confirmation</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Success Message -->
+    <div class="text-center mb-12">
+        <div class="w-20 h-20 mx-auto mb-6 bg-success rounded-full flex items-center justify-center">
+            <i class="fas fa-check text-white text-3xl"></i>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">
+            Order Confirmed!
+        </h1>
+        <p class="text-lg text-neutral-600 mb-2">
+            Thank you for your purchase from NaturalBio
+        </p>
+        <p class="text-neutral-500">
+            A confirmation email has been sent to <span class="font-medium">john.doe@email.com</span>
+        </p>
+    </div>
+
+    <!-- Order Details -->
+    <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 md:p-8 mb-8">
+        <!-- Order Header -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 pb-6 border-b border-neutral-200">
+            <div>
+                <h2 class="text-2xl font-heading font-semibold text-neutral-900 mb-2">
+                    Order #HS-2024-001234
+                </h2>
+                <p class="text-neutral-600">
+                    <i class="far fa-calendar-alt mr-2"></i>
+                    Placed on <span class="font-medium">January 15, 2024</span>
+                </p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <div class="inline-flex items-center px-4 py-2 bg-success/10 text-success-800 rounded-full text-sm font-medium">
+                    <i class="fas fa-circle text-success text-xs mr-2"></i>
+                    Order Confirmed
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="mb-8">
+            <h3 class="text-lg font-heading font-semibold text-neutral-900 mb-6">Items Ordered</h3>
+            <div class="space-y-6">
+                <!-- Order Item 1 -->
+                <div class="flex flex-col sm:flex-row gap-4 p-4 bg-neutral-50 rounded-lg">
+                    <div class="w-20 h-20 flex-shrink-0">
+                        <div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-leaf text-primary text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between">
+                            <div>
+                                <h4 class="font-heading font-semibold text-neutral-900 mb-1">
+                                    Organic Moringa Powder
+                                </h4>
+                                <p class="text-sm text-neutral-600 mb-2">Premium superfood blend</p>
+                                <div class="flex flex-wrap gap-4 text-xs text-neutral-500">
+                                    <span>Size: 250g</span>
+                                    <span>Origin: Benin</span>
+                                    <span>SKU: MP-250-ORG</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 sm:mt-0 sm:text-right">
+                                <p class="text-sm text-neutral-600">Qty: 1</p>
+                                <p class="font-semibold text-lg text-neutral-900">$24.99</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Item 2 -->
+                <div class="flex flex-col sm:flex-row gap-4 p-4 bg-neutral-50 rounded-lg">
+                    <div class="w-20 h-20 flex-shrink-0">
+                        <div class="w-full h-full bg-gradient-to-br from-accent/30 to-accent/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-seedling text-primary text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between">
+                            <div>
+                                <h4 class="font-heading font-semibold text-neutral-900 mb-1">
+                                    Ginger & Turmeric Tisane
+                                </h4>
+                                <p class="text-sm text-neutral-600 mb-2">Anti-inflammatory blend</p>
+                                <div class="flex flex-wrap gap-4 text-xs text-neutral-500">
+                                    <span>Size: 100g (50 cups)</span>
+                                    <span>Origin: West Africa</span>
+                                    <span>SKU: GT-100-BLD</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 sm:mt-0 sm:text-right">
+                                <p class="text-sm text-neutral-600">Qty: 2</p>
+                                <p class="font-semibold text-lg text-neutral-900">$37.98</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="bg-neutral-50 rounded-lg p-6">
+            <h3 class="text-lg font-heading font-semibold text-neutral-900 mb-4">Order Summary</h3>
+            <div class="space-y-3">
+                <div class="flex justify-between text-sm">
+                    <span class="text-neutral-600">Subtotal</span>
+                    <span class="text-neutral-900">$62.97</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-neutral-600">Standard Shipping</span>
+                    <span class="text-neutral-900">$5.99</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-neutral-600">Tax</span>
+                    <span class="text-neutral-900">$5.52</span>
+                </div>
+                <div class="border-t border-neutral-200 pt-3">
+                    <div class="flex justify-between text-lg font-semibold">
+                        <span class="text-neutral-900">Total</span>
+                        <span class="text-primary">$74.48</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shipping & Delivery Info -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Shipping Address -->
+        <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-6">
+            <h3 class="text-lg font-heading font-semibold text-neutral-900 mb-4 flex items-center">
+                <i class="fas fa-truck text-primary mr-2"></i>
+                Shipping Address
+            </h3>
+            <address class="text-neutral-600 not-italic">
+                <div class="font-medium text-neutral-900">John Doe</div>
+                <div>123 Main Street, Apt 4B</div>
+                <div>New York, NY 10001</div>
+                <div>United States</div>
+            </address>
+        </div>
+
+        <!-- Delivery Information -->
+        <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-6">
+            <h3 class="text-lg font-heading font-semibold text-neutral-900 mb-4 flex items-center">
+                <i class="fas fa-calendar-check text-primary mr-2"></i>
+                Delivery Information
+            </h3>
+            <div class="space-y-3 text-sm">
+                <div>
+                    <span class="font-medium text-neutral-900">Shipping Method:</span>
+                    <div class="text-neutral-600">Standard Shipping (5-7 business days)</div>
+                </div>
+                <div>
+                    <span class="font-medium text-neutral-900">Estimated Delivery:</span>
+                    <div class="text-neutral-600">January 22-24, 2024</div>
+                </div>
+                <div>
+                    <span class="font-medium text-neutral-900">Tracking Number:</span>
+                    <div class="text-primary font-medium">1Z123ABC456789</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="bg-primary/5 border border-primary/20 rounded-xl p-6 md:p-8 mb-8">
+        <h3 class="text-xl font-heading font-semibold text-neutral-900 mb-6 flex items-center">
+            <i class="fas fa-list-check text-primary mr-3"></i>
+            What's Next?
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-sm font-bold">1</span>
+                </div>
+                <div>
+                    <h4 class="font-medium text-neutral-900 mb-1">Order Processing</h4>
+                    <p class="text-sm text-neutral-600">We're preparing your items for shipment</p>
+                </div>
+            </div>
+            <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 bg-neutral-200 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-neutral-500 text-sm font-bold">2</span>
+                </div>
+                <div>
+                    <h4 class="font-medium text-neutral-700 mb-1">Shipped</h4>
+                    <p class="text-sm text-neutral-500">You'll receive tracking information via email</p>
+                </div>
+            </div>
+            <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 bg-neutral-200 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-neutral-500 text-sm font-bold">3</span>
+                </div>
+                <div>
+                    <h4 class="font-medium text-neutral-700 mb-1">Delivered</h4>
+                    <p class="text-sm text-neutral-500">Enjoy your natural wellness products!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a href="{% url 'receipt_detail' 'ORD-2024-001' %}" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 transition-colors">
+            <i class="fas fa-receipt mr-2"></i>
+            View Receipt
+        </a>
+        <button onclick="window.print()" class="inline-flex items-center justify-center px-6 py-3 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 transition-colors">
+            <i class="fas fa-print mr-2"></i>
+            Print Order
+        </button>
+        <a href="{% url 'orders' %}" class="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg transition-colors">
+            <i class="fas fa-eye mr-2"></i>
+            Track Order
+        </a>
+        <a href="{% url 'shop' %}" class="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-white font-medium rounded-lg transition-colors">
+            <i class="fas fa-leaf mr-2"></i>
+            Continue Shopping
+        </a>
+    </div>
+
+    <!-- Customer Support -->
+    <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 text-center">
+        <h3 class="text-lg font-heading font-semibold text-neutral-900 mb-4">Need Help?</h3>
+        <p class="text-neutral-600 mb-6">
+            Our customer support team is here to help with any questions about your order.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="mailto:support@naturalbio.com" class="flex flex-col items-center p-4 rounded-lg hover:bg-neutral-50 transition-colors">
+                <i class="fas fa-envelope text-primary text-xl mb-2"></i>
+                <span class="font-medium text-neutral-900">Email Support</span>
+                <span class="text-sm text-neutral-600">support@naturalbio.com</span>
+            </a>
+            <a href="tel:+229xxxxxxxx" class="flex flex-col items-center p-4 rounded-lg hover:bg-neutral-50 transition-colors">
+                <i class="fas fa-phone text-primary text-xl mb-2"></i>
+                <span class="font-medium text-neutral-900">Phone Support</span>
+                <span class="text-sm text-neutral-600">+229 XX XX XX XX</span>
+            </a>
+            <a href="{% url 'faq' %}" class="flex flex-col items-center p-4 rounded-lg hover:bg-neutral-50 transition-colors">
+                <i class="fas fa-question-circle text-primary text-xl mb-2"></i>
+                <span class="font-medium text-neutral-900">FAQ</span>
+                <span class="text-sm text-neutral-600">Common Questions</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="mt-12">
+        <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-8 text-center">
+            Customers Also Loved
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Recommended Product 1 -->
+            <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-4 hover:shadow-md transition-shadow">
+                <div class="aspect-square bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg mb-4 flex items-center justify-center">
+                    <i class="fas fa-spa text-primary text-2xl"></i>
+                </div>
+                <h3 class="font-heading font-semibold text-sm text-neutral-900 mb-1">Hibiscus Tea</h3>
+                <p class="text-xs text-neutral-600 mb-3">Antioxidant-rich blend</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-primary font-semibold">$16.99</span>
+                    <button onclick="addToCart('hibiscus-tea')" class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-lg hover:bg-primary/20 transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recommended Product 2 -->
+            <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-4 hover:shadow-md transition-shadow">
+                <div class="aspect-square bg-gradient-to-br from-accent/20 to-accent/5 rounded-lg mb-4 flex items-center justify-center">
+                    <i class="fas fa-mortar-pestle text-primary text-2xl"></i>
+                </div>
+                <h3 class="font-heading font-semibold text-sm text-neutral-900 mb-1">Baobab Powder</h3>
+                <p class="text-xs text-neutral-600 mb-3">Vitamin C superfood</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-primary font-semibold">$22.99</span>
+                    <button onclick="addToCart('baobab-powder')" class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-lg hover:bg-primary/20 transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recommended Product 3 -->
+            <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-4 hover:shadow-md transition-shadow">
+                <div class="aspect-square bg-gradient-to-br from-warning/20 to-warning/5 rounded-lg mb-4 flex items-center justify-center">
+                    <i class="fas fa-jar text-primary text-2xl"></i>
+                </div>
+                <h3 class="font-heading font-semibold text-sm text-neutral-900 mb-1">Raw Honey</h3>
+                <p class="text-xs text-neutral-600 mb-3">Pure wildflower honey</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-primary font-semibold">$19.99</span>
+                    <button onclick="addToCart('raw-honey')" class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-lg hover:bg-primary/20 transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recommended Product 4 -->
+            <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-4 hover:shadow-md transition-shadow">
+                <div class="aspect-square bg-gradient-to-br from-success/20 to-success/5 rounded-lg mb-4 flex items-center justify-center">
+                    <i class="fas fa-oil-can text-primary text-2xl"></i>
+                </div>
+                <h3 class="font-heading font-semibold text-sm text-neutral-900 mb-1">Shea Butter Oil</h3>
+                <p class="text-xs text-neutral-600 mb-3">100% natural moisturizer</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-primary font-semibold">$26.99</span>
+                    <button onclick="addToCart('shea-butter-oil')" class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-lg hover:bg-primary/20 transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <div class="mt-12 bg-gradient-to-r from-primary to-primary-600 rounded-xl p-8 text-center text-white">
+        <h3 class="text-2xl font-heading font-bold mb-4">Stay Updated</h3>
+        <p class="mb-6 opacity-90">
+            Get exclusive offers, wellness tips, and new product updates delivered to your inbox.
+        </p>
+        <div class="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
+            <input type="email" placeholder="Enter your email" 
+                   class="flex-grow px-4 py-3 rounded-lg text-neutral-900 focus:ring-2 focus:ring-white focus:outline-none">
+            <button class="px-6 py-3 bg-white text-primary font-medium rounded-lg hover:bg-neutral-50 transition-colors">
+                Subscribe
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Enhanced cart functionality for recommendations
+function addToCart(productId) {
+    // Simulate adding to cart
+    console.log(`Added ${productId} to cart`);
+    
+    // Show success message
+    showToast('Product added to cart! Continue shopping or check out anytime.', 'success');
+    
+    // Update cart count in header
+    const cartBadge = document.querySelector('.fa-shopping-bag').nextElementSibling;
+    if (cartBadge) {
+        const currentCount = parseInt(cartBadge.textContent) || 0;
+        cartBadge.textContent = currentCount + 1;
+    }
+}
+
+// Print functionality optimization
+function printOrder() {
+    // Add print-specific styles
+    const printStyles = `
+        @media print {
+            .no-print { display: none !important; }
+            body { font-size: 12pt; }
+            .text-primary { color: #2E7D32 !important; }
+        }
+    `;
+    
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = printStyles;
+    document.head.appendChild(styleSheet);
+    
+    // Hide elements that shouldn't be printed
+    document.querySelectorAll('header, footer, .no-print').forEach(el => {
+        el.classList.add('no-print');
+    });
+    
+    window.print();
+    
+    // Remove print styles and classes after printing
+    setTimeout(() => {
+        document.head.removeChild(styleSheet);
+        document.querySelectorAll('.no-print').forEach(el => {
+            el.classList.remove('no-print');
+        });
+    }, 1000);
+}
+
+// Track order simulation
+function trackOrder() {
+    showToast('Redirecting to order tracking...', 'info');
+    setTimeout(() => {
+        window.location.href = '/account/orders';
+    }, 1500);
+}
+
+// Newsletter subscription
+document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.querySelector('.bg-gradient-to-r form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            if (email && email.includes('@')) {
+                showToast('Thank you for subscribing! Check your email for confirmation.', 'success');
+                this.querySelector('input[type="email"]').value = '';
+            } else {
+                showToast('Please enter a valid email address.', 'error');
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

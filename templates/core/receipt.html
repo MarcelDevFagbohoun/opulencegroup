@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt #{{ order.order_number }} - NaturalBio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#10B981',
+                            50: '#ECFDF5',
+                            100: '#D1FAE5',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065F46',
+                            900: '#064E3B'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Consolas', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @media print {
+            body { -webkit-print-color-adjust: exact !important; color-adjust: exact !important; }
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            .page-break { page-break-before: always; }
+            body { background: white !important; padding: 0 !important; }
+            .receipt-container { box-shadow: none !important; margin: 0 !important; }
+        }
+        .print-only { display: none; }
+        
+        .receipt-container {
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .divider-line {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 py-8 font-sans">
+    <div class="max-w-4xl mx-auto px-4">
+        <!-- Print/Download Actions (No Print) -->
+        <div class="no-print mb-6 text-center">
+            <button onclick="window.print()" class="bg-primary hover:bg-primary-600 text-white px-6 py-2 rounded-lg mr-4 transition-colors">
+                <i class="fas fa-print mr-2"></i>
+                Print Receipt
+            </button>
+            <button onclick="downloadPDF()" class="bg-neutral-600 hover:bg-neutral-700 text-white px-6 py-2 rounded-lg transition-colors">
+                <i class="fas fa-download mr-2"></i>
+                Download PDF
+            </button>
+        </div>
+
+        <!-- Receipt Container -->
+        <div class="receipt-container max-w-2xl mx-auto bg-white rounded-lg overflow-hidden">
+            
+            <!-- Clean Header -->
+            <div class="px-8 pt-8 pb-6">
+                <div class="flex items-center justify-between mb-8">
+                    <!-- Simple Logo -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                            <i class="fas fa-leaf text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-heading font-bold text-gray-900">NaturalBio</h1>
+                            <p class="text-sm text-gray-500">Natural Herbs & Wellness</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Receipt Info -->
+                    <div class="text-right">
+                        <p class="text-2xl font-bold text-gray-900 mb-1">RECEIPT</p>
+                        <p class="text-sm text-gray-600 font-mono">{{ order.order_number|default:"ORD-2024-001" }}</p>
+                    </div>
+                </div>
+                
+                <div class="divider-line mb-8"></div>
+                
+                <!-- Company & Date Info -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">From</h3>
+                        <div class="text-gray-600 space-y-1">
+                            <p class="font-medium text-gray-900">NaturalBio</p>
+                            <p>123 Wellness Avenue</p>
+                            <p>Cotonou, Benin</p>
+                            <p>+229 XX XX XX XX</p>
+                            <p>info@naturalbio.com</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Receipt Details</h3>
+                        <div class="text-gray-600 space-y-1">
+                            <p><span class="text-gray-500">Date:</span> {{ order.date_created|default:"January 26, 2024"|date:"F d, Y" }}</p>
+                            <p><span class="text-gray-500">Time:</span> {{ order.date_created|default:"2:30 PM"|date:"g:i A" }}</p>
+                            <p><span class="text-gray-500">Payment:</span> {{ order.payment_method|default:"Card ****1234" }}</p>
+                            <p><span class="text-gray-500">Status:</span> <span class="text-green-600 font-medium">Paid</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Info -->
+            <div class="px-8 pb-6">
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                        <!-- Bill To -->
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Bill To</h3>
+                            <div class="text-gray-600 space-y-1">
+                                <p class="font-medium text-gray-900">{{ order.customer_name|default:"John Doe" }}</p>
+                                <p>{{ order.billing_address.street|default:"456 Health Street" }}</p>
+                                <p>{{ order.billing_address.city|default:"Wellness City" }}, {{ order.billing_address.state|default:"WC" }} {{ order.billing_address.zip|default:"12345" }}</p>
+                                <p>{{ order.customer_email|default:"john.doe@email.com" }}</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Ship To -->
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Ship To</h3>
+                            <div class="text-gray-600 space-y-1">
+                                <p class="font-medium text-gray-900">{{ order.shipping_name|default:"John Doe" }}</p>
+                                <p>{{ order.shipping_address.street|default:"456 Health Street" }}</p>
+                                <p>{{ order.shipping_address.city|default:"Wellness City" }}, {{ order.shipping_address.state|default:"WC" }} {{ order.shipping_address.zip|default:"12345" }}</p>
+                                <p class="mt-2 text-xs"><span class="text-gray-500">Tracking:</span> {{ order.tracking_number|default:"1Z999AA1234567890" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Items -->
+            <div class="px-8 pb-6">
+                <div class="divider-line mb-6"></div>
+                
+                <div class="space-y-4">
+                    <!-- Item 1 -->
+                    <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                        <div class="flex-1">
+                            <h4 class="font-medium text-gray-900">Organic Moringa Powder</h4>
+                            <p class="text-sm text-gray-500">250g Premium superfood blend</p>
+                        </div>
+                        <div class="flex items-center space-x-6 text-sm">
+                            <span class="text-gray-600">Qty: 2</span>
+                            <span class="font-medium text-gray-900 min-w-[60px] text-right">$57.98</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                        <div class="flex-1">
+                            <h4 class="font-medium text-gray-900">Ginger & Turmeric Tisane</h4>
+                            <p class="text-sm text-gray-500">100g Anti-inflammatory blend</p>
+                        </div>
+                        <div class="flex items-center space-x-6 text-sm">
+                            <span class="text-gray-600">Qty: 1</span>
+                            <span class="font-medium text-gray-900 min-w-[60px] text-right">$18.99</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="divider-line my-6"></div>
+                
+                <!-- Order Summary -->
+                <div class="space-y-3">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-600">Subtotal</span>
+                        <span class="font-medium">$76.97</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-600">Shipping</span>
+                        <span class="font-medium">$5.99</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-600">Tax</span>
+                        <span class="font-medium">$6.61</span>
+                    </div>
+                    <div class="divider-line my-4"></div>
+                    <div class="flex justify-between text-lg font-bold">
+                        <span class="text-gray-900">Total</span>
+                        <span class="text-primary">$89.57</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simple Footer -->
+            <div class="px-8 pb-8">
+                <div class="divider-line mb-6"></div>
+                
+                <div class="text-center">
+                    <p class="text-sm text-gray-500 mb-4">
+                        Thank you for choosing NaturalBio. Questions? Contact us at support@naturalbio.com
+                    </p>
+                    
+                    <!-- Print Only Footer -->
+                    <div class="print-only text-xs text-gray-400 border-t border-gray-200 pt-4 mt-6">
+                        <p>Receipt generated on {{ "now"|date:"F d, Y \a\\t g:i A" }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        function downloadPDF() {
+            // Hide print buttons temporarily
+            const noPrintElements = document.querySelectorAll('.no-print');
+            noPrintElements.forEach(el => el.style.display = 'none');
+            
+            // Trigger print dialog (user can save as PDF)
+            window.print();
+            
+            // Restore print buttons after a delay
+            setTimeout(() => {
+                noPrintElements.forEach(el => el.style.display = 'block');
+            }, 1000);
+        }
+        
+        // Auto-focus for better print experience
+        window.addEventListener('load', function() {
+            // Set page title for print
+            document.title = 'Receipt #ORD-2024-001 - NaturalBio';
+        });
+    </script>
+</body>
+</html>

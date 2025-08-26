@@ -1,0 +1,87 @@
+<!-- Footer -->
+{% load static %}
+<footer class="bg-neutral-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Infos Entreprise -->
+            <div>
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-30 h-30 flex items-center justify-center p-1 bg-white/10 rounded-full">
+                        <img src="{% static 'img/logo.png' %}" alt="NaturalBio Logo" class="w-full h-full object-contain rounded-full">
+                    </div>
+                </div>
+                <p class="text-neutral-300 text-sm mb-4">
+                    Herbes naturelles premium, tisanes et produits de bien-être issus directement du Bénin et d'Afrique.
+                </p>
+                <div class="flex space-x-3">
+                    <a href="#" class="text-neutral-400 hover:text-white transition-colors">
+                        <i class="fab fa-facebook text-lg"></i>
+                    </a>
+                    <a href="#" class="text-neutral-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="text-neutral-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Liens rapides -->
+            <div>
+                <h3 class="font-heading font-semibold mb-4 text-lg">Liens rapides</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/about" class="text-neutral-300 hover:text-white transition-colors">À propos</a></li>
+                    <li><a href="/shop" class="text-neutral-300 hover:text-white transition-colors">Boutique</a></li>
+                    <li><a href="/blog" class="text-neutral-300 hover:text-white transition-colors">Blog</a></li>
+                    <li><a href="/contact" class="text-neutral-300 hover:text-white transition-colors">Contact</a></li>
+                    <li><a href="{% url 'faq' %}" class="text-neutral-300 hover:text-white transition-colors">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Catégories -->
+            <div>
+                <h3 class="font-heading font-semibold mb-4 text-lg">Catégories</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">Tisanes</a></li>
+                    <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">Huiles essentielles</a></li>
+                    <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">Poudres</a></li>
+                    <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">Coffrets cadeaux</a></li>
+                    <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">Accessoires</a></li>
+                </ul>
+            </div>
+
+            <!-- Support client -->
+            <div>
+                <h3 class="font-heading font-semibold mb-4 text-lg">Support client</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/privacy" class="text-neutral-300 hover:text-white transition-colors">Politique de confidentialité</a></li>
+                    <li><a href="/terms" class="text-neutral-300 hover:text-white transition-colors">Conditions générales</a></li>
+                    <li><a href="/returns" class="text-neutral-300 hover:text-white transition-colors">Retours & Remboursements</a></li>
+                    <li><a href="/shipping" class="text-neutral-300 hover:text-white transition-colors">Informations livraison</a></li>
+                </ul>
+                <div class="mt-4">
+                    <p class="text-neutral-300 text-sm">Service Client :</p>
+                    <p class="text-white font-medium text-lg">+229 XX XX XX XX</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bas du footer -->
+        <div class="border-t border-neutral-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-neutral-400 text-sm">
+                © {% now "Y" %} NaturalBio Ressources. Tous droits réservés. Développé par 
+                <a href="https://asitechsolution.com" target="_blank" class="underline hover:text-white">ASITECH</a>
+            </p>
+            <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                <span class="text-neutral-400 text-sm">Moyens de paiement :</span>
+                <div class="flex space-x-2">
+                    <i class="fab fa-cc-visa text-2xl text-white"></i>
+                    <i class="fab fa-cc-mastercard text-2xl text-white"></i>
+                    <i class="fab fa-cc-paypal text-2xl text-white"></i>
+                    <i class="fab fa-cc-amex text-2xl text-white"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,558 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results for "{{ query }}" - NaturalBio{% endblock %}
+
+{% block meta_description %}Search results for "{{ query }}" - Find natural herbs, tisanes, oils and wellness products at NaturalBio. Premium organic products from Benin and Africa.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <nav class="flex items-center space-x-2 text-sm text-neutral-600">
+            <a href="/" class="hover:text-primary transition-colors">Home</a>
+            <i class="fas fa-chevron-right text-xs"></i>
+            <span class="text-neutral-900 font-medium">Search Results</span>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Search Header -->
+<section class="bg-gradient-to-r from-primary/5 to-accent/5 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-3xl font-heading font-bold text-neutral-900 mb-4">
+                Search Results for "<span class="text-primary">moringa</span>"
+            </h1>
+            <p class="text-lg text-neutral-600" id="search-summary">Found 8 products matching your search</p>
+            
+            <!-- Search Again -->
+            <div class="max-w-md mx-auto mt-6">
+                <div class="relative">
+                    <input type="search" 
+                           placeholder="Search for herbs, oils, tisanes..." 
+                           value="moringa"
+                           class="w-full px-4 py-3 pl-12 pr-4 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary focus:border-transparent text-lg">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center">
+                        <i class="fas fa-search text-neutral-400"></i>
+                    </div>
+                    <button class="absolute inset-y-0 right-0 pr-4 flex items-center text-primary hover:text-primary-600">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Filters Sidebar -->
+        <aside class="lg:w-64 space-y-6" id="filters-sidebar">
+            <!-- Mobile Filters Toggle -->
+            <div class="lg:hidden">
+                <button onclick="toggleFilters()" class="flex items-center justify-between w-full bg-white border border-neutral-300 rounded-lg px-4 py-3 text-left focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <span class="font-medium">Refine Results</span>
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+            </div>
+
+            <div class="hidden lg:block" id="filters-content">
+                <!-- Categories Filter -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Categories</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded" checked>
+                            <span class="ml-2 text-sm">Powders (4)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Capsules (2)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Oils (1)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Tea Blends (1)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Price Range</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <input type="number" placeholder="Min" class="w-full px-3 py-2 border border-neutral-300 rounded text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <span class="text-neutral-500">-</span>
+                            <input type="number" placeholder="Max" class="w-full px-3 py-2 border border-neutral-300 rounded text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm">Under $25 (3)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm">$25 - $50 (4)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm">Over $50 (1)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Filter -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Health Benefits</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Antioxidant Support</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Immune Support</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Energy & Vitality</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Nutritional Support</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Brand/Origin -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Origin</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Benin (6)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Ghana (2)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Organic -->
+                <div class="bg-white border border-neutral-200 rounded-lg p-4">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Certifications</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Organic Certified (5)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Fair Trade (3)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">Non-GMO (8)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Clear Filters -->
+                <button onclick="clearAllFilters()" class="w-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium py-2 px-4 rounded-lg transition-colors">
+                    Clear All Filters
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-2">Search Results</h2>
+                    <p class="text-neutral-600" id="results-count">Showing 8 products for "moringa"</p>
+                </div>
+                
+                <!-- Sort Options -->
+                <div class="mt-4 sm:mt-0">
+                    <select onchange="handleSort(this.value)" class="border border-neutral-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="relevance">Most Relevant</option>
+                        <option value="newest">Newest First</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="bestsellers">Best Sellers</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="hidden">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for i in "123456" %}
+                    <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden animate-pulse">
+                        <div class="w-full h-48 bg-neutral-200"></div>
+                        <div class="p-4">
+                            <div class="h-4 bg-neutral-200 rounded mb-2"></div>
+                            <div class="h-3 bg-neutral-200 rounded w-2/3 mb-4"></div>
+                            <div class="flex justify-between items-center">
+                                <div class="h-5 bg-neutral-200 rounded w-16"></div>
+                                <div class="h-8 bg-neutral-200 rounded w-24"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Moringa Product 1 -->
+                <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=200&fit=crop&crop=center" 
+                             alt="Organic Moringa Powder" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute top-3 left-3 flex space-x-2">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Organic</span>
+                            <span class="bg-primary text-white text-xs px-2 py-1 rounded-full font-medium">Best Match</span>
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
+                            <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-heading font-semibold text-lg mb-1">
+                            Organic <mark class="bg-warning/20 px-1 rounded">Moringa</mark> Powder
+                        </h3>
+                        <p class="text-neutral-600 text-sm mb-2">Premium <mark class="bg-warning/20 px-1 rounded">moringa</mark> leaf powder from Benin</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex items-center space-x-1">
+                                {% for i in "12345" %}
+                                <i class="fas fa-star text-warning text-xs"></i>
+                                {% endfor %}
+                            </div>
+                            <span class="text-neutral-500 text-sm ml-2">(56 reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-lg font-bold text-primary">$28.99</span>
+                                <span class="text-sm text-neutral-500 line-through">$33.99</span>
+                            </div>
+                            <button onclick="addToCart(1)" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moringa Product 2 -->
+                <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=200&fit=crop&crop=center" 
+                             alt="Moringa Oil" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Organic</span>
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
+                            <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-heading font-semibold text-lg mb-1">
+                            <mark class="bg-warning/20 px-1 rounded">Moringa</mark> Seed Oil
+                        </h3>
+                        <p class="text-neutral-600 text-sm mb-2">Cold-pressed <mark class="bg-warning/20 px-1 rounded">moringa</mark> oil for skin and hair</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex items-center space-x-1">
+                                {% for i in "12345" %}
+                                <i class="fas fa-star text-warning text-xs"></i>
+                                {% endfor %}
+                            </div>
+                            <span class="text-neutral-500 text-sm ml-2">(34 reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-primary">$52.99</span>
+                            <button onclick="addToCart(2)" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continue with more moringa-related products... -->
+                {% for i in "123456" %}
+                <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=200&fit=crop&crop=center" 
+                             alt="Moringa Product {{ forloop.counter|add:2 }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        {% if forloop.counter|divisibleby:2 %}
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Organic</span>
+                        </div>
+                        {% endif %}
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
+                            <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-heading font-semibold text-lg mb-1">
+                            <mark class="bg-warning/20 px-1 rounded">Moringa</mark> {{ forloop.counter|add:2 }}
+                        </h3>
+                        <p class="text-neutral-600 text-sm mb-2">Natural <mark class="bg-warning/20 px-1 rounded">moringa</mark> product for wellness</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex items-center space-x-1">
+                                {% for star in "1234" %}
+                                <i class="fas fa-star text-warning text-xs"></i>
+                                {% endfor %}
+                                <i class="far fa-star text-neutral-300 text-xs"></i>
+                            </div>
+                            <span class="text-neutral-500 text-sm ml-2">({{ forloop.counter|add:20 }} reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-primary">${{ forloop.counter|add:28 }}.99</span>
+                            <button onclick="addToCart({{ forloop.counter|add:2 }})" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- No Results State -->
+            <div id="no-results-state" class="hidden text-center py-12">
+                <div class="mb-6">
+                    <i class="fas fa-search text-6xl text-neutral-300"></i>
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-4">No results found</h2>
+                <p class="text-neutral-600 mb-6">
+                    Sorry, we couldn't find any products matching "<span class="font-semibold">invalid search term</span>". 
+                    Here are some suggestions:
+                </p>
+                
+                <!-- Search Suggestions -->
+                <div class="bg-neutral-50 rounded-lg p-6 mb-8">
+                    <h3 class="font-heading font-semibold text-lg mb-4">Try searching for:</h3>
+                    <div class="flex flex-wrap justify-center gap-2 mb-4">
+                        <button onclick="searchFor('moringa')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                            moringa
+                        </button>
+                        <button onclick="searchFor('ginger')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                            ginger
+                        </button>
+                        <button onclick="searchFor('hibiscus')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                            hibiscus
+                        </button>
+                        <button onclick="searchFor('baobab')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                            baobab
+                        </button>
+                        <button onclick="searchFor('tisanes')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                            tisanes
+                        </button>
+                        <button onclick="searchFor('oils')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                            oils
+                        </button>
+                    </div>
+                    
+                    <div class="text-left space-y-2 text-sm text-neutral-600">
+                        <p><strong>Search Tips:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 ml-4">
+                            <li>Check your spelling</li>
+                            <li>Try different or more general keywords</li>
+                            <li>Use fewer keywords</li>
+                            <li>Browse our categories instead</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Browse Categories -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <a href="/category/tisanes" class="bg-white border border-neutral-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <i class="fas fa-leaf text-2xl text-primary mb-2"></i>
+                        <h3 class="font-semibold">Tisanes</h3>
+                    </a>
+                    <a href="/category/oils" class="bg-white border border-neutral-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <i class="fas fa-tint text-2xl text-primary mb-2"></i>
+                        <h3 class="font-semibold">Essential Oils</h3>
+                    </a>
+                    <a href="/category/powders" class="bg-white border border-neutral-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <i class="fas fa-mortar-pestle text-2xl text-primary mb-2"></i>
+                        <h3 class="font-semibold">Powders</h3>
+                    </a>
+                    <a href="/category/gifts" class="bg-white border border-neutral-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <i class="fas fa-gift text-2xl text-primary mb-2"></i>
+                        <h3 class="font-semibold">Gift Sets</h3>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-state" class="hidden text-center py-12">
+                <div class="mb-6">
+                    <i class="fas fa-exclamation-triangle text-6xl text-warning"></i>
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-4">Search temporarily unavailable</h2>
+                <p class="text-neutral-600 mb-6">We're having trouble processing your search right now. Please try again in a moment.</p>
+                <button onclick="location.reload()" class="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                    Try Again
+                </button>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="flex items-center justify-center space-x-2">
+                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="px-3 py-2 bg-primary text-white rounded-lg">1</button>
+                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Related Searches -->
+    <section class="mt-16 bg-neutral-50 rounded-lg p-8">
+        <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-6">Related Searches</h2>
+        <div class="flex flex-wrap gap-3">
+            <button onclick="searchFor('moringa powder')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                moringa powder
+            </button>
+            <button onclick="searchFor('moringa oil')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                moringa oil
+            </button>
+            <button onclick="searchFor('moringa capsules')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                moringa capsules
+            </button>
+            <button onclick="searchFor('moringa tea')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                moringa tea
+            </button>
+            <button onclick="searchFor('organic moringa')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                organic moringa
+            </button>
+            <button onclick="searchFor('superfood powder')" class="bg-white border border-neutral-300 hover:border-primary hover:text-primary px-4 py-2 rounded-full text-sm transition-colors">
+                superfood powder
+            </button>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Search functionality
+    function searchFor(term) {
+        const searchInput = document.querySelector('input[type="search"]');
+        if (searchInput) {
+            searchInput.value = term;
+            // Simulate search
+            performSearch(term);
+        }
+    }
+
+    function performSearch(term) {
+        console.log('Searching for:', term);
+        showLoadingState();
+        
+        // Simulate API call
+        setTimeout(() => {
+            hideLoadingState();
+            updateSearchResults(term);
+        }, 1000);
+    }
+
+    function updateSearchResults(term) {
+        // Update page title and counts
+        document.querySelector('h1 .text-primary').textContent = term;
+        document.getElementById('search-summary').textContent = `Found results for "${term}"`;
+        document.getElementById('results-count').textContent = `Showing results for "${term}"`;
+    }
+
+    // Filter functionality
+    function toggleFilters() {
+        const filtersContent = document.getElementById('filters-content');
+        filtersContent.classList.toggle('hidden');
+    }
+
+    function clearAllFilters() {
+        // Reset all checkboxes and inputs
+        document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
+        document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+        document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
+        
+        // Reset results
+        filterProducts();
+    }
+
+    function handleSort(value) {
+        console.log('Sorting by:', value);
+        showLoadingState();
+        setTimeout(() => {
+            hideLoadingState();
+        }, 1000);
+    }
+
+    function filterProducts() {
+        console.log('Filtering search results...');
+        showLoadingState();
+        
+        // Simulate API call
+        setTimeout(() => {
+            hideLoadingState();
+        }, 800);
+    }
+
+    function showLoadingState() {
+        document.getElementById('loading-state').classList.remove('hidden');
+        document.getElementById('product-grid').classList.add('hidden');
+        document.getElementById('pagination').classList.add('hidden');
+    }
+
+    function hideLoadingState() {
+        document.getElementById('loading-state').classList.add('hidden');
+        document.getElementById('product-grid').classList.remove('hidden');
+        document.getElementById('pagination').classList.remove('hidden');
+    }
+
+    // Add event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        // Search input listener
+        const searchInput = document.querySelector('input[type="search"]');
+        if (searchInput) {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSearch(this.value);
+                }
+            });
+        }
+
+        // Filter listeners
+        document.querySelectorAll('input[type="checkbox"], input[type="radio"], input[type="number"]').forEach(input => {
+            input.addEventListener('change', filterProducts);
+        });
+        
+        // Mobile filters
+        if (window.innerWidth < 1024) {
+            document.getElementById('filters-content').classList.add('hidden');
+        }
+    });
+
+    // Responsive filters
+    window.addEventListener('resize', function() {
+        const filtersContent = document.getElementById('filters-content');
+        if (window.innerWidth >= 1024) {
+            filtersContent.classList.remove('hidden');
+        } else {
+            filtersContent.classList.add('hidden');
+        }
+    });
+</script>
+{% endblock %}

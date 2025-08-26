@@ -1,0 +1,316 @@
+{% extends 'base.html' %}
+
+{% block title %}My Orders - NaturalBio{% endblock %}
+
+{% block meta_description %}View and track your order history for natural herbs and wellness products. Check order status and reorder favorite items.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-50 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li>
+                    <a href="/" class="text-neutral-500 hover:text-primary transition-colors">Home</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li>
+                    <a href="{% url 'profile' %}" class="text-neutral-500 hover:text-primary transition-colors">Account</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li class="text-neutral-900 font-medium" aria-current="page">My Orders</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-heading font-bold text-neutral-900 mb-2">My Orders</h1>
+        <p class="text-neutral-600">View and track your order history</p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="border-b border-neutral-200 mb-8">
+        <nav class="flex space-x-8" aria-label="Order filters">
+            <button onclick="filterOrders('all')" class="order-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
+                All Orders
+            </button>
+            <button onclick="filterOrders('processing')" class="order-filter border-b-2 border-transparent text-neutral-500 hover:text-neutral-700 py-2 px-1 text-sm font-medium">
+                Processing
+            </button>
+            <button onclick="filterOrders('shipped')" class="order-filter border-b-2 border-transparent text-neutral-500 hover:text-neutral-700 py-2 px-1 text-sm font-medium">
+                Shipped
+            </button>
+            <button onclick="filterOrders('delivered')" class="order-filter border-b-2 border-transparent text-neutral-500 hover:text-neutral-700 py-2 px-1 text-sm font-medium">
+                Delivered
+            </button>
+        </nav>
+    </div>
+
+    <!-- Orders List -->
+    <div id="orders-list" class="space-y-6">
+        <!-- Order 1 -->
+        <div class="bg-white border border-neutral-200 rounded-lg p-6 order-item" data-status="delivered">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
+                <div class="mb-4 lg:mb-0">
+                    <h3 class="text-lg font-heading font-semibold text-neutral-900 mb-1">Order #ORD-2024-001</h3>
+                    <div class="flex items-center space-x-4 text-sm text-neutral-600">
+                        <span>Placed on January 15, 2024</span>
+                        <span>•</span>
+                        <span class="flex items-center">
+                            <i class="fas fa-circle text-success text-xs mr-1"></i>
+                            Delivered
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <a href="{% url 'order_confirmation' %}" class="text-primary hover:text-primary-600 text-sm font-medium">
+                        View Details
+                    </a>
+                    <button onclick="reorderItems('ORD-2024-001')" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        Reorder
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Order Items -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-leaf text-primary"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-medium text-neutral-900">Moringa Powder</h4>
+                        <p class="text-sm text-neutral-600">Qty: 2 × $28.99</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent/20 to-accent/5 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-seedling text-primary"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-medium text-neutral-900">Ginger Tisane</h4>
+                        <p class="text-sm text-neutral-600">Qty: 1 × $18.99</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="flex justify-between items-center pt-4 border-t border-neutral-200">
+                <div class="text-sm text-neutral-600">
+                    2 items • Total: <span class="font-semibold text-neutral-900">$76.97</span>
+                </div>
+                <div class="text-sm text-neutral-600">
+                    Delivered on January 18, 2024
+                </div>
+            </div>
+        </div>
+
+        <!-- Order 2 -->
+        <div class="bg-white border border-neutral-200 rounded-lg p-6 order-item" data-status="shipped">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
+                <div class="mb-4 lg:mb-0">
+                    <h3 class="text-lg font-heading font-semibold text-neutral-900 mb-1">Order #ORD-2024-002</h3>
+                    <div class="flex items-center space-x-4 text-sm text-neutral-600">
+                        <span>Placed on January 22, 2024</span>
+                        <span>•</span>
+                        <span class="flex items-center">
+                            <i class="fas fa-circle text-warning text-xs mr-1"></i>
+                            Shipped
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="text-primary hover:text-primary-600 text-sm font-medium">
+                        Track Package
+                    </button>
+                    <a href="{% url 'order_confirmation' %}" class="text-primary hover:text-primary-600 text-sm font-medium">
+                        View Details
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Order Items -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-jar text-primary"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-medium text-neutral-900">Raw Honey</h4>
+                        <p class="text-sm text-neutral-600">Qty: 3 × $19.99</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
+                    <div class="w-16 h-16 bg-gradient-to-br from-success/20 to-success/5 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-oil-can text-primary"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-medium text-neutral-900">Shea Butter Oil</h4>
+                        <p class="text-sm text-neutral-600">Qty: 1 × $26.99</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tracking Info -->
+            <div class="bg-warning/10 border border-warning/20 rounded-lg p-4 mb-4">
+                <div class="flex items-center space-x-2 text-warning-800 mb-2">
+                    <i class="fas fa-truck text-sm"></i>
+                    <span class="font-medium">In Transit</span>
+                </div>
+                <p class="text-sm text-warning-700">
+                    Your order is on its way! Expected delivery: January 26, 2024
+                </p>
+                <p class="text-xs text-warning-600 mt-1">
+                    Tracking: <span class="font-mono">1Z999AA1234567890</span>
+                </p>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="flex justify-between items-center pt-4 border-t border-neutral-200">
+                <div class="text-sm text-neutral-600">
+                    4 items • Total: <span class="font-semibold text-neutral-900">$86.96</span>
+                </div>
+                <div class="text-sm text-neutral-600">
+                    Estimated delivery: January 26, 2024
+                </div>
+            </div>
+        </div>
+
+        <!-- Order 3 -->
+        <div class="bg-white border border-neutral-200 rounded-lg p-6 order-item" data-status="processing">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
+                <div class="mb-4 lg:mb-0">
+                    <h3 class="text-lg font-heading font-semibold text-neutral-900 mb-1">Order #ORD-2024-003</h3>
+                    <div class="flex items-center space-x-4 text-sm text-neutral-600">
+                        <span>Placed on January 25, 2024</span>
+                        <span>•</span>
+                        <span class="flex items-center">
+                            <i class="fas fa-circle text-primary text-xs mr-1"></i>
+                            Processing
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="text-danger hover:text-danger/80 text-sm font-medium">
+                        Cancel Order
+                    </button>
+                    <a href="{% url 'order_confirmation' %}" class="text-primary hover:text-primary-600 text-sm font-medium">
+                        View Details
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Order Items -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-spa text-primary"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-medium text-neutral-900">Hibiscus Tea</h4>
+                        <p class="text-sm text-neutral-600">Qty: 2 × $16.99</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Processing Info -->
+            <div class="bg-primary/10 border border-primary/20 rounded-lg p-4 mb-4">
+                <div class="flex items-center space-x-2 text-primary-800 mb-2">
+                    <i class="fas fa-clock text-sm"></i>
+                    <span class="font-medium">Order Processing</span>
+                </div>
+                <p class="text-sm text-primary-700">
+                    We're preparing your order for shipment. You'll receive a tracking number once it ships.
+                </p>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="flex justify-between items-center pt-4 border-t border-neutral-200">
+                <div class="text-sm text-neutral-600">
+                    2 items • Total: <span class="font-semibold text-neutral-900">$33.98</span>
+                </div>
+                <div class="text-sm text-neutral-600">
+                    Processing since January 25, 2024
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty State (Hidden by default) -->
+    <div id="empty-orders" class="hidden text-center py-16">
+        <div class="w-32 h-32 mx-auto mb-6 bg-neutral-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-box text-4xl text-neutral-400"></i>
+        </div>
+        <h2 class="text-2xl font-heading font-semibold text-neutral-900 mb-4">No orders found</h2>
+        <p class="text-neutral-600 mb-8 max-w-md mx-auto">
+            You haven't placed any orders yet. Start shopping to see your orders here.
+        </p>
+        <a href="{% url 'shop' %}" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg transition-colors">
+            <i class="fas fa-leaf mr-2"></i>
+            Start Shopping
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function filterOrders(status) {
+    const orderItems = document.querySelectorAll('.order-item');
+    const filterButtons = document.querySelectorAll('.order-filter');
+    
+    // Update active filter button
+    filterButtons.forEach(button => {
+        button.classList.remove('active', 'border-primary', 'text-primary');
+        button.classList.add('border-transparent', 'text-neutral-500');
+    });
+    
+    event.target.classList.remove('border-transparent', 'text-neutral-500');
+    event.target.classList.add('active', 'border-primary', 'text-primary');
+    
+    // Show/hide orders based on filter
+    let visibleCount = 0;
+    orderItems.forEach(order => {
+        const orderStatus = order.getAttribute('data-status');
+        if (status === 'all' || orderStatus === status) {
+            order.style.display = 'block';
+            visibleCount++;
+        } else {
+            order.style.display = 'none';
+        }
+    });
+    
+    // Show empty state if no orders visible
+    const ordersList = document.getElementById('orders-list');
+    const emptyOrders = document.getElementById('empty-orders');
+    
+    if (visibleCount === 0) {
+        ordersList.classList.add('hidden');
+        emptyOrders.classList.remove('hidden');
+    } else {
+        ordersList.classList.remove('hidden');
+        emptyOrders.classList.add('hidden');
+    }
+}
+
+function reorderItems(orderId) {
+    if (confirm(`Add all items from order ${orderId} to your cart?`)) {
+        showToast('Items added to cart', 'success');
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Default to showing all orders
+    filterOrders('all');
+});
+</script>
+{% endblock %}

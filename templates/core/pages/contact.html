@@ -1,0 +1,416 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact NaturalBio - Get Expert Advice on Natural Wellness{% endblock %}
+
+{% block meta_description %}Contact NaturalBio for expert advice on natural herbs and wellness products. Multiple ways to reach us including phone, email, and live chat support.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-50 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li>
+                    <a href="/" class="text-neutral-500 hover:text-primary transition-colors">Home</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li class="text-neutral-900 font-medium" aria-current="page">Contact</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-16 bg-gradient-to-r from-primary/5 to-accent/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-neutral-900 mb-6">
+            Get In Touch
+        </h1>
+        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+            Have questions about our products or need personalized wellness advice? Our expert team is here to help you on your natural health journey.
+        </p>
+    </div>
+</section>
+
+<!-- Contact Methods -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <!-- Phone -->
+            <div class="bg-white rounded-2xl p-8 text-center shadow-sm border border-neutral-100">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-phone text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-neutral-900 mb-4">Phone Support</h3>
+                <p class="text-neutral-600 mb-4">Speak directly with our wellness experts</p>
+                <div class="space-y-2">
+                    <p class="text-lg font-semibold text-primary">+229 XX XX XX XX</p>
+                    <p class="text-sm text-neutral-500">Monday - Friday: 8:00 AM - 6:00 PM</p>
+                    <p class="text-sm text-neutral-500">Saturday: 9:00 AM - 4:00 PM</p>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="bg-white rounded-2xl p-8 text-center shadow-sm border border-neutral-100">
+                <div class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-envelope text-success text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-neutral-900 mb-4">Email Support</h3>
+                <p class="text-neutral-600 mb-4">Send us your detailed questions</p>
+                <div class="space-y-2">
+                    <p class="text-lg font-semibold text-primary">info@naturalbio.com</p>
+                    <p class="text-sm text-neutral-500">Response time: Within 24 hours</p>
+                    <p class="text-sm text-neutral-500">Available 7 days a week</p>
+                </div>
+            </div>
+
+            <!-- Live Chat -->
+            <div class="bg-white rounded-2xl p-8 text-center shadow-sm border border-neutral-100">
+                <div class="w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-comments text-warning text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-neutral-900 mb-4">Live Chat</h3>
+                <p class="text-neutral-600 mb-4">Get instant help from our team</p>
+                <div class="space-y-2">
+                    <button class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors">
+                        Start Chat
+                    </button>
+                    <p class="text-sm text-neutral-500">Monday - Friday: 8:00 AM - 6:00 PM</p>
+                    <p class="text-sm text-neutral-500">Average response: 2 minutes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form & Info -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-neutral-100">
+                <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-6">Send Us a Message</h2>
+                
+                <form id="contact-form" class="space-y-6">
+                    <!-- Name and Email -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="first-name" class="block text-sm font-medium text-neutral-700 mb-2">
+                                First Name *
+                            </label>
+                            <input type="text" id="first-name" name="first-name" required 
+                                   class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
+                        </div>
+                        <div>
+                            <label for="last-name" class="block text-sm font-medium text-neutral-700 mb-2">
+                                Last Name *
+                            </label>
+                            <input type="text" id="last-name" name="last-name" required 
+                                   class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-neutral-700 mb-2">
+                            Email Address *
+                        </label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-neutral-700 mb-2">
+                            Phone Number
+                        </label>
+                        <input type="tel" id="phone" name="phone" 
+                               class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
+                    </div>
+
+                    <!-- Subject -->
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-neutral-700 mb-2">
+                            Subject *
+                        </label>
+                        <select id="subject" name="subject" required 
+                                class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
+                            <option value="">Please select a topic</option>
+                            <option value="product-inquiry">Product Information</option>
+                            <option value="order-support">Order Support</option>
+                            <option value="wellness-advice">Wellness Advice</option>
+                            <option value="shipping">Shipping & Delivery</option>
+                            <option value="returns">Returns & Refunds</option>
+                            <option value="wholesale">Wholesale Inquiries</option>
+                            <option value="partnership">Partnership Opportunities</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Message -->
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-neutral-700 mb-2">
+                            Your Message *
+                        </label>
+                        <textarea id="message" name="message" rows="6" required 
+                                  class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-vertical" 
+                                  placeholder="Please provide as much detail as possible to help us assist you better..."></textarea>
+                    </div>
+
+                    <!-- Consent -->
+                    <div class="flex items-start space-x-3">
+                        <input type="checkbox" id="consent" name="consent" required 
+                               class="mt-1 w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary">
+                        <label for="consent" class="text-sm text-neutral-600">
+                            I agree to the <a href="/privacy" class="text-primary hover:underline">Privacy Policy</a> 
+                            and consent to NaturalBio storing and processing my personal data to respond to this inquiry.
+                        </label>
+                    </div>
+
+                    <!-- Marketing Consent -->
+                    <div class="flex items-start space-x-3">
+                        <input type="checkbox" id="marketing" name="marketing" 
+                               class="mt-1 w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary">
+                        <label for="marketing" class="text-sm text-neutral-600">
+                            I would like to receive updates about new products, wellness tips, and special offers via email.
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-primary text-white font-semibold py-4 rounded-lg hover:bg-primary-600 transition-colors">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Information & Location -->
+            <div class="space-y-8">
+                <!-- Office Information -->
+                <div class="bg-neutral-50 rounded-2xl p-8">
+                    <h3 class="text-xl font-heading font-bold text-neutral-900 mb-6">Visit Our Office</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-neutral-900 mb-1">Address</h4>
+                                <p class="text-neutral-600">
+                                    123 Market Street<br>
+                                    Cotonou, Littoral<br>
+                                    Republic of Benin
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-neutral-900 mb-1">Business Hours</h4>
+                                <div class="text-neutral-600 space-y-1">
+                                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                                    <p>Saturday: 9:00 AM - 4:00 PM</p>
+                                    <p>Sunday: Closed</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-language text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-neutral-900 mb-1">Languages</h4>
+                                <p class="text-neutral-600">French, English, Fon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div class="bg-neutral-100 rounded-2xl overflow-hidden">
+                    <div class="aspect-video flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-map text-neutral-400 text-4xl mb-4"></i>
+                            <p class="text-neutral-600 font-medium">Interactive Map</p>
+                            <p class="text-neutral-500 text-sm">Coming Soon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Contact -->
+                <div class="bg-warning/10 border border-warning/20 rounded-2xl p-6">
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-exclamation-triangle text-warning text-xl mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-warning-800 mb-2">Health Emergency Notice</h4>
+                            <p class="text-warning-700 text-sm">
+                                For medical emergencies, please contact your healthcare provider immediately. 
+                                Our products are not intended to diagnose, treat, cure, or prevent any disease.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 bg-neutral-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">
+                Frequently Asked Questions
+            </h2>
+            <p class="text-lg text-neutral-600">
+                Quick answers to common questions
+            </p>
+        </div>
+        
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="bg-white rounded-xl border border-neutral-200">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between" onclick="toggleFAQ('faq1')">
+                    <span class="font-semibold text-neutral-900">How can I get product recommendations for my specific needs?</span>
+                    <i class="fas fa-chevron-down transition-transform" id="faq1-icon"></i>
+                </button>
+                <div id="faq1" class="hidden px-6 pb-4">
+                    <p class="text-neutral-600">
+                        Our wellness experts can provide personalized product recommendations based on your health goals and needs. 
+                        Contact us via phone, email, or live chat with details about what you're looking to address, and we'll guide you to the best products for your situation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="bg-white rounded-xl border border-neutral-200">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between" onclick="toggleFAQ('faq2')">
+                    <span class="font-semibold text-neutral-900">Do you offer consultations with herbalists?</span>
+                    <i class="fas fa-chevron-down transition-transform" id="faq2-icon"></i>
+                </button>
+                <div id="faq2" class="hidden px-6 pb-4">
+                    <p class="text-neutral-600">
+                        Yes! We offer 30-minute consultations with our certified herbalists. These sessions include personalized wellness plans, 
+                        product recommendations, and usage guidance. Schedule a consultation by calling us or using our contact form.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="bg-white rounded-xl border border-neutral-200">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between" onclick="toggleFAQ('faq3')">
+                    <span class="font-semibold text-neutral-900">What's your response time for customer support?</span>
+                    <i class="fas fa-chevron-down transition-transform" id="faq3-icon"></i>
+                </button>
+                <div id="faq3" class="hidden px-6 pb-4">
+                    <p class="text-neutral-600">
+                        Live chat: Within 2 minutes during business hours | Email: Within 24 hours | Phone: Immediate assistance during business hours. 
+                        For urgent matters, we recommend calling us directly.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="bg-white rounded-xl border border-neutral-200">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between" onclick="toggleFAQ('faq4')">
+                    <span class="font-semibold text-neutral-900">Can you help with bulk or wholesale orders?</span>
+                    <i class="fas fa-chevron-down transition-transform" id="faq4-icon"></i>
+                </button>
+                <div id="faq4" class="hidden px-6 pb-4">
+                    <p class="text-neutral-600">
+                        Absolutely! We work with wellness practitioners, retailers, and businesses. Contact us with your specific needs, 
+                        and we'll provide wholesale pricing, minimum order quantities, and special terms for business customers.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <a href="/faq" class="text-primary hover:underline font-medium">
+                View all frequently asked questions →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Alternative Contact Methods -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-r from-primary to-primary-600 rounded-3xl p-8 md:p-12 text-white text-center">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6">
+                Follow Us for Daily Wellness Tips
+            </h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Stay connected with our community for the latest herbal wisdom, recipes, and natural health insights
+            </p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <i class="fab fa-youtube text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Contact form handling
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+    
+    // Simulate form submission (replace with actual implementation)
+    setTimeout(() => {
+        showToast('Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
+        this.reset();
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+    }, 2000);
+});
+
+// FAQ toggle functionality
+function toggleFAQ(faqId) {
+    const content = document.getElementById(faqId);
+    const icon = document.getElementById(faqId + '-icon');
+    
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        content.classList.add('hidden');
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
+// Live chat simulation
+document.querySelector('button:contains("Start Chat")') && document.querySelector('button').addEventListener('click', function() {
+    if (this.textContent === 'Start Chat') {
+        this.textContent = 'Connecting...';
+        this.disabled = true;
+        
+        setTimeout(() => {
+            showToast('Live chat is temporarily unavailable. Please use email or phone for immediate assistance.', 'warning');
+            this.textContent = 'Start Chat';
+            this.disabled = false;
+        }, 2000);
+    }
+});
+</script>
+{% endblock %}

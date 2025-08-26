@@ -1,0 +1,443 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog - Natural Wellness & Herbal Wisdom - NaturalBio Ressources{% endblock %}
+
+{% block meta_description %}Discover expert insights on natural wellness, herbal remedies, and traditional African healing wisdom. Learn how to use herbs for optimal health and wellbeing.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-50 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li>
+                    <a href="{% url 'home' %}" class="text-neutral-500 hover:text-primary transition-colors">Home</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li class="text-neutral-900 font-medium" aria-current="page">Blog</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-16 bg-gradient-to-r from-primary/5 to-accent/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-neutral-900 mb-6">
+            Wellness Blog
+        </h1>
+        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+            Expert insights on natural wellness, herbal remedies, and traditional African healing wisdom to support your health journey.
+        </p>
+    </div>
+</section>
+
+<!-- Featured Article -->
+<section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl overflow-hidden shadow-lg">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="aspect-video lg:aspect-square bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Complete guide to herbal wellness" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-6 left-6">
+                        <span class="bg-primary text-white text-sm font-semibold px-4 py-2 rounded-full">FEATURED</span>
+                    </div>
+                </div>
+                <div class="p-8 lg:p-12 flex flex-col justify-center">
+                    <div class="text-sm text-primary font-medium mb-3">COMPREHENSIVE GUIDE</div>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">
+                        Complete Guide to African Herbal Wellness
+                    </h2>
+                    <p class="text-lg text-neutral-600 mb-6">
+                        Discover the profound healing traditions of West African herbalism, from moringa's superfood powers to the therapeutic benefits of traditional tisanes. Learn how to integrate these time-tested remedies into your modern wellness routine.
+                    </p>
+                    <div class="flex items-center space-x-4 text-sm text-neutral-500 mb-6">
+                        <span>January 20, 2024</span>
+                        <span>•</span>
+                        <span>12 min read</span>
+                        <span>•</span>
+                        <span>Featured Article</span>
+                    </div>
+                    <a href="{% url 'blog_detail' 'complete-guide-african-herbal-wellness' %}" class="inline-flex items-center text-primary font-semibold hover:text-primary-600 transition-colors">
+                    Read Full Article
+                    <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Filter -->
+<section class="py-8 border-b border-neutral-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap items-center justify-center gap-4">
+            <button class="blog-category-filter active px-6 py-2 rounded-full border border-primary bg-primary text-white font-medium transition-colors" data-category="all">
+                All Articles
+            </button>
+            <button class="blog-category-filter px-6 py-2 rounded-full border border-neutral-300 text-neutral-700 hover:border-primary hover:text-primary font-medium transition-colors" data-category="wellness">
+                Wellness Guide
+            </button>
+            <button class="blog-category-filter px-6 py-2 rounded-full border border-neutral-300 text-neutral-700 hover:border-primary hover:text-primary font-medium transition-colors" data-category="brewing">
+                Brewing Tips
+            </button>
+            <button class="blog-category-filter px-6 py-2 rounded-full border border-neutral-300 text-neutral-700 hover:border-primary hover:text-primary font-medium transition-colors" data-category="research">
+                Research
+            </button>
+            <button class="blog-category-filter px-6 py-2 rounded-full border border-neutral-300 text-neutral-700 hover:border-primary hover:text-primary font-medium transition-colors" data-category="skincare">
+                Skincare
+            </button>
+            <button class="blog-category-filter px-6 py-2 rounded-full border border-neutral-300 text-neutral-700 hover:border-primary hover:text-primary font-medium transition-colors" data-category="recipes">
+                Recipes
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Articles Grid -->
+<section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="blog-grid">
+            <!-- Article 1 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="wellness">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="5 Ways to Use Moringa Daily" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">WELLNESS GUIDE</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">5 Ways to Use Moringa Daily</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Discover simple ways to incorporate this superfood into your routine for better energy and health...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Jan 15, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>3 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="brewing">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Perfect Tisane Brewing" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">BREWING TIPS</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Perfect Tisane Brewing</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Master the art of brewing herbal tisanes for maximum benefits and flavor...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Jan 12, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>5 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="research">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Science Behind Herbs" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">RESEARCH</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Science Behind Herbs</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">How modern research validates traditional herbal medicine practices...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Jan 10, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>7 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="skincare">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1585411241861-1bb66ea48bad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Natural Beauty Secrets" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">SKINCARE</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Natural Beauty Secrets</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Unlock the power of African botanicals for radiant skin...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Jan 8, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>4 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="wellness">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Stress Relief with Natural Herbs" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">WELLNESS GUIDE</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Stress Relief with Natural Herbs</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Learn which herbs can help manage stress and promote relaxation naturally...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Jan 5, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>6 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="recipes">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Healthy Smoothie Recipes" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">RECIPES</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Healthy Smoothie Recipes</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Delicious smoothie recipes featuring moringa, baobab, and other superfoods...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Jan 3, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>4 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 7 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="brewing">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Traditional Tea Ceremonies" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">BREWING TIPS</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Traditional Tea Ceremonies</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Explore the spiritual and cultural significance of African tea traditions...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Dec 28, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>8 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 8 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="wellness">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Digestive Health with Herbs" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">WELLNESS GUIDE</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Digestive Health with Herbs</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Natural solutions for digestive wellness using traditional herbs...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Dec 25, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>5 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 9 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="research">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1574263867128-ca3d15e95bb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Antioxidants in African Plants" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">RESEARCH</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Antioxidants in African Plants</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Scientific study on the powerful antioxidant properties of native plants...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Dec 22, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>9 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 10 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="skincare">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Shea Butter Benefits" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">SKINCARE</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Shea Butter Benefits</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Why shea butter is the ultimate natural moisturizer for all skin types...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Dec 20, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>6 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 11 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="recipes">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1556909114-4f105293b6cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Herbal Infused Honey" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">RECIPES</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Herbal Infused Honey</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Create your own therapeutic honey blends with healing herbs...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Dec 18, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>3 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 12 -->
+            <article class="blog-article bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="wellness">
+                <div class="aspect-video bg-neutral-100 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Immune System Boosters" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-primary font-medium mb-2">WELLNESS GUIDE</div>
+                    <h3 class="font-heading font-semibold text-neutral-900 mb-2 text-sm sm:text-base">Immune System Boosters</h3>
+                    <p class="text-neutral-600 text-xs sm:text-sm mb-3">Natural herbs and spices that support your immune system year-round...</p>
+                    <div class="flex items-center text-xs text-neutral-500 mb-3">
+                        <span>Dec 15, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>7 min read</span>
+                    </div>
+                    <a href="#" class="text-primary text-sm font-medium hover:text-primary-600 transition-colors">
+                        Read More →
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Load More -->
+        <div class="text-center mt-12">
+            <button class="inline-flex items-center px-8 py-3 border border-neutral-300 text-neutral-900 font-semibold rounded-lg hover:bg-neutral-50 transition-colors">
+                Load More Articles
+                <i class="fas fa-chevron-down ml-2"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-16 bg-gradient-to-r from-primary/5 to-accent/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-6">
+            Stay Updated on Herbal Wellness
+        </h2>
+        <p class="text-xl text-neutral-600 mb-8">
+            Get weekly wellness tips, exclusive recipes, and the latest research delivered to your inbox.
+        </p>
+        <div class="max-w-md mx-auto">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <input type="email" placeholder="Enter your email address" 
+                       class="flex-1 px-6 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary focus:border-transparent">
+                <button class="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-600 transition-colors">
+                    Subscribe
+                </button>
+            </div>
+            <p class="text-sm text-neutral-500 mt-4">
+                Join 5,000+ wellness enthusiasts. No spam, unsubscribe anytime.
+            </p>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+// Blog category filtering
+function filterBlogPosts(category) {
+    const articles = document.querySelectorAll('.blog-article');
+    const filters = document.querySelectorAll('.blog-category-filter');
+    
+    // Update filter buttons
+    filters.forEach(filter => {
+        filter.classList.remove('active', 'bg-primary', 'text-white');
+        filter.classList.add('border-neutral-300', 'text-neutral-700');
+    });
+    
+    const activeFilter = document.querySelector(`[data-category="${category}"]`);
+    activeFilter.classList.add('active', 'bg-primary', 'text-white');
+    activeFilter.classList.remove('border-neutral-300', 'text-neutral-700');
+    
+    // Filter articles
+    articles.forEach(article => {
+        if (category === 'all' || article.dataset.category === category) {
+            article.style.display = 'block';
+        } else {
+            article.style.display = 'none';
+        }
+    });
+}
+
+// Add event listeners to filter buttons
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.blog-category-filter');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            filterBlogPosts(this.dataset.category);
+        });
+    });
+});
+</script>
+{% endblock %}
+{% endblock %}

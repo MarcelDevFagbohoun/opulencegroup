@@ -1,0 +1,125 @@
+<!-- Header -->
+{% load static %}
+<header class="sticky top-0 z-50 bg-white shadow-sm border-b border-neutral-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+
+            <!-- Logo uniquement -->
+            <div class="flex items-center h-full">
+                <a href="/" class="h-full">
+                    <img src="{% static 'img/logo.png' %}" alt="Logo" class="h-full max-h-16 object-contain">
+                </a>
+            </div>
+
+            <!-- Navigation bureau -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="{% url 'home' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">Accueil</a>
+                <a href="{% url 'shop' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">Boutique</a>
+                <a href="{% url 'about' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">À propos</a>
+                <a href="{% url 'blog' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">Blog</a>
+                <a href="{% url 'contact' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">Contact</a>
+            </nav>
+
+            <!-- Boutons actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Compte utilisateur -->
+                <button onclick="toggleAuthModal()" class="hidden md:flex text-neutral-900 hover:text-primary transition-colors">
+                    <i class="far fa-user text-lg"></i>
+                </button>
+
+                <!-- Wishlist -->
+                <a href="{% url 'wishlist' %}" class="hidden md:flex text-neutral-900 hover:text-primary transition-colors relative">
+                    <i class="far fa-heart text-lg"></i>
+                    <span class="absolute -top-2 -right-2 bg-danger text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                </a>
+
+                <!-- Panier (visible sur tous écrans) -->
+                <button onclick="toggleCartSidebar()" class="text-neutral-900 hover:text-primary transition-colors relative">
+                    <i class="fas fa-shopping-bag text-lg"></i>
+                    <span class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
+                </button>
+
+                <!-- Menu mobile -->
+                <button onclick="toggleMobileSidebar()" class="md:hidden text-neutral-900 hover:text-primary transition-colors">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Sidebar mobile -->
+<div id="mobile-sidebar" class="fixed inset-0 z-50 hidden">
+    <!-- Fond semi-transparent -->
+    <div class="fixed inset-0 bg-black/50" onclick="toggleMobileSidebar()"></div>
+
+    <!-- Contenu Sidebar -->
+    <div class="fixed right-0 top-0 h-full w-80 max-w-sm bg-white shadow-xl">
+        <div class="flex flex-col h-full">
+
+            <!-- Header du sidebar -->
+            <div class="flex items-center justify-center p-6 border-b border-neutral-200">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" class="h-10 object-contain">
+            </div>
+
+            <!-- Menu mobile -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-2">
+                <a href="{% url 'home' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">Accueil</a>
+                <a href="{% url 'shop' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">Boutique</a>
+                <a href="{% url 'about' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">À propos</a>
+                <a href="{% url 'blog' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">Blog</a>
+                <a href="{% url 'contact' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">Contact</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sidebar panier -->
+<div id="cart-sidebar" class="fixed inset-0 z-50 hidden">
+    <div class="fixed inset-0 bg-black/50" onclick="toggleCartSidebar()"></div>
+    <div class="fixed right-0 top-0 h-full w-96 max-w-sm bg-white shadow-xl">
+        <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between p-6 border-b border-neutral-200">
+                <h2 class="text-lg font-semibold text-neutral-900">Panier</h2>
+                <button onclick="toggleCartSidebar()" class="text-neutral-600 hover:text-neutral-900 transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-6">
+                <!-- Exemple produit -->
+                <div class="flex items-center space-x-4 mb-6 pb-6 border-b border-neutral-100">
+                    <div class="w-16 h-16 bg-neutral-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-leaf text-primary text-lg"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-neutral-900 text-sm">Moringa Powder</h3>
+                        <p class="text-xs text-neutral-600">100g - Bio</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <div class="flex items-center space-x-2">
+                                <button class="w-6 h-6 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-50">
+                                    <i class="fas fa-minus text-xs"></i>
+                                </button>
+                                <span class="text-sm font-medium">1</span>
+                                <button class="w-6 h-6 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-50">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </button>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-bold text-primary">8,000 XOF</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="text-neutral-400 hover:text-danger transition-colors">
+                        <i class="fas fa-trash text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="border-t border-neutral-200 p-6 space-y-3">
+                <a href="{% url 'cart' %}" class="w-full bg-neutral-100 text-neutral-900 font-semibold py-3 rounded-lg hover:bg-neutral-200 text-center block">Voir le panier</a>
+                <a href="{% url 'checkout' %}" class="w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primary-600 text-center block">Passer à la caisse</a>
+            </div>
+        </div>
+    </div>
+</div>
