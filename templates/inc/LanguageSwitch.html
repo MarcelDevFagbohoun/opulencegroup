@@ -5,15 +5,15 @@
         <!-- Left: Promo -->
         <div class="flex items-center">
             <span class="text-white font-semibold text-sm md:text-base">
-                       {{ site_info.promo_text }}
+                {{ site_info.promo_text }}
             </span>
         </div>
 
-        <!-- Right: Language Button (English default) -->
+        <!-- Right: Language Button -->
         <div class="flex items-center">
             <button id="langButton" class="flex items-center bg-white text-neutral-900 px-3 py-1 rounded-full shadow font-medium hover:shadow-md transition">
-                <img src="https://flagcdn.com/24x18/gb.png" alt="English" class="w-5 h-5 rounded-full border border-neutral-200 mr-2">
-                English
+                <img id="currentLangFlag" src="https://flagcdn.com/24x18/gb.png" alt="English" class="w-5 h-5 rounded-full border border-neutral-200 mr-2">
+                <span id="currentLangText">English</span>
             </button>
         </div>
 
@@ -25,41 +25,80 @@
     <div class="bg-white rounded-lg w-80 max-w-sm p-6">
         <h2 class="text-lg font-semibold text-neutral-900 mb-4">Select Language</h2>
         <div class="flex flex-col space-y-3">
-            <a href="?lang=en" class="flex items-center px-4 py-2 rounded hover:bg-neutral-100 transition">
+            <button data-lang="en" class="lang-option flex items-center px-4 py-2 rounded hover:bg-neutral-100 transition">
                 <img src="https://flagcdn.com/24x18/gb.png" alt="English" class="w-5 h-5 rounded-full border border-neutral-200 mr-2">
                 English
-            </a>
-            <a href="?lang=fr" class="flex items-center px-4 py-2 rounded hover:bg-neutral-100 transition">
+            </button>
+            <button data-lang="fr" class="lang-option flex items-center px-4 py-2 rounded hover:bg-neutral-100 transition">
                 <img src="https://flagcdn.com/24x18/fr.png" alt="Français" class="w-5 h-5 rounded-full border border-neutral-200 mr-2">
                 Français
-            </a>
+            </button>
         </div>
         <button id="closeLangModal" class="mt-6 w-full bg-primary text-white py-2 rounded hover:bg-primary/90 transition">Close</button>
     </div>
 </div>
 
+<!-- GTranslate -->
+<div class="gtranslate_wrapper hidden"></div>
+<script>
+window.gtranslateSettings = {
+    "default_language":"en",
+    "native_language_names":true,
+    "languages":["en","fr"],
+    "wrapper_selector":".gtranslate_wrapper"
+};
+</script>
+<script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+
 <!-- JS Modal -->
 <script>
-const langButton = document.getElementById('langButton');
-const langModal = document.getElementById('langModal');
-const closeLangModal = document.getElementById('closeLangModal');
+document.addEventListener("DOMContentLoaded", () => {
+    const langButton = document.getElementById('langButton');
+    const langModal = document.getElementById('langModal');
+    const closeLangModal = document.getElementById('closeLangModal');
+    const currentLangText = document.getElementById("currentLangText");
+    const currentLangFlag = document.getElementById("currentLangFlag");
 
-langButton.addEventListener('click', e => {
-    e.stopPropagation();
-    langModal.classList.remove('hidden');
-    langModal.classList.add('flex');
-});
+    // Toggle modal
+    langButton.addEventListener('click', e => {
+        e.stopPropagation();
+        langModal.classList.remove('hidden');
+        langModal.classList.add('flex');
+    });
 
-closeLangModal.addEventListener('click', () => {
-    langModal.classList.add('hidden');
-    langModal.classList.remove('flex');
-});
-
-// Close modal when clicking outside content
-langModal.addEventListener('click', e => {
-    if(e.target === langModal){
+    closeLangModal.addEventListener('click', () => {
         langModal.classList.add('hidden');
         langModal.classList.remove('flex');
-    }
+    });
+
+    langModal.addEventListener('click', e => {
+        if(e.target === langModal){
+            langModal.classList.add('hidden');
+            langModal.classList.remove('flex');
+        }
+    });
+
+    // Langue sélection
+    document.querySelectorAll(".lang-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const lang = btn.dataset.lang;
+
+            // Utilise le widget GTranslate
+            window.gtranslateSelect && window.gtranslateSelect(lang);
+
+            // Met à jour l'affichage du bouton
+            if(lang === "en"){
+                currentLangText.textContent = "English";
+                currentLangFlag.src = "https://flagcdn.com/24x18/gb.png";
+            } else if(lang === "fr"){
+                currentLangText.textContent = "Français";
+                currentLangFlag.src = "https://flagcdn.com/24x18/fr.png";
+            }
+
+            // Ferme le modal
+            langModal.classList.add('hidden');
+            langModal.classList.remove('flex');
+        });
+    });
 });
 </script>

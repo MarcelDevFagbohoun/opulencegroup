@@ -48,7 +48,7 @@ def get_or_create_cart(request):
 def cart_context(request):
     cart = get_or_create_cart(request)
     if cart:
-        cart_items = cart.items.all()  # ✅ must use .all()
+        cart_items = cart.items  # ✅ déjà une liste
         total_items = cart.total_items
         total_price = cart.total_price
     else:
