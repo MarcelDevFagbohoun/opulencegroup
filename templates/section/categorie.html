@@ -1,54 +1,35 @@
-<!-- Catégories en vedette -->
 <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">
-                Parcourez par catégorie
+                Browse by Category
             </h2>
             <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
-                Découvrez notre sélection soigneusement choisie d'herbes naturelles et de produits de bien-être.
+                Explore our carefully selected natural herbs and wellness products.
             </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Tisanes -->
-            <a href="/category/tisanes" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 p-8 hover:shadow-lg transition-all duration-300">
-                <div class="absolute top-4 right-4 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <i class="fas fa-mug-hot text-primary text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-3">Tisanes</h3>
-                <p class="text-neutral-600 mb-4">Mélanges apaisants pour la relaxation, la digestion et le bien-être</p>
-                <div class="flex items-center text-primary font-semibold">
-                    <span>Voir les tisanes</span>
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-            <!-- Huiles essentielles -->
-            <a href="/category/oils" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-accent/20 to-accent/30 p-8 hover:shadow-lg transition-all duration-300">
-                <div class="absolute top-4 right-4 w-16 h-16 bg-white/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <i class="fas fa-tint text-primary text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-3">Huiles essentielles</h3>
-                <p class="text-neutral-600 mb-4">Essences pures et concentrées pour l’aromathérapie et les soins de la peau</p>
-                <div class="flex items-center text-primary font-semibold">
-                    <span>Voir les huiles</span>
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-            <!-- Poudres d’herbes -->
-            <a href="/category/powders" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-warning/5 to-warning/10 p-8 hover:shadow-lg transition-all duration-300">
-                <div class="absolute top-4 right-4 w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <i class="fas fa-mortar-pestle text-warning text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-3">Poudres d’herbes</h3>
-                <p class="text-neutral-600 mb-4">Herbes moulues pour préparations traditionnelles et smoothies</p>
-                <div class="flex items-center text-primary font-semibold">
-                    <span>Voir les poudres</span>
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
+            {% for category in categories %}
+                <a href="" 
+                   class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 p-8 hover:shadow-lg transition-all duration-300">
+                   
+                    <h3 class="text-2xl font-heading font-bold text-neutral-900 mb-3">
+                        {{ category.name }}
+                    </h3>
+                    <p class="text-neutral-600 mb-4">
+                        {{ category.description }}
+                    </p>
+                    <div class="flex items-center text-primary font-semibold">
+                        <span>See {{ category.name }}</span>
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+            {% empty %}
+                <p class="col-span-3 text-center text-neutral-500">
+                    No categories available
+                </p>
+            {% endfor %}
         </div>
     </div>
 </section>

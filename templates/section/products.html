@@ -1,132 +1,151 @@
-<!-- Meilleures Ventes -->
 <section class="py-16 bg-neutral-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Titre -->
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">
-                Meilleures Ventes
-            </h2>
-            <p class="text-lg text-neutral-600">
-                Nos produits naturels les plus appréciés par nos clients
-            </p>
-        </div>
-        
-        <!-- Grille produits -->
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-            <!-- Produit 1 -->
-            <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=200&fit=crop&crop=center" 
-                         alt="Poudre de Moringa" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                    <div class="absolute top-3 left-3 space-y-1">
-                        <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Bio</span>
-                        <span class="bg-danger text-white text-xs px-2 py-1 rounded-full font-medium">-20%</span>
-                    </div>
-                    <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
-                        <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-heading font-semibold text-lg mb-1">Poudre de Moringa</h3>
-                    <p class="text-neutral-600 text-sm mb-2">Poudre de feuille de moringa 100% biologique</p>
-                    <div class="flex items-center mb-3">
-                        <div class="flex items-center space-x-1">
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                        </div>
-                        <span class="text-neutral-500 text-sm ml-2">(47 avis)</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <span class="text-lg font-bold text-primary">28,99€</span>
-                            <div class="text-xs text-neutral-400 line-through">36,99€</div>
-                        </div>
-                        <button onclick="addToCart('poudre-moringa')" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                            Ajouter au panier
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <!-- Produit 2 -->
-            <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=200&fit=crop&crop=center" 
-                         alt="Tisane Digestive" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                    <div class="absolute top-3 left-3">
-                        <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Bio</span>
-                    </div>
-                    <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
-                        <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-heading font-semibold text-lg mb-1">Tisane Digestive</h3>
-                    <p class="text-neutral-600 text-sm mb-2">Mélange de gingembre, menthe et hibiscus</p>
-                    <div class="flex items-center mb-3">
-                        <div class="flex items-center space-x-1">
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="far fa-star text-neutral-300 text-xs"></i>
-                        </div>
-                        <span class="text-neutral-500 text-sm ml-2">(32 avis)</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-lg font-bold text-primary">18,99€</span>
-                        <button onclick="addToCart('tisane-digestive')" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                            Ajouter au panier
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Produit 3 -->
-            <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=200&fit=crop&crop=center" 
-                         alt="Huile de Karité" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                    <div class="absolute top-3 left-3 space-y-1">
-                        <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Bio</span>
-                        <span class="bg-primary text-white text-xs px-2 py-1 rounded-full font-medium">NOUVEAU</span>
-                    </div>
-                    <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
-                        <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-heading font-semibold text-lg mb-1">Huile de Karité</h3>
-                    <p class="text-neutral-600 text-sm mb-2">Huile de karité pure et non raffinée pour la peau</p>
-                    <div class="flex items-center mb-3">
-                        <div class="flex items-center space-x-1">
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                            <i class="fas fa-star text-warning text-xs"></i>
-                        </div>
-                        <span class="text-neutral-500 text-sm ml-2">(18 avis)</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-lg font-bold text-primary">34,99€</span>
-                        <button onclick="addToCart('huile-karite')" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                            Ajouter au panier
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Voir tous les produits -->
-        <div class="text-center mt-12">
-            <a href="/shop" class="inline-flex items-center px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-600 transition-colors">
-                Voir tous les produits
-                <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
+    <!-- Title -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">
+        Best Sellers
+      </h2>
+      <p class="text-lg text-neutral-600">
+        Our most popular natural products loved by our customers
+      </p>
     </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+      {% for product in best_sellers %}
+        <div class="bg-white border border-neutral-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
+
+          <!-- Product Image -->
+          <div class="relative h-72 overflow-hidden">
+            <img src="{{ product.image.url }}" 
+                 alt="{{ product.name }}" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-t-xl">
+
+            {% if product.category %}
+            <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
+              {{ product.category.name }}
+            </span>
+            {% endif %}
+
+            <!-- Wishlist Button -->
+            <button onclick="toggleWishlist('{{ product.id }}')" 
+                    class="absolute top-3 right-3 w-9 h-9 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors shadow-sm">
+              {% if request.user.is_authenticated and product in request.user.wishlist.products.all %}
+                <i id="wishlist-icon-{{ product.id }}" class="fas fa-heart text-red-600 text-lg"></i>
+              {% else %}
+                <i id="wishlist-icon-{{ product.id }}" class="far fa-heart text-neutral-600 text-lg"></i>
+              {% endif %}
+            </button>
+          </div>
+
+          <!-- Product Content -->
+          <div class="p-5">
+            <a href="{% url 'product_detail' product.slug %}">
+              <h3 class="font-heading font-semibold text-lg mb-2 text-neutral-900">{{ product.name }}</h3>
+            </a>
+
+            <!-- Rating -->
+            <div class="flex items-center mb-4">
+              <div class="flex items-center space-x-1">
+                {% for i in "12345" %}
+                  {% if forloop.counter <= product.rounded_rating %}
+                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                  {% else %}
+                    <i class="far fa-star text-neutral-300 text-sm"></i>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Price + Add to Cart -->
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-bold text-primary">{{ product.price }} FCFA</span>
+              <button onclick="addToCart('{{ product.id }}')" 
+                      class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors shadow-sm hover:shadow-md">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p class="col-span-3 text-center text-neutral-500">No products available</p>
+      {% endfor %}
+    </div>
+
+    <!-- See All -->
+    <div class="text-center mt-12">
+      <a href="{% url 'shop' %}" 
+         class="inline-flex items-center px-8 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary-600 transition-colors shadow-md hover:shadow-lg">
+        See All Products
+        <i class="fas fa-arrow-right ml-2"></i>
+      </a>
+    </div>
+  </div>
 </section>
+
+<!-- Scripts -->
+<script>
+function addToCart(productId) {
+  fetch(`/cart/add/${productId}/`, {
+    method: "POST",
+    headers: { "X-CSRFToken": getCookie("csrftoken") },
+  })
+  .then(response => {
+    if (response.redirected) {
+      window.location.href = response.url;
+    } else {
+      showToast("Produit ajouté au panier 🛒", "success");
+    }
+  });
+}
+
+function toggleWishlist(productId) {
+  fetch(`/wishlist/toggle/${productId}/`, {
+    method: "POST",
+    headers: { "X-CSRFToken": getCookie("csrftoken") },
+  })
+  .then(response => response.json())
+  .then(data => {
+    const icon = document.getElementById(`wishlist-icon-${productId}`);
+    if (data.status === "added") {
+      icon.classList.remove("far", "text-neutral-600");
+      icon.classList.add("fas", "text-red-600");
+      showToast("Ajouté aux favoris ❤️", "success");
+    } else if (data.status === "removed") {
+      icon.classList.remove("fas", "text-red-600");
+      icon.classList.add("far", "text-neutral-600");
+      showToast("Retiré des favoris 💔", "info");
+    }
+  });
+}
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+function showToast(message, type = "success") {
+  const toast = document.createElement("div");
+  toast.className = `fixed top-5 right-5 px-4 py-2 rounded-lg shadow-lg text-white z-50 ${
+    type === "success" ? "bg-green-600" : "bg-blue-600"
+  }`;
+  toast.innerText = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("opacity-0", "transition", "duration-500");
+    setTimeout(() => toast.remove(), 500);
+  }, 2000);
+}
+</script>

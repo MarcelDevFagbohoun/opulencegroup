@@ -1,125 +1,263 @@
-<!-- Header -->
 {% load static %}
+
+<!-- Header -->
 <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-neutral-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
 
-            <!-- Logo uniquement -->
-            <div class="flex items-center h-full">
-                <a href="/" class="h-full">
-                    <img src="{% static 'img/logo.png' %}" alt="Logo" class="h-full max-h-16 object-contain">
-                </a>
-            </div>
+      <!-- Logo -->
+      <div class="flex items-center h-full">
+        <a href="{% url 'home' %}" class="h-full">
+          <img src="{% static 'img/logo.png' %}" alt="NaturalBio Logo" class="h-full max-h-16 object-contain">
+        </a>
+      </div>
 
-            <!-- Navigation bureau -->
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="{% url 'home' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">Accueil</a>
-                <a href="{% url 'shop' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">Boutique</a>
-                <a href="{% url 'about' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">À propos</a>
-                <a href="{% url 'blog' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">Blog</a>
-                <a href="{% url 'contact' %}" class="text-neutral-900 hover:text-primary transition-colors font-medium">Contact</a>
-            </nav>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="{% url 'home' %}" class="text-neutral-900 hover:text-primary transition font-medium">Home</a>
+        <a href="{% url 'shop' %}" class="text-neutral-900 hover:text-primary transition font-medium">Shop</a>
+        <a href="{% url 'about' %}" class="text-neutral-900 hover:text-primary transition font-medium">About</a>
+        <a href="{% url 'blog' %}" class="text-neutral-900 hover:text-primary transition font-medium">Blog</a>
+        <a href="{% url 'contact' %}" class="text-neutral-900 hover:text-primary transition font-medium">Contact</a>
+      </nav>
 
-            <!-- Boutons actions -->
-            <div class="flex items-center space-x-4">
-                <!-- Compte utilisateur -->
-                <button onclick="toggleAuthModal()" class="hidden md:flex text-neutral-900 hover:text-primary transition-colors">
-                    <i class="far fa-user text-lg"></i>
-                </button>
+      <!-- Action Icons -->
+      <div class="flex items-center space-x-4">
 
-                <!-- Wishlist -->
-                <a href="{% url 'wishlist' %}" class="hidden md:flex text-neutral-900 hover:text-primary transition-colors relative">
-                    <i class="far fa-heart text-lg"></i>
-                    <span class="absolute -top-2 -right-2 bg-danger text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
-                </a>
-
-                <!-- Panier (visible sur tous écrans) -->
-                <button onclick="toggleCartSidebar()" class="text-neutral-900 hover:text-primary transition-colors relative">
-                    <i class="fas fa-shopping-bag text-lg"></i>
-                    <span class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
-                </button>
-
-                <!-- Menu mobile -->
-                <button onclick="toggleMobileSidebar()" class="md:hidden text-neutral-900 hover:text-primary transition-colors">
-                    <i class="fas fa-bars text-lg"></i>
-                </button>
-            </div>
+        <!-- User Dropdown / Auth -->
+        {% if user.is_authenticated %}
+        <div class="relative">
+          <button onclick="toggleUserMenu()" id="user-menu-button" class="flex items-center space-x-2 text-neutral-900 hover:text-primary transition">
+            <i class="far fa-user text-2xl"></i>
+            <span class="hidden md:inline text-sm font-medium">Bienvenue, {{ user.first_name|default:user.username }}</span>
+            <i class="fas fa-chevron-down text-sm"></i>
+          </button>
+          <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg z-50">
+            <a href="/profile" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-gray-100">Mon compte</a>
+            <a href="" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-gray-100">Mes commandes</a>
+            <a href="/wishlist" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-gray-100">Mes listes</a>
+            <form method="POST" action="">
+              {% csrf_token %}
+              <button type="submit" class="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-gray-100">Déconnexion</button>
+            </form>
+          </div>
         </div>
+        {% else %}
+        <!-- Auth Modal Button -->
+        <button onclick="toggleAuthModal()" class="text-neutral-900 hover:text-primary transition">
+          <i class="far fa-user text-2xl"></i>
+        </button>
+        {% endif %}
+
+        <!-- Wishlist -->
+        <a href="{% url 'wishlist' %}" class="relative text-neutral-900 hover:text-primary transition">
+          <i class="far fa-heart text-2xl"></i>
+        </a>
+
+        <!-- Cart -->
+        <button onclick="toggleCartSidebar()" class="relative text-neutral-900 hover:text-primary transition">
+          <i class="fas fa-shopping-bag text-2xl"></i>
+          <span class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{{ cart_total_items }}</span>
+        </button>
+
+        <!-- Mobile Menu -->
+        <button onclick="toggleMobileSidebar()" class="md:hidden text-neutral-900 hover:text-primary transition">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+      </div>
     </div>
+  </div>
 </header>
 
-<!-- Sidebar mobile -->
+<!-- Mobile Sidebar -->
 <div id="mobile-sidebar" class="fixed inset-0 z-50 hidden">
-    <!-- Fond semi-transparent -->
-    <div class="fixed inset-0 bg-black/50" onclick="toggleMobileSidebar()"></div>
-
-    <!-- Contenu Sidebar -->
-    <div class="fixed right-0 top-0 h-full w-80 max-w-sm bg-white shadow-xl">
-        <div class="flex flex-col h-full">
-
-            <!-- Header du sidebar -->
-            <div class="flex items-center justify-center p-6 border-b border-neutral-200">
-                <img src="{% static 'img/logo.png' %}" alt="Logo" class="h-10 object-contain">
-            </div>
-
-            <!-- Menu mobile -->
-            <div class="flex-1 overflow-y-auto p-6 space-y-2">
-                <a href="{% url 'home' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">Accueil</a>
-                <a href="{% url 'shop' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">Boutique</a>
-                <a href="{% url 'about' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">À propos</a>
-                <a href="{% url 'blog' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">Blog</a>
-                <a href="{% url 'contact' %}" class="block py-2 text-neutral-700 hover:text-primary transition-colors">Contact</a>
-            </div>
-        </div>
+  <div class="fixed inset-0 bg-black/50" onclick="toggleMobileSidebar()"></div>
+  <div class="fixed right-0 top-0 h-full w-80 max-w-sm bg-white shadow-xl">
+    <div class="flex flex-col h-full">
+      <div class="flex items-center justify-center p-6 border-b border-neutral-200">
+        <img src="{% static 'img/logo.png' %}" alt="Logo" class="h-12 object-contain">
+      </div>
+      <div class="flex-1 overflow-y-auto p-6 space-y-2">
+        <a href="{% url 'home' %}" class="block py-2 text-neutral-700 hover:text-primary">Home</a>
+        <a href="{% url 'shop' %}" class="block py-2 text-neutral-700 hover:text-primary">Shop</a>
+        <a href="{% url 'about' %}" class="block py-2 text-neutral-700 hover:text-primary">About</a>
+        <a href="{% url 'blog' %}" class="block py-2 text-neutral-700 hover:text-primary">Blog</a>
+        <a href="{% url 'contact' %}" class="block py-2 text-neutral-700 hover:text-primary">Contact</a>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- Sidebar panier -->
+<!-- Cart Sidebar -->
 <div id="cart-sidebar" class="fixed inset-0 z-50 hidden">
-    <div class="fixed inset-0 bg-black/50" onclick="toggleCartSidebar()"></div>
-    <div class="fixed right-0 top-0 h-full w-96 max-w-sm bg-white shadow-xl">
-        <div class="flex flex-col h-full">
-            <div class="flex items-center justify-between p-6 border-b border-neutral-200">
-                <h2 class="text-lg font-semibold text-neutral-900">Panier</h2>
-                <button onclick="toggleCartSidebar()" class="text-neutral-600 hover:text-neutral-900 transition-colors">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
+  <div class="fixed inset-0 bg-black/50" onclick="toggleCartSidebar()"></div>
+  <div class="fixed right-0 top-0 h-full w-96 max-w-sm bg-white shadow-xl">
+    <div class="flex flex-col h-full">
 
-            <div class="flex-1 overflow-y-auto p-6">
-                <!-- Exemple produit -->
-                <div class="flex items-center space-x-4 mb-6 pb-6 border-b border-neutral-100">
-                    <div class="w-16 h-16 bg-neutral-100 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-leaf text-primary text-lg"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-neutral-900 text-sm">Moringa Powder</h3>
-                        <p class="text-xs text-neutral-600">100g - Bio</p>
-                        <div class="flex items-center justify-between mt-2">
-                            <div class="flex items-center space-x-2">
-                                <button class="w-6 h-6 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-50">
-                                    <i class="fas fa-minus text-xs"></i>
-                                </button>
-                                <span class="text-sm font-medium">1</span>
-                                <button class="w-6 h-6 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-50">
-                                    <i class="fas fa-plus text-xs"></i>
-                                </button>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-sm font-bold text-primary">8,000 XOF</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="text-neutral-400 hover:text-danger transition-colors">
-                        <i class="fas fa-trash text-sm"></i>
-                    </button>
+      <!-- Header -->
+      <div class="flex items-center justify-between p-6 border-b border-neutral-200">
+        <h2 class="text-lg font-semibold text-neutral-900">Cart</h2>
+        <button onclick="toggleCartSidebar()" class="text-neutral-600 hover:text-neutral-900 transition-colors">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Cart Items -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-4">
+        {% if cart.items.all %}
+          {% for item in cart.items.all %}
+            <div class="flex items-center space-x-4 pb-4 border-b border-neutral-100">
+              <div class="w-16 h-16 bg-neutral-100 rounded-lg flex items-center justify-center">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="h-12 object-contain">
+              </div>
+              <div class="flex-1">
+                <h3 class="font-semibold text-neutral-900 text-sm">{{ item.product.name }}</h3>
+                <p class="text-xs text-neutral-600">{{ item.product.price }} €</p>
+                <div class="flex items-center space-x-2 mt-2">
+                  <button onclick="updateCart('{{ item.id }}','decrease')" class="w-6 h-6 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-50">
+                    <i class="fas fa-minus text-xs"></i>
+                  </button>
+                  <span class="text-sm font-medium">{{ item.quantity }}</span>
+                  <button onclick="updateCart('{{ item.id }}','increase')" class="w-6 h-6 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-50">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
                 </div>
+              </div>
+              <div class="text-right">
+                <p class="text-sm font-bold text-primary">{{ item.total_price }} €</p>
+              </div>
+              <button onclick="removeCartItem('{{ item.id }}')" class="text-neutral-400 hover:text-danger transition-colors">
+                <i class="fas fa-trash text-sm"></i>
+              </button>
             </div>
+          {% endfor %}
+        {% else %}
+          <p class="text-center text-neutral-500">Your cart is empty.</p>
+        {% endif %}
+      </div>
 
-            <div class="border-t border-neutral-200 p-6 space-y-3">
-                <a href="{% url 'cart' %}" class="w-full bg-neutral-100 text-neutral-900 font-semibold py-3 rounded-lg hover:bg-neutral-200 text-center block">Voir le panier</a>
-                <a href="{% url 'checkout' %}" class="w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primary-600 text-center block">Passer à la caisse</a>
-            </div>
-        </div>
+      <!-- Footer -->
+      <div class="border-t border-neutral-200 p-6 space-y-3">
+        <p class="text-sm font-medium text-neutral-700">
+          Total: <span class="font-bold text-primary">{{ cart.total_price }} €</span>
+        </p>
+        <a href="{% url 'cart_detail' %}" class="w-full bg-neutral-100 text-neutral-900 font-semibold py-3 rounded-lg hover:bg-neutral-200 text-center block">View Cart</a>
+        <a href="{% url 'checkout' %}" class="w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primary-600 text-center block">Proceed to Checkout</a>
+      </div>
+
     </div>
+  </div>
 </div>
+
+<!-- Auth Modal -->
+<div id="auth-modal" class="fixed inset-0 z-50 hidden">
+  <div class="fixed inset-0 bg-black/50" onclick="toggleAuthModal()"></div>
+  <div class="fixed inset-0 flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-auto my-8">
+      <!-- Modal Header -->
+      <div class="flex justify-center items-center p-6 border-b border-neutral-200 relative">
+        <img src="{% static 'img/logo.png' %}" alt="Logo" class="h-12">
+        <button onclick="toggleAuthModal()" class="absolute right-4 top-4 text-neutral-600 hover:text-neutral-900 transition-colors">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex border-b border-neutral-200">
+        <button onclick="switchAuthTab('login')" id="login-tab" class="flex-1 py-4 px-6 text-center font-medium border-b-2 border-primary text-primary">Login</button>
+        <button onclick="switchAuthTab('signup')" id="signup-tab" class="flex-1 py-4 px-6 text-center font-medium border-b-2 border-transparent text-neutral-500 hover:text-primary">Signup</button>
+      </div>
+
+      <!-- Forms -->
+      <div class="p-6">
+        <!-- Login Form -->
+        <form id="login-form" method="POST" action="{% url 'login' %}">
+          {% csrf_token %}
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-neutral-700">Username or Email</label>
+            <input type="text" name="username" class="w-full mt-1 p-2 border rounded-lg" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-neutral-700">Password</label>
+            <input type="password" name="password" class="w-full mt-1 p-2 border rounded-lg" required>
+          </div>
+          <button type="submit" class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary-600">Login</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" method="POST" action="{% url 'signup' %}" class="hidden">
+          {% csrf_token %}
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-neutral-700">Username</label>
+            <input type="text" name="username" class="w-full mt-1 p-2 border rounded-lg" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-neutral-700">Email</label>
+            <input type="email" name="email" class="w-full mt-1 p-2 border rounded-lg" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-neutral-700">Password</label>
+            <input type="password" name="password1" class="w-full mt-1 p-2 border rounded-lg" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-neutral-700">Confirm Password</label>
+            <input type="password" name="password2" class="w-full mt-1 p-2 border rounded-lg" required>
+          </div>
+          <button type="submit" class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary-600">Signup</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+function toggleCartSidebar() {
+  document.getElementById('cart-sidebar').classList.toggle('hidden');
+}
+
+function toggleMobileSidebar() {
+  document.getElementById('mobile-sidebar').classList.toggle('hidden');
+}
+
+function toggleAuthModal() {
+  document.getElementById('auth-modal').classList.toggle('hidden');
+}
+
+function switchAuthTab(tab) {
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+  const loginTab = document.getElementById('login-tab');
+  const signupTab = document.getElementById('signup-tab');
+
+  if(tab === 'login') {
+    loginForm.classList.remove('hidden');
+    signupForm.classList.add('hidden');
+    loginTab.classList.add('border-primary', 'text-primary');
+    loginTab.classList.remove('text-neutral-500', 'border-transparent');
+    signupTab.classList.remove('border-primary', 'text-primary');
+    signupTab.classList.add('text-neutral-500', 'border-transparent');
+  } else {
+    signupForm.classList.remove('hidden');
+    loginForm.classList.add('hidden');
+    signupTab.classList.add('border-primary', 'text-primary');
+    signupTab.classList.remove('text-neutral-500', 'border-transparent');
+    loginTab.classList.remove('border-primary', 'text-primary');
+    loginTab.classList.add('text-neutral-500', 'border-transparent');
+  }
+}
+
+// User dropdown
+function toggleUserMenu() {
+  document.getElementById('user-dropdown').classList.toggle('hidden');
+}
+
+document.addEventListener('click', function(event) {
+  const dropdown = document.getElementById('user-dropdown');
+  const button = document.getElementById('user-menu-button');
+  if (dropdown && !button.contains(event.target) && !dropdown.contains(event.target)) {
+    dropdown.classList.add('hidden');
+  }
+});
+</script>

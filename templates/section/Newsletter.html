@@ -1,24 +1,49 @@
-<!-- Newsletter Inscription -->
+<!-- Newsletter Subscription -->
+
+{% load form_tags %}
+
 <section class="py-16 bg-neutral-50 text-neutral-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Restez informé sur le bien-être naturel
+            Stay Updated on Natural Wellness
         </h2>
         <p class="text-xl text-neutral-700 mb-8">
-            Recevez nos conseils, recettes et offres exclusives directement dans votre boîte mail.
+            Receive tips, recipes, and exclusive offers straight to your inbox.
         </p>
+
         <div class="max-w-md mx-auto">
-            <div class="flex flex-col sm:flex-row gap-4">
-                <input type="email" placeholder="Entrez votre email" 
-                       class="flex-1 px-6 py-3 rounded-lg border border-neutral-300 bg-white text-neutral-900 placeholder-neutral-400 focus:ring-2 focus:ring-primary focus:border-transparent transition">
-                <button class="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-600 transition-colors">
-                    S'abonner
+            <form method="post" class="flex flex-col sm:flex-row gap-4">
+                {% csrf_token %}
+                <!-- Email Input -->
+                {{ newsletter_form.email|add_class:"flex-1 px-6 py-3 rounded-lg border border-neutral-300 bg-white text-neutral-900 placeholder-neutral-400 focus:ring-2 focus:ring-primary focus:border-transparent transition" }}
+                
+                <!-- Submit Button -->
+                <button type="submit" class="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-600 transition-colors">
+                    Subscribe
                 </button>
-            </div>
+            </form>
+
             <p class="text-sm text-neutral-500 mt-4">
-                Pas de spam. Désinscription possible à tout moment. Lire notre 
-                <a href="/privacy" class="underline hover:no-underline text-primary">Politique de confidentialité</a>.
+                No spam. You can unsubscribe anytime. Read our 
+                <a href="/privacy" class="underline hover:no-underline text-primary">Privacy Policy</a>.
             </p>
         </div>
     </div>
 </section>
+
+<!-- Toast messages -->
+{% if messages %}
+<div id="toast-container" class="fixed top-5 right-5 z-50 space-y-2">
+    {% for message in messages %}
+    <div class="bg-green-500 text-white px-4 py-2 rounded shadow-md animate-slide-in">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+<script>
+    setTimeout(() => {
+        const container = document.getElementById('toast-container');
+        if(container) container.remove();
+    }, 4000); // hide after 4s
+</script>
+{% endif %}

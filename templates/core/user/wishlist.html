@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}My Wishlist - NaturalBio{% endblock %}
+{% block meta_description %}View and manage your wishlist of favorite natural herbs and wellness products.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-50 py-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="flex" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li><a href="/" class="text-neutral-500 hover:text-primary">Home</a></li>
+        <li class="text-neutral-400"><i class="fas fa-chevron-right text-xs"></i></li>
+        <li><a href="{% url 'profile' %}" class="text-neutral-500 hover:text-primary">Account</a></li>
+        <li class="text-neutral-400"><i class="fas fa-chevron-right text-xs"></i></li>
+        <li class="text-neutral-900 font-medium">Wishlist</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h1 class="text-3xl font-heading font-bold text-neutral-900 mb-2">My Wishlist</h1>
+      <p class="text-neutral-600">
+        <span id="wishlist-count">{{ wishlist.products.count }}</span> items saved for later
+      </p>
+    </div>
+    {% if wishlist.products.exists %}
+    <form method="post" action="{% url 'clear_wishlist' %}">
+      {% csrf_token %}
+      <button type="submit" class="text-danger hover:text-danger/80 text-sm font-medium">Clear All</button>
+    </form>
+    {% endif %}
+  </div>
+
+  <!-- Wishlist Items -->
+  {% if wishlist.products.exists %}
+  <div id="wishlist-items" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+    {% for product in wishlist.products.all %}
+    <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
+      <div class="relative">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}"
+             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+        <form method="post" action="{% url 'remove_from_wishlist' product.id %}">
+          {% csrf_token %}
+          <button type="submit" class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center">
+            <i class="fas fa-heart text-danger"></i>
+          </button>
+        </form>
+      </div>
+      <div class="p-4">
+        <h3 class="font-heading font-semibold text-lg mb-1">{{ product.name }}</h3>
+        <p class="text-neutral-600 text-sm mb-2">{{ product.short_description|truncatewords:10 }}</p>
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-bold text-primary">{{ product.price }} XOF</span>
+          <form method="post" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+            <button type="submit" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Add to Cart
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <!-- Empty Wishlist -->
+  <div id="empty-wishlist" class="text-center py-16">
+    <div class="w-32 h-32 mx-auto mb-6 bg-neutral-100 rounded-full flex items-center justify-center">
+      <i class="fas fa-heart text-4xl text-neutral-400"></i>
+    </div>
+    <h2 class="text-2xl font-heading font-semibold text-neutral-900 mb-4">Your wishlist is empty</h2>
+    <p class="text-neutral-600 mb-8 max-w-md mx-auto">Save your favorite products to your wishlist and they will show up here.</p>
+    <a href="{% url 'shop' %}" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg">
+      <i class="fas fa-leaf mr-2"></i> Start Shopping
+    </a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

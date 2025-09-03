@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="{% if LANGUAGE_CODE == 'fr' %}fr{% else %}en{% endif %}" class="h-full">
 <head>
-
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO Meta Description -->
-    <meta name="description" content="{% block meta_description %}
-        NaturalBio Ressources propose des plantes médicinales, tisanes, huiles et poudres naturelles du Bénin. 
-        Des produits 100% bio pour votre santé, bien-être et vitalité au quotidien.
-    {% endblock %}">
+    <!-- SEO: Title & Description -->
+    <title>{% block meta_title %}{{ site_info.site_name }} – Plantes médicinales, tisanes & bien-être{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{{ site_info.footer_text }}{% endblock %}">
 
-    <!-- SEO Title -->
-    <title>{% block title %}NaturalBio Ressources – Plantes médicinales, Tisanes & Bien-être naturel{% endblock %}</title>
-
-    <!-- Open Graph (SEO réseaux sociaux) -->
-    <meta property="og:title" content="NaturalBio Ressources – Produits naturels & bio du Bénin">
-    <meta property="og:description" content="Découvrez nos plantes médicinales, huiles, poudres et tisanes 100% naturelles pour votre santé et bien-être.">
-    <meta property="og:image" content="{% static 'images/og-naturalbio.jpg' %}">
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}{{ site_info.site_name }} – Produits naturels & bio du Bénin{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Découvrez nos produits 100% naturels pour votre santé et bien-être.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% if site_info.promo_banner %}{{ site_info.promo_banner.url }}{% else %}{% static 'images/og-naturalbio.jpg' %}{% endif %}{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="NaturalBio Ressources – Produits naturels & bio du Bénin">
-    <meta name="twitter:description" content="Tisanes, poudres et huiles bio pour le bien-être et la santé. 100% naturel.">
-    <meta name="twitter:image" content="{% static 'images/og-naturalbio.jpg' %}">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ site_info.site_name }} – Produits naturels & bio du Bénin{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ site_info.promo_text }}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% if site_info.promo_banner %}{{ site_info.promo_banner.url }}{% else %}{% static 'images/og-naturalbio.jpg' %}{% endif %}{% endblock %}">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,12 +29,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: { DEFAULT: '#2E7D32', 600: '#1B5E20' },
-                        accent: '#A5D6A7',
-                        neutral: { 100: '#F1F5F9', 900: '#0F172A' },
-                        success: '#16A34A',
-                        warning: '#F59E0B',
-                        danger: '#DC2626'
+                        primary: '{{ site_info.primary_color|default:"#2E7D32" }}',
+                        accent: '{{ site_info.accent_color|default:"#A5D6A7" }}',
+                        neutral: { 100: '{{ site_info.neutral_light|default:"#F1F5F9" }}', 900: '{{ site_info.neutral_dark|default:"#0F172A" }}' },
+                        success: '{{ site_info.success_color|default:"#16A34A" }}',
+                        warning: '{{ site_info.warning_color|default:"#F59E0B" }}',
+                        danger: '{{ site_info.danger_color|default:"#DC2626" }}'
                     },
                     fontFamily: {
                         heading: ['Montserrat', 'sans-serif'],
@@ -51,7 +45,7 @@
         }
     </script>
 
-    <!-- Google Fonts: Montserrat -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -62,122 +56,32 @@
     {% block extra_head %}{% endblock %}
 </head>
 <body class="min-h-full bg-white font-body text-neutral-900 antialiased">
+
+    <!-- Promo Bar -->
     
+    <!-- Language & Promo Bar -->
     {% include 'inc/LanguageSwitch.html' %}
+
+    <!-- Header / Navbar -->
     {% include 'inc/header.html' %}
-    {% include 'section/authModal.html' %}
+
 
     <!-- Breadcrumb -->
     {% block breadcrumb %}{% endblock %}
 
     <!-- Main Content -->
     <main>
-        {% if messages %}
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                {% for message in messages %}
-                    <div class="mb-4 p-4 rounded-lg 
-                        {% if message.tags == 'success' %}
-                            bg-success/10 text-success-800 border border-success/20
-                        {% elif message.tags == 'error' %}
-                            bg-danger/10 text-danger-800 border border-danger/20
-                        {% elif message.tags == 'warning' %}
-                            bg-warning/10 text-warning-800 border border-warning/20
-                        {% else %}
-                            bg-primary/10 text-primary-800 border border-primary/20
-                        {% endif %}
-                    ">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-
         {% block content %}{% endblock %}
     </main>
 
+   
     {% include 'inc/footer.html' %}
+
+    <!-- Cookie Consent -->
     {% include 'inc/cookies.html' %}
 
-    <!-- JavaScript -->
-    <script>
-        // Cookie consent
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            document.getElementById('cookie-banner').style.display = 'none';
-        }
-        function rejectCookies() {
-            localStorage.setItem('cookieConsent', 'rejected');
-            document.getElementById('cookie-banner').style.display = 'none';
-        }
-        if (localStorage.getItem('cookieConsent')) {
-            document.getElementById('cookie-banner').style.display = 'none';
-        }
-
-        // Cart functionality
-        function addToCart(productId, quantity = 1) {
-            console.log(`Produit ajouté: ${productId} (qty: ${quantity})`);
-            showToast('Produit ajouté au panier !', 'success');
-            updateCartCount();
-        }
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            toast.className = `fixed top-20 right-4 z-50 max-w-sm p-4 rounded-lg shadow-lg ${
-                type==='success'? 'bg-success text-white': type==='error'? 'bg-danger text-white':'bg-primary text-white'
-            }`;
-            toast.innerHTML = `<div class="flex items-center">
-                                    <i class="fas fa-check-circle mr-2"></i>
-                                    <span>${message}</span>
-                                </div>`;
-            document.body.appendChild(toast);
-            setTimeout(()=>{toast.remove()},3000);
-        }
-        function updateCartCount() {
-            const cartBadge = document.querySelector('.fa-shopping-bag').nextElementSibling;
-            const currentCount = parseInt(cartBadge.textContent);
-            cartBadge.textContent = currentCount + 1;
-        }
-
-        // Mobile & Sidebar toggles
-        function toggleMobileSearch() { document.getElementById('mobile-search').classList.toggle('hidden'); }
-        function toggleMobileSidebar() {
-            const sidebar = document.getElementById('mobile-sidebar');
-            sidebar.classList.toggle('hidden');
-            document.body.style.overflow = sidebar.classList.contains('hidden') ? '' : 'hidden';
-        }
-        function toggleCartSidebar() {
-            const sidebar = document.getElementById('cart-sidebar');
-            sidebar.classList.toggle('hidden');
-            document.body.style.overflow = sidebar.classList.contains('hidden') ? '' : 'hidden';
-        }
-
-        // Authentication modal
-        function toggleAuthModal() {
-            const modal = document.getElementById('auth-modal');
-            modal.classList.toggle('hidden');
-            document.body.style.overflow = modal.classList.contains('hidden') ? '' : 'hidden';
-            if(!modal.classList.contains('hidden')) switchAuthTab('login');
-        }
-        function switchAuthTab(tab) {
-            const loginTab = document.getElementById('login-tab');
-            const signupTab = document.getElementById('signup-tab');
-            const loginForm = document.getElementById('login-form');
-            const signupForm = document.getElementById('signup-form');
-            if(tab==='login'){
-                loginTab.classList.add('border-primary','text-primary');
-                loginTab.classList.remove('border-transparent','text-neutral-600');
-                signupTab.classList.remove('border-primary','text-primary');
-                signupTab.classList.add('border-transparent','text-neutral-600');
-                loginForm.classList.remove('hidden'); signupForm.classList.add('hidden');
-            }else{
-                signupTab.classList.add('border-primary','text-primary');
-                signupTab.classList.remove('border-transparent','text-neutral-600');
-                loginTab.classList.remove('border-primary','text-primary');
-                loginTab.classList.add('border-transparent','text-neutral-600');
-                signupForm.classList.remove('hidden'); loginForm.classList.add('hidden');
-            }
-        }
-    </script>
-
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

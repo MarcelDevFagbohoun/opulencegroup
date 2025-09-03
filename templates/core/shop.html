@@ -34,162 +34,34 @@
                 <div class="bg-white border border-neutral-200 rounded-lg p-4">
                     <h3 class="font-heading font-semibold text-lg mb-4">Categories</h3>
                     <div class="space-y-2">
+                        {% for category in categories %}
                         <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Tisanes (24)</span>
+                            <input type="checkbox" name="category" value="{{ category.id }}" class="text-primary focus:ring-primary border-neutral-300 rounded">
+                            <span class="ml-2 text-sm">{{ category.name }} ({{ category.products.count }})</span>
                         </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Essential Oils (18)</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Powders (15)</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Gift Sets (8)</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Accessories (12)</span>
-                        </label>
+                        {% endfor %}
                     </div>
                 </div>
 
                 <!-- Price Filter -->
                 <div class="bg-white border border-neutral-200 rounded-lg p-4">
                     <h3 class="font-heading font-semibold text-lg mb-4">Price Range</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-2">
-                            <input type="number" placeholder="Min" class="w-full px-3 py-2 border border-neutral-300 rounded text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
-                            <span class="text-neutral-500">-</span>
-                            <input type="number" placeholder="Max" class="w-full px-3 py-2 border border-neutral-300 rounded text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="flex items-center">
-                                <input type="radio" name="price" class="text-primary focus:ring-primary">
-                                <span class="ml-2 text-sm">Under $25</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="price" class="text-primary focus:ring-primary">
-                                <span class="ml-2 text-sm">$25 - $50</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="price" class="text-primary focus:ring-primary">
-                                <span class="ml-2 text-sm">$50 - $100</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="price" class="text-primary focus:ring-primary">
-                                <span class="ml-2 text-sm">Over $100</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Benefits Filter -->
-                <div class="bg-white border border-neutral-200 rounded-lg p-4">
-                    <h3 class="font-heading font-semibold text-lg mb-4">Health Benefits</h3>
                     <div class="space-y-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Digestive Health</span>
+                            <input type="radio" name="price" value="under-25" class="text-primary focus:ring-primary">
+                            <span class="ml-2 text-sm">Under $25</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Immune Support</span>
+                            <input type="radio" name="price" value="25-50" class="text-primary focus:ring-primary">
+                            <span class="ml-2 text-sm">$25 - $50</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Relaxation</span>
+                            <input type="radio" name="price" value="50-100" class="text-primary focus:ring-primary">
+                            <span class="ml-2 text-sm">$50 - $100</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Energy & Vitality</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Skin Care</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Form Filter -->
-                <div class="bg-white border border-neutral-200 rounded-lg p-4">
-                    <h3 class="font-heading font-semibold text-lg mb-4">Form</h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Dried Herbs</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Powder</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Oil</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Tea Bags</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Stock Status -->
-                <div class="bg-white border border-neutral-200 rounded-lg p-4">
-                    <h3 class="font-heading font-semibold text-lg mb-4">Availability</h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">In Stock</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Pre-order</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Origin Filter -->
-                <div class="bg-white border border-neutral-200 rounded-lg p-4">
-                    <h3 class="font-heading font-semibold text-lg mb-4">Origin</h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Benin</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Nigeria</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Ghana</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Togo</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Organic Filter -->
-                <div class="bg-white border border-neutral-200 rounded-lg p-4">
-                    <h3 class="font-heading font-semibold text-lg mb-4">Certifications</h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Organic Certified</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Fair Trade</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="text-primary focus:ring-primary border-neutral-300 rounded">
-                            <span class="ml-2 text-sm">Non-GMO</span>
+                            <input type="radio" name="price" value="over-100" class="text-primary focus:ring-primary">
+                            <span class="ml-2 text-sm">Over $100</span>
                         </label>
                     </div>
                 </div>
@@ -207,7 +79,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
                 <div>
                     <h1 class="text-3xl font-heading font-bold text-neutral-900 mb-2">Shop All Products</h1>
-                    <p class="text-neutral-600" id="results-count">Showing 1-12 of 77 products</p>
+                    <p class="text-neutral-600" id="results-count">Showing {{ products.paginator.count }} products</p>
                 </div>
                 
                 <!-- Sort Options -->
@@ -223,194 +95,62 @@
                 </div>
             </div>
 
-            <!-- Loading State -->
-            <div id="loading-state" class="hidden">
-                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                    {% for i in "123456789" %}
-                    <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden animate-pulse">
-                        <div class="w-full h-48 bg-neutral-200"></div>
-                        <div class="p-4">
-                            <div class="h-4 bg-neutral-200 rounded mb-2"></div>
-                            <div class="h-3 bg-neutral-200 rounded w-2/3 mb-4"></div>
-                            <div class="flex justify-between items-center">
-                                <div class="h-5 bg-neutral-200 rounded w-16"></div>
-                                <div class="h-8 bg-neutral-200 rounded w-24"></div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-
             <!-- Product Grid -->
             <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
-                <!-- Product Card 1 -->
+                {% for product in products %}
                 <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=200&fit=crop&crop=center" 
-                             alt="Moringa Powder" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute top-3 left-3 space-y-1">
-                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Organic</span>
-                            <span class="bg-danger text-white text-xs px-2 py-1 rounded-full font-medium">-15%</span>
-                        </div>
+                        <img src="{{ product.image.url }}" 
+                             alt="{{ product.name }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                         <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
                             <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
                         </button>
                     </div>
                     <div class="p-4">
-                        <h3 class="font-heading font-semibold text-lg mb-1">Moringa Powder</h3>
-                        <p class="text-neutral-600 text-sm mb-2">Pure organic moringa leaf powder</p>
+                        <h3 class="font-heading font-semibold text-lg mb-1">{{ product.name }}</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex items-center space-x-1">
-                                {% for i in "12345" %}
+                                {% for i in "12345"|slice:":product.average_rating|round" %}
                                 <i class="fas fa-star text-warning text-xs"></i>
                                 {% endfor %}
-                            </div>
-                            <span class="text-neutral-500 text-sm ml-2">(24 reviews)</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-lg font-bold text-primary">$28.99</span>
-                                <div class="text-xs text-neutral-400 line-through">$33.99</div>
-                            </div>
-                            <button onclick="addToCart(1)" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 2 -->
-                <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=200&fit=crop&crop=center" 
-                             alt="Baobab Oil" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full font-medium">Organic</span>
-                        </div>
-                        <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
-                            <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-heading font-semibold text-lg mb-1">Baobab Oil</h3>
-                        <p class="text-neutral-600 text-sm mb-2">Pure baobab oil for skin and hair</p>
-                        <div class="flex items-center mb-3">
-                            <div class="flex items-center space-x-1">
-                                {% for i in "12345" %}
-                                <i class="fas fa-star text-warning text-xs"></i>
-                                {% endfor %}
-                            </div>
-                            <span class="text-neutral-500 text-sm ml-2">(18 reviews)</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-lg font-bold text-primary">$45.99</span>
-                            <button onclick="addToCart(2)" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 3 -->
-                <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=200&fit=crop&crop=center" 
-                             alt="Ginger Tea" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
-                            <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-heading font-semibold text-lg mb-1">Ginger Tisane</h3>
-                        <p class="text-neutral-600 text-sm mb-2">Natural ginger root tea blend</p>
-                        <div class="flex items-center mb-3">
-                            <div class="flex items-center space-x-1">
-                                {% for i in "1234" %}
-                                <i class="fas fa-star text-warning text-xs"></i>
-                                {% endfor %}
+                                {% for i in "12345"|slice:"product.average_rating|round:" %}
                                 <i class="far fa-star text-neutral-300 text-xs"></i>
-                            </div>
-                            <span class="text-neutral-500 text-sm ml-2">(12 reviews)</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-lg font-bold text-primary">$19.99</span>
-                            <button onclick="addToCart(3)" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Continue with more products... -->
-                {% for i in "123456" %}
-                <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=200&fit=crop&crop=center" 
-                             alt="Product {{ forloop.counter|add:3 }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <button class="absolute top-3 right-3 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors">
-                            <i class="far fa-heart text-neutral-600 hover:text-danger"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-heading font-semibold text-lg mb-1">Product {{ forloop.counter|add:3 }}</h3>
-                        <p class="text-neutral-600 text-sm mb-2">Natural wellness product description</p>
-                        <div class="flex items-center mb-3">
-                            <div class="flex items-center space-x-1">
-                                {% for star in "12345" %}
-                                <i class="fas fa-star text-warning text-xs"></i>
                                 {% endfor %}
                             </div>
-                            <span class="text-neutral-500 text-sm ml-2">({{ forloop.counter|add:10 }} reviews)</span>
+                            <span class="text-neutral-500 text-sm ml-2">({{ product.reviews.count }} reviews)</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-lg font-bold text-primary">${{ forloop.counter|add:25 }}.99</span>
-                            <button onclick="addToCart({{ forloop.counter|add:3 }})" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            <span class="text-lg font-bold text-primary">{{ product.price }} FCFA </span>
+                            <a href="{% url 'add_to_cart' product.id %}" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                                 Add to Cart
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
 
-            <!-- Empty State -->
-            <div id="empty-state" class="hidden text-center py-12">
-                <div class="mb-6">
-                    <i class="fas fa-search text-6xl text-neutral-300"></i>
-                </div>
-                <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-4">No products found</h2>
-                <p class="text-neutral-600 mb-6">Sorry, we couldn't find any products matching your criteria. Try adjusting your filters or search terms.</p>
-                <button onclick="clearAllFilters()" class="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                    Clear All Filters
-                </button>
-            </div>
-
-            <!-- Error State -->
-            <div id="error-state" class="hidden text-center py-12">
-                <div class="mb-6">
-                    <i class="fas fa-exclamation-triangle text-6xl text-warning"></i>
-                </div>
-                <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-4">Something went wrong</h2>
-                <p class="text-neutral-600 mb-6">We're having trouble loading products right now. Please try again in a moment.</p>
-                <button onclick="location.reload()" class="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                    Try Again
-                </button>
-            </div>
-
             <!-- Pagination -->
             <div id="pagination" class="flex items-center justify-center space-x-2">
-                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                {% if products.has_previous %}
+                <a href="?page={{ products.previous_page_number }}" class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">
                     <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="px-3 py-2 bg-primary text-white rounded-lg">1</button>
-                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">2</button>
-                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">3</button>
-                <span class="px-3 py-2 text-neutral-500">...</span>
-                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">7</button>
-                <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">
+                </a>
+                {% endif %}
+
+                {% for num in products.paginator.page_range %}
+                    {% if products.number == num %}
+                        <span class="px-3 py-2 bg-primary text-white rounded-lg">{{ num }}</span>
+                    {% else %}
+                        <a href="?page={{ num }}" class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}" class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">
                     <i class="fas fa-chevron-right"></i>
-                </button>
+                </a>
+                {% endif %}
             </div>
         </main>
     </div>
@@ -419,80 +159,23 @@
 
 {% block extra_js %}
 <script>
-    // Filter functionality
     function toggleFilters() {
-        const filtersContent = document.getElementById('filters-content');
-        filtersContent.classList.toggle('hidden');
+        document.getElementById('filters-content').classList.toggle('hidden');
     }
 
     function clearAllFilters() {
-        // Reset all checkboxes and inputs
-        document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
-        document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
-        document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
-        
-        // Reset results
+        document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => input.checked = false);
         filterProducts();
     }
 
     function handleSort(value) {
-        console.log('Sorting by:', value);
-        // Implementation would sort products based on selected value
-        showLoadingState();
-        setTimeout(() => {
-            hideLoadingState();
-        }, 1000);
+        console.log('Sort by:', value);
+        // Ici tu peux ajouter du code pour trier via Ajax ou redirection
     }
 
     function filterProducts() {
         console.log('Filtering products...');
-        showLoadingState();
-        
-        // Simulate API call
-        setTimeout(() => {
-            hideLoadingState();
-            updateResultsCount();
-        }, 800);
+        // Ici tu peux ajouter du code pour filtrer via Ajax
     }
-
-    function showLoadingState() {
-        document.getElementById('loading-state').classList.remove('hidden');
-        document.getElementById('product-grid').classList.add('hidden');
-        document.getElementById('pagination').classList.add('hidden');
-    }
-
-    function hideLoadingState() {
-        document.getElementById('loading-state').classList.add('hidden');
-        document.getElementById('product-grid').classList.remove('hidden');
-        document.getElementById('pagination').classList.remove('hidden');
-    }
-
-    function updateResultsCount() {
-        // This would update based on actual filtered results
-        document.getElementById('results-count').textContent = 'Showing 1-12 of 77 products';
-    }
-
-    // Add event listeners to filters
-    document.addEventListener('DOMContentLoaded', function() {
-        // Listen to all filter inputs
-        document.querySelectorAll('input[type="checkbox"], input[type="radio"], input[type="number"]').forEach(input => {
-            input.addEventListener('change', filterProducts);
-        });
-        
-        // Mobile filters
-        if (window.innerWidth < 1024) {
-            document.getElementById('filters-content').classList.add('hidden');
-        }
-    });
-
-    // Responsive filters
-    window.addEventListener('resize', function() {
-        const filtersContent = document.getElementById('filters-content');
-        if (window.innerWidth >= 1024) {
-            filtersContent.classList.remove('hidden');
-        } else {
-            filtersContent.classList.add('hidden');
-        }
-    });
 </script>
 {% endblock %}

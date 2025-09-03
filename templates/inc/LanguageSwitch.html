@@ -1,42 +1,65 @@
-<!-- Sélecteur de langue avec drapeaux circulaires et promo détaillé -->
-<div class="bg-neutral-100 py-2">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-end items-center space-x-6 text-sm h-12">
+<!-- Topbar: Promo + Language -->
+<div class="bg-primary py-3 relative z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
-            <!-- Français -->
-            <a href="?lang=fr" 
-               class="flex items-center space-x-2 text-neutral-900 hover:text-primary transition-colors {% if LANGUAGE_CODE == 'fr' %}font-medium{% endif %}">
-                <div class="relative flex items-center">
-                    <img src="https://flagcdn.com/24x18/fr.png" alt="Français" class="w-6 h-6 rounded-full border border-neutral-200">
-                    {% if LANGUAGE_CODE == 'fr' %}
-                    <span class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold px-2 rounded-full">Promo</span>
-                    {% endif %}
-                </div>
-                <div class="flex flex-col">
-                    <span>Français</span>
-                    {% if LANGUAGE_CODE == 'fr' %}
-                    <span class="text-xs font-semibold text-white bg-primary px-2 py-0.5 rounded-full mt-0.5">100% livraison gratuite</span>
-                    {% endif %}
-                </div>
-            </a>
-
-            <!-- Anglais -->
-            <a href="?lang=en" 
-               class="flex items-center space-x-2 text-neutral-900 hover:text-primary transition-colors {% if LANGUAGE_CODE == 'en' %}font-medium{% endif %}">
-                <div class="relative flex items-center">
-                    <img src="https://flagcdn.com/16x12/gb.png" alt="English" class="w-6 h-6 rounded-full border border-neutral-200">
-                    {% if LANGUAGE_CODE == 'en' %}
-                    <span class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold px-2 rounded-full">Promo</span>
-                    {% endif %}
-                </div>
-                <div class="flex flex-col">
-                    <span>English</span>
-                    {% if LANGUAGE_CODE == 'en' %}
-                    <span class="text-xs font-semibold text-white bg-primary px-2 py-0.5 rounded-full mt-0.5">Free shipping 100%</span>
-                    {% endif %}
-                </div>
-            </a>
-
+        <!-- Left: Promo -->
+        <div class="flex items-center">
+            <span class="text-white font-semibold text-sm md:text-base">
+                       {{ site_info.promo_text }}
+            </span>
         </div>
+
+        <!-- Right: Language Button (English default) -->
+        <div class="flex items-center">
+            <button id="langButton" class="flex items-center bg-white text-neutral-900 px-3 py-1 rounded-full shadow font-medium hover:shadow-md transition">
+                <img src="https://flagcdn.com/24x18/gb.png" alt="English" class="w-5 h-5 rounded-full border border-neutral-200 mr-2">
+                English
+            </button>
+        </div>
+
     </div>
 </div>
+
+<!-- Language Modal -->
+<div id="langModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-lg w-80 max-w-sm p-6">
+        <h2 class="text-lg font-semibold text-neutral-900 mb-4">Select Language</h2>
+        <div class="flex flex-col space-y-3">
+            <a href="?lang=en" class="flex items-center px-4 py-2 rounded hover:bg-neutral-100 transition">
+                <img src="https://flagcdn.com/24x18/gb.png" alt="English" class="w-5 h-5 rounded-full border border-neutral-200 mr-2">
+                English
+            </a>
+            <a href="?lang=fr" class="flex items-center px-4 py-2 rounded hover:bg-neutral-100 transition">
+                <img src="https://flagcdn.com/24x18/fr.png" alt="Français" class="w-5 h-5 rounded-full border border-neutral-200 mr-2">
+                Français
+            </a>
+        </div>
+        <button id="closeLangModal" class="mt-6 w-full bg-primary text-white py-2 rounded hover:bg-primary/90 transition">Close</button>
+    </div>
+</div>
+
+<!-- JS Modal -->
+<script>
+const langButton = document.getElementById('langButton');
+const langModal = document.getElementById('langModal');
+const closeLangModal = document.getElementById('closeLangModal');
+
+langButton.addEventListener('click', e => {
+    e.stopPropagation();
+    langModal.classList.remove('hidden');
+    langModal.classList.add('flex');
+});
+
+closeLangModal.addEventListener('click', () => {
+    langModal.classList.add('hidden');
+    langModal.classList.remove('flex');
+});
+
+// Close modal when clicking outside content
+langModal.addEventListener('click', e => {
+    if(e.target === langModal){
+        langModal.classList.add('hidden');
+        langModal.classList.remove('flex');
+    }
+});
+</script>
