@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-!@=y@+#co!_$4f&-vnm0x1_biv67^c!awlso$)*y^-54-&q)ce
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*','192.168.1.107']
 
 
 # Application definition
@@ -29,7 +29,66 @@ INSTALLED_APPS = [
     'core',
     'ckeditor',
     'ckeditor_uploader',
+    'widget_tweaks',
+
 ]
+
+# ------------------------
+# Jazzmin settings
+# ------------------------
+JAZZMIN_SETTINGS = {
+    "site_title": "Natural Bio Admin",
+    "site_header": "Natural Bio Dashboard",
+    "site_brand": "NaturalBio",
+    "welcome_sign": "Bienvenue dans le Dashboard NaturalBio",
+    "copyright": "NaturalBio © 2025",
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "show_ui_builder": True,
+    "topmenu_links": [
+        {"name": "Site", "url": "/admin/core/siteinfo/", "permissions": ["core.view_siteinfo"]},
+        {"name": "Shop", "app": "core"},
+        {"name": "Blog", "app": "core"},
+        {"name": "Users", "app": "auth"},
+    ],
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "core.category": "fas fa-list-alt",
+        "core.product": "fas fa-seedling",
+        "core.order": "fas fa-shopping-cart",
+        "core.orderitem": "fas fa-box",
+        "core.cart": "fas fa-shopping-basket",
+        "core.cartitem": "fas fa-box-open",
+        "core.userprofile": "fas fa-id-card",
+        "core.wishlist": "fas fa-heart",
+        "core.review": "fas fa-star",
+        "core.blogcategory": "fas fa-tags",
+        "core.blogpost": "fas fa-newspaper",
+        "core.newsletter": "fas fa-envelope-open",
+        "core.faq": "fas fa-question-circle",
+        "core.contact": "fas fa-envelope",
+        "core.siteinfo": "fas fa-cog",
+    },
+    "related_modal_active": True,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "simple",        # simple et clair
+    "dark_mode_theme": None,  # désactivé
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_color": "green",
+    "accent": "green",
+    "navbar": "white",
+    "no_navbar_border": False,
+    "navbar_fixed": False,
+    "footer_fixed": False,
+    "body_rounded": True,
+    "modals": "rounded",
+    "buttons": "rounded",
+}
 
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -56,8 +115,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'core.context_processors.footer_categories',
-                'core.context_processors.cart_context',
+                'core.context_processors.services_pro',
                 'core.context_processors.site_info',
 
             ],

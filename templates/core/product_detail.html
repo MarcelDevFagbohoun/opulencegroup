@@ -1,21 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}{{ product.name }} - {{ product.category.name }}{% endblock %}
-
 {% block meta_description %}{{ product.description|truncatechars:160|striptags }}{% endblock %}
 
 {% block breadcrumb %}
-<div class="bg-neutral-50 py-4">
+<div class="bg-gray-50 py-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex" aria-label="Breadcrumb">
-            <ol class="flex items-center space-x-2 text-sm">
-                <li><a href="/" class="text-neutral-500 hover:text-primary transition-colors">Home</a></li>
-                <li class="text-neutral-400"><i class="fas fa-chevron-right text-xs"></i></li>
-                <li><a href="/shop" class="text-neutral-500 hover:text-primary transition-colors">Shop</a></li>
-                <li class="text-neutral-400"><i class="fas fa-chevron-right text-xs"></i></li>
-                <li><a href="/category/{{ product.category.slug }}" class="text-neutral-500 hover:text-primary transition-colors">{{ product.category.name }}</a></li>
-                <li class="text-neutral-400"><i class="fas fa-chevron-right text-xs"></i></li>
-                <li class="text-neutral-900 font-medium" aria-current="page">{{ product.name }}</li>
+        <nav class="flex text-sm" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2">
+                <li><a href="/" class="text-gray-500 hover:text-green-600 transition-colors">Accueil</a></li>
+                <li class="text-gray-400"><i class="fas fa-chevron-right text-xs"></i></li>
+                <li class="text-gray-900 font-medium">{{ product.name }}</li>
             </ol>
         </nav>
     </div>
@@ -25,165 +20,138 @@
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-    <!-- Toast -->
-    <div id="toast" class="fixed top-5 right-5 bg-primary text-white px-5 py-3 rounded-lg shadow-lg hidden z-50"></div>
-
-    <!-- Back Button -->
-    <button onclick="history.back()" class="mb-6 flex items-center text-neutral-600 hover:text-primary transition-colors">
+    <!-- Bouton retour -->
+    <button onclick="history.back()" class="mb-6 flex items-center text-gray-600 hover:text-green-600 transition-colors">
         <i class="fas fa-arrow-left mr-2"></i>
-        <span>Back to Products</span>
+        Retour aux produits
     </button>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-        <!-- Product Images -->
-        <div class="space-y-4">
-            <div class="aspect-square bg-neutral-100 rounded-2xl overflow-hidden relative">
-                {% if product.image %}
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
-                {% else %}
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
-                        <i class="fas fa-leaf text-primary text-8xl"></i>
-                    </div>
-                {% endif %}
+        <!-- Section Images + Carousel -->
+        <div x-data="carousel()" class="space-y-4">
+
+            <!-- Image principale -->
+            <div class="aspect-[4/3] bg-gray-100 rounded-3xl overflow-hidden relative group">
+                <img :src="images[active]" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-3xl cursor-zoom-in">
+            </div>
+
+            <!-- Carousel miniatures -->
+            <div class="flex space-x-3 overflow-x-auto">
+                <template x-for="(img, index) in images" :key="index">
+                    <img :src="img"
+                         @click="active = index"
+                         :class="active === index ? 'ring-2 ring-primary rounded-xl' : 'rounded-xl'"
+                         class="w-20 h-20 object-cover cursor-pointer transition-transform duration-300 hover:scale-105">
+                </template>
             </div>
         </div>
 
-        <!-- Product Info -->
+        <!-- Informations produit -->
         <div class="space-y-6">
-            <h1 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">{{ product.name }}</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{{ product.name }}</h1>
 
-            <p class="text-lg text-neutral-600">{{ product.description|safe }}</p>
+            <!-- Catégorie -->
+            {% if product.category %}
+            <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm mb-4">
+                {{ product.category.name }}
+            </span>
+            {% endif %}
 
-            <!-- Price -->
-            <div class="flex items-baseline space-x-3 mt-4">
-                <span class="text-4xl font-bold text-primary">{{ product.price|floatformat:0 }} XOF</span>
+            <!-- Prix -->
+            <div class="text-3xl font-bold text-green-600 mt-2">
+                {{ product.price|floatformat:0 }} XOF
             </div>
 
             <!-- Stock -->
-            <div class="text-sm text-neutral-500 mt-2">
-                {% if product.is_available %}
-                    <span class="text-success font-medium">In Stock</span> - {{ product.stock }} available
-                {% else %}
-                    <span class="text-danger font-medium">Out of Stock</span>
-                {% endif %}
-            </div>
-
-            <!-- Quantity & Buttons -->
             {% if product.is_available %}
-            <div class="space-y-3 mt-4">
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center border border-neutral-300 rounded-lg">
-                        <button type="button" class="px-3 py-2 hover:bg-neutral-50 transition-colors" onclick="decrementQuantity()">
-                            <i class="fas fa-minus text-sm"></i>
-                        </button>
-                        <input type="number" id="quantity" value="1" min="1" max="{{ product.stock }}" class="w-16 text-center py-2 border-0 focus:ring-0">
-                        <button type="button" class="px-3 py-2 hover:bg-neutral-50 transition-colors" onclick="incrementQuantity()">
-                            <i class="fas fa-plus text-sm"></i>
-                        </button>
-                    </div>
-                    <span class="text-sm text-neutral-600">Maximum {{ product.stock }} per order</span>
-                </div>
-
-                <div class="flex gap-4">
-                    <!-- Add to Cart -->
-                    <button onclick="addToCart('{{ product.id }}')" class="flex-1 bg-primary text-white font-semibold py-4 rounded-lg hover:bg-primary-600 transition-colors flex items-center justify-center">
-                        <i class="fas fa-shopping-bag mr-2"></i>
-                        Add to Cart - {{ product.price|floatformat:0 }} XOF
-                    </button>
-
-                    <!-- Add to Wishlist -->
-                    <button onclick="toggleWishlist('{{ product.id }}')" class="flex-1 border border-neutral-300 text-neutral-700 font-semibold py-4 rounded-lg hover:bg-neutral-50 transition-colors flex items-center justify-center">
-                        <i class="fas fa-heart mr-2"></i>
-                        Add to Wishlist
-                    </button>
-                </div>
-            </div>
+            <div class="text-sm text-green-600 font-medium mt-1">En stock - {{ product.stock }} disponible(s)</div>
+            {% else %}
+            <div class="text-sm text-red-600 font-medium mt-1">Rupture de stock</div>
             {% endif %}
+
+            <!-- Bouton commande WhatsApp -->
+            <div class="mt-6">
+                <a href="https://wa.me/{{ site_info.phone_primary|urlencode }}?text=Bonjour%2C%20je%20souhaite%20commander%20{{ product.name|urlencode }}" 
+                   target="_blank"
+                   class="inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 text-lg shadow-lg">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                    Commander via WhatsApp
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- Related Products -->
-    <section class="mt-16 pt-16 border-t border-neutral-200">
-        <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-8">You May Also Like</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {% for similar in similar_products %}
-            <div class="bg-white border border-neutral-200 rounded-2xl p-4">
-                <a href="{% url 'product_detail' similar.slug %}">
-                    {% if similar.image %}
-                        <img src="{{ similar.image.url }}" alt="{{ similar.name }}" class="w-full h-40 object-cover rounded-xl mb-3">
-                    {% endif %}
-                    <h3 class="text-neutral-900 font-semibold">{{ similar.name }}</h3>
-                    <p class="text-primary font-bold">{{ similar.price|floatformat:0 }} XOF</p>
-                </a>
+    <!-- Tabs Description / Détails / Avis -->
+    <div x-data="{ tab: 'description' }" class="mt-12">
+        <div class="flex border-b border-gray-200">
+            <button @click="tab='description'" :class="tab==='description' ? 'border-b-2 border-primary text-primary font-semibold' : 'text-gray-600'" class="px-6 py-3">
+                Description
+            </button>
+            <button @click="tab='details'" :class="tab==='details' ? 'border-b-2 border-primary text-primary font-semibold' : 'text-gray-600'" class="px-6 py-3">
+                Détails
+            </button>
+            <button @click="tab='reviews'" :class="tab==='reviews' ? 'border-b-2 border-primary text-primary font-semibold' : 'text-gray-600'" class="px-6 py-3">
+                Avis
+            </button>
+        </div>
+
+        <div class="mt-6">
+            <div x-show="tab==='description'" class="text-gray-700 leading-relaxed" x-transition>
+                {{ product.description|safe }}
             </div>
-            {% empty %}
-            <p>No similar products found.</p>
+            <div x-show="tab==='details'" class="text-gray-700 leading-relaxed" x-transition>
+                <ul class="list-disc ml-5">
+                    <li>Catégorie: {{ product.category.name }}</li>
+                    <li>Prix: {{ product.price|floatformat:0 }} XOF</li>
+                    <li>Stock: {% if product.is_available %} Disponible {% else %} Rupture {% endif %}</li>
+                    <li>Créé le: {{ product.created_at|date:"d/m/Y" }}</li>
+                </ul>
+            </div>
+            <div x-show="tab==='reviews'" class="text-gray-700 leading-relaxed" x-transition>
+                {% comment %} Ici tu peux intégrer les reviews {% endcomment %}
+                <p>Aucun avis pour l'instant.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Produits similaires -->
+    {% if similar_products %}
+    <div class="mt-12">
+        <h2 class="text-2xl font-bold mb-6">Produits similaires</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for sp in similar_products %}
+            <div class="bg-white rounded-2xl shadow-md hover:shadow-lg overflow-hidden">
+                <a href="{% url 'product_detail' sp.slug %}">
+                    <img src="{{ sp.image.url }}" alt="{{ sp.name }}" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105">
+                </a>
+                <div class="p-3">
+                    <h3 class="text-gray-900 font-semibold text-sm truncate">{{ sp.name }}</h3>
+                    <div class="text-green-600 font-bold">{{ sp.price|floatformat:0 }} XOF</div>
+                </div>
+            </div>
             {% endfor %}
         </div>
-    </section>
+    </div>
+    {% endif %}
+
 </div>
 
-{% endblock %}
-
-{% block extra_js %}
+<!-- Alpine.js pour carousel et tabs -->
+<script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 <script>
-function incrementQuantity() {
-    const input = document.getElementById('quantity');
-    const max = parseInt(input.max);
-    if(parseInt(input.value) < max) input.value = parseInt(input.value) + 1;
-}
-function decrementQuantity() {
-    const input = document.getElementById('quantity');
-    if(parseInt(input.value) > 1) input.value = parseInt(input.value) - 1;
-}
-
-function showToast(message, type='success'){
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.classList.remove('hidden');
-    toast.classList.add('opacity-100');
-    setTimeout(()=>{ toast.classList.add('hidden'); }, 3000);
-}
-
-// Add to cart
-function addToCart(productId) {
-    const quantity = parseInt(document.getElementById('quantity').value);
-    fetch(`/cart/add/${productId}/`, {
-        method: 'POST',
-        headers: {'X-CSRFToken': getCookie('csrftoken'),'Content-Type': 'application/json'},
-        body: JSON.stringify({ quantity: quantity })
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        if(data.success){
-            showToast(`Added ${quantity} item(s) to cart!`);
-        } else {
-            showToast('Error adding product to cart', 'error');
-        }
-    });
-}
-
-// Toggle wishlist
-function toggleWishlist(productId) {
-    fetch(`/wishlist/toggle/${productId}/`, {method:'POST', headers:{'X-CSRFToken': getCookie('csrftoken')}})
-    .then(res=>res.json())
-    .then(data=>{
-        if(data.added) showToast(`${data.name} added to wishlist!`);
-        if(data.removed) showToast(`${data.name} removed from wishlist!`);
-    });
-}
-
-// CSRF helper
-function getCookie(name) {
-    let cookieValue = null;
-    if(document.cookie && document.cookie !== '') {
-        document.cookie.split(';').forEach(cookie => {
-            cookie = cookie.trim();
-            if(cookie.startsWith(name + '=')) cookieValue = decodeURIComponent(cookie.split('=')[1]);
-        });
+function carousel() {
+    return {
+        active: 0,
+        images: [
+            {% if product.image %}
+            '{{ product.image.url }}',
+            {% endif %}
+            {% for img in product.images.all %}
+            '{{ img.image.url }}',
+            {% endfor %}
+        ]
     }
-    return cookieValue;
 }
 </script>
 {% endblock %}

@@ -1,99 +1,55 @@
 {% load static %}
 
-<footer class="bg-neutral-900 text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+<footer class="bg-black text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
 
-      <!-- Company Info -->
-      <div>
-        <div class="flex items-center mb-4">
-          <div class="w-30 h-30 flex items-center justify-center bg-white/10 rounded-full p-2">
-            {% if site_info.logo %}
-              <img src="{{ site_info.logo.url }}" alt="{{ site_info.site_name }} Logo"
-                class="w-full h-full object-contain rounded-full">
-            {% else %}
-              <img src="{% static 'img/logo.png' %}" alt="Logo" class="w-full h-full object-contain rounded-full">
-            {% endif %}
-          </div>
-        </div>
-        <p class="text-neutral-300 text-sm mb-4 leading-relaxed">
-          Premium natural herbs, teas, and wellness products sourced directly from Benin and Africa.
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Logo & Info -->
+      <div class="flex flex-col items-center md:items-start space-y-2">
+        {% if site_info.logo %}
+          <img src="{{ site_info.logo.url }}" alt="{{ site_info.site_name }} Logo" class="w-32 h-auto">
+        {% else %}
+          <img src="{% static 'img/logo.png' %}" alt="Opulence Logo" class="w-32 h-auto">
+        {% endif %}
+        <p class="text-sm text-gray-300 text-center md:text-left">
+          Vente de décoration intérieure et matériaux de maison de qualité.
         </p>
-        <div class="flex space-x-4">
-          {% if site_info.instagram %}
-            <a href="{{ site_info.instagram }}" class="text-neutral-400 hover:text-pink-500 transition">
-              <i class="fab fa-instagram text-lg"></i>
-            </a>
-          {% endif %}
-          {% if site_info.twitter %}
-            <a href="{{ site_info.twitter }}" class="text-neutral-400 hover:text-blue-400 transition">
-              <i class="fab fa-twitter text-lg"></i>
-            </a>
-          {% endif %}
-        </div>
       </div>
 
       <!-- Quick Links -->
-      <div>
-        <h3 class="font-semibold mb-4 text-lg text-white">Quick Links</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/about" class="hover:text-blue-400 transition">About Us</a></li>
-          <li><a href="/shop" class="hover:text-blue-400 transition">Shop</a></li>
-          <li><a href="/blog" class="hover:text-blue-400 transition">Blog</a></li>
-          <li><a href="/contact" class="hover:text-blue-400 transition">Contact</a></li>
-          <li><a href="{% url 'faq' %}" class="hover:text-blue-400 transition">FAQ</a></li>
-        </ul>
+      <div class="flex flex-col space-y-2 text-center md:text-left">
+        <h3 class="font-semibold text-lg text-white mb-2">Liens Utiles</h3>
+        <a href="/" class="text-gray-300 hover:text-blue-500 transition">Accueil</a>
+        <a href="/shop" class="text-gray-300 hover:text-blue-500 transition">Boutique</a>
       </div>
 
-      <!-- Categories (dynamic) -->
-      <div>
-        <h3 class="font-semibold mb-4 text-lg text-white">Categories</h3>
-        <ul class="space-y-2 text-sm">
-          {% for cat in footer_categories %}
-            <li>
-              <a href="" class="hover:text-green-400 transition">
-                {{ cat.name }}
-              </a>
-            </li>
-          {% empty %}
-            <li class="text-neutral-500">No categories available</li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <!-- Customer Support -->
-      <div>
-        <h3 class="font-semibold mb-4 text-lg text-white">Customer Support</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/privacy" class="hover:text-blue-400 transition">Privacy Policy</a></li>
-          <li><a href="/terms" class="hover:text-blue-400 transition">Terms & Conditions</a></li>
-          <li><a href="/returns" class="hover:text-blue-400 transition">Returns & Refunds</a></li>
-          <li><a href="/shipping" class="hover:text-blue-400 transition">Shipping Information</a></li>
-        </ul>
-        <div class="mt-4">
-          <p class="text-neutral-300 text-sm">Customer Service:</p>
+      <!-- Nos Services & Social -->
+      <div class="flex flex-col space-y-4 text-center md:text-left">
+        <h3 class="font-semibold text-lg text-white mb-2">Nos Services</h3>
+        <p class="text-gray-300 text-sm">
+          Conseil en décoration intérieure, vente de matériaux de maison, livraison rapide et service client.
+        </p>
+        <div class="flex space-x-6 mt-2 justify-center md:justify-start">
           {% if site_info.phone_primary %}
-            <p class="text-white font-bold text-lg">{{ site_info.phone_primary }}</p>
+            <a href="https://wa.me/{{ site_info.phone_primary }}" target="_blank" class="text-green-500 hover:text-green-400 text-2xl">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          {% endif %}
+          {% if site_info.facebook %}
+            <a href="{{ site_info.facebook }}" target="_blank" class="text-blue-600 hover:text-blue-500 text-2xl">
+              <i class="fab fa-facebook-f"></i>
+            </a>
           {% endif %}
         </div>
       </div>
+
     </div>
 
-    <!-- Footer Bottom -->
-    <div class="border-t border-neutral-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-      <p class="text-neutral-400 text-sm">
-        © {% now "Y" %} {{ site_info.site_name }}. All rights reserved.  
-        Developed by <a href="https://asitechsolution.com" target="_blank"
-          class="underline hover:text-white">ASITECH</a>
-      </p>
-      {% if site_info.payment_banner %}
-      <div class="flex flex-col items-center md:flex-row md:space-x-4 mt-4 md:mt-0">
-        <span class="text-neutral-400 text-sm mb-2 md:mb-0">Payment Methods:</span>
-        <div class="flex space-x-3">
-          <img src="{{ site_info.payment_banner.url }}" alt="Payment" class="h-6">
-        </div>
-      </div>
-      {% endif %}
+    <!-- Bottom -->
+    <div class="border-t border-gray-800 mt-8 pt-4 text-center text-gray-400 text-sm">
+      © {% now "Y" %} {{ site_info.site_name }}. Tous droits réservés.
     </div>
+
   </div>
 </footer>

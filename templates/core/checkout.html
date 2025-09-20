@@ -1,0 +1,565 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - Secure Payment - NaturalBio{% endblock %}
+
+{% block meta_description %}Complete your order with secure checkout. Multiple shipping options, safe payment processing for natural herbs and wellness products.{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-neutral-50 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li>
+                    <a href="/" class="text-neutral-500 hover:text-primary transition-colors">Home</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li>
+                    <a href="/cart" class="text-neutral-500 hover:text-primary transition-colors">Cart</a>
+                </li>
+                <li class="text-neutral-400">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </li>
+                <li class="text-neutral-900 font-medium" aria-current="page">Checkout</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Checkout Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-heading font-bold text-neutral-900 mb-4">Secure Checkout</h1>
+        
+        <!-- Progress Indicator -->
+        <div class="flex items-center space-x-4 mb-6">
+            <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium" id="step-1-indicator">
+                    1
+                </div>
+                <span class="ml-2 text-sm font-medium text-primary" id="step-1-text">Address</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-neutral-200">
+                <div class="h-full bg-primary transition-all duration-300" id="progress-bar" style="width: 33%"></div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-neutral-200 text-neutral-500 flex items-center justify-center text-sm font-medium" id="step-2-indicator">
+                    2
+                </div>
+                <span class="ml-2 text-sm text-neutral-500" id="step-2-text">Shipping</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-neutral-200"></div>
+            <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-neutral-200 text-neutral-500 flex items-center justify-center text-sm font-medium" id="step-3-indicator">
+                    3
+                </div>
+                <span class="ml-2 text-sm text-neutral-500" id="step-3-text">Review</span>
+            </div>
+        </div>
+
+        <!-- Security Notice -->
+        <div class="bg-success/10 border border-success/20 rounded-lg p-4 flex items-center">
+            <i class="fas fa-shield-alt text-success mr-3"></i>
+            <div>
+                <p class="text-sm font-medium text-success-800">Secure Checkout</p>
+                <p class="text-xs text-success-700">Your payment information is encrypted and secure</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Checkout Form -->
+        <div class="lg:col-span-2">
+            <form id="checkout-form" novalidate>
+                <!-- Step 1: Address Information -->
+                <div id="step-1" class="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 mb-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-heading font-semibold text-neutral-900">Shipping Address</h2>
+                        <span class="text-sm text-neutral-500">Step 1 of 3</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="first-name" class="block text-sm font-medium text-neutral-700 mb-1">First Name *</label>
+                            <input type="text" id="first-name" name="first-name" required
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <div class="error-message text-danger text-xs mt-1 hidden">First name is required</div>
+                        </div>
+                        <div>
+                            <label for="last-name" class="block text-sm font-medium text-neutral-700 mb-1">Last Name *</label>
+                            <input type="text" id="last-name" name="last-name" required
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <div class="error-message text-danger text-xs mt-1 hidden">Last name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label for="email" class="block text-sm font-medium text-neutral-700 mb-1">Email Address *</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <div class="error-message text-danger text-xs mt-1 hidden">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label for="phone" class="block text-sm font-medium text-neutral-700 mb-1">Phone Number</label>
+                        <input type="tel" id="phone" name="phone"
+                               class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+
+                    <div class="mt-4">
+                        <label for="address" class="block text-sm font-medium text-neutral-700 mb-1">Street Address *</label>
+                        <input type="text" id="address" name="address" required
+                               class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <div class="error-message text-danger text-xs mt-1 hidden">Street address is required</div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label for="address2" class="block text-sm font-medium text-neutral-700 mb-1">Apartment, Suite, etc. (Optional)</label>
+                        <input type="text" id="address2" name="address2"
+                               class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <div>
+                            <label for="city" class="block text-sm font-medium text-neutral-700 mb-1">City *</label>
+                            <input type="text" id="city" name="city" required
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <div class="error-message text-danger text-xs mt-1 hidden">City is required</div>
+                        </div>
+                        <div>
+                            <label for="state" class="block text-sm font-medium text-neutral-700 mb-1">State/Province</label>
+                            <input type="text" id="state" name="state"
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="zip" class="block text-sm font-medium text-neutral-700 mb-1">ZIP/Postal Code *</label>
+                            <input type="text" id="zip" name="zip" required
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <div class="error-message text-danger text-xs mt-1 hidden">ZIP code is required</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label for="country" class="block text-sm font-medium text-neutral-700 mb-1">Country *</label>
+                        <select id="country" name="country" required
+                                class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Select Country</option>
+                            <option value="US">United States</option>
+                            <option value="CA">Canada</option>
+                            <option value="FR">France</option>
+                            <option value="BJ">Benin</option>
+                            <option value="NG">Nigeria</option>
+                        </select>
+                        <div class="error-message text-danger text-xs mt-1 hidden">Please select a country</div>
+                    </div>
+
+                    <!-- Billing Address -->
+                    <div class="mt-6 pt-6 border-t border-neutral-200">
+                        <div class="flex items-center mb-4">
+                            <input type="checkbox" id="same-billing" name="same-billing" checked
+                                   class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary">
+                            <label for="same-billing" class="ml-2 text-sm text-neutral-700">
+                                Billing address is the same as shipping address
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end mt-6">
+                        <button type="button" onclick="nextStep()" class="px-6 py-3 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg transition-colors">
+                            Continue to Shipping
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Shipping Options -->
+                <div id="step-2" class="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 mb-6 hidden">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-heading font-semibold text-neutral-900">Shipping Options</h2>
+                        <span class="text-sm text-neutral-500">Step 2 of 3</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <label class="flex items-center p-4 border border-neutral-200 rounded-lg hover:border-primary cursor-pointer transition-colors">
+                            <input type="radio" name="shipping" value="standard" class="w-4 h-4 text-primary" checked>
+                            <div class="ml-4 flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Standard Shipping</p>
+                                        <p class="text-sm text-neutral-600">5-7 business days</p>
+                                    </div>
+                                    <span class="font-semibold text-primary">$5.99</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="flex items-center p-4 border border-neutral-200 rounded-lg hover:border-primary cursor-pointer transition-colors">
+                            <input type="radio" name="shipping" value="express" class="w-4 h-4 text-primary">
+                            <div class="ml-4 flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Express Shipping</p>
+                                        <p class="text-sm text-neutral-600">2-3 business days</p>
+                                    </div>
+                                    <span class="font-semibold text-primary">$12.99</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="flex items-center p-4 border border-neutral-200 rounded-lg hover:border-primary cursor-pointer transition-colors">
+                            <input type="radio" name="shipping" value="overnight" class="w-4 h-4 text-primary">
+                            <div class="ml-4 flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Overnight Shipping</p>
+                                        <p class="text-sm text-neutral-600">1 business day</p>
+                                    </div>
+                                    <span class="font-semibold text-primary">$24.99</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="flex justify-between mt-6">
+                        <button type="button" onclick="previousStep()" class="px-6 py-3 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 transition-colors">
+                            Back to Address
+                        </button>
+                        <button type="button" onclick="nextStep()" class="px-6 py-3 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg transition-colors">
+                            Review Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Order Review -->
+                <div id="step-3" class="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 mb-6 hidden">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-heading font-semibold text-neutral-900">Review Your Order</h2>
+                        <span class="text-sm text-neutral-500">Step 3 of 3</span>
+                    </div>
+
+                    <!-- Order Items Review -->
+                    <div class="mb-6">
+                        <h3 class="font-medium text-neutral-900 mb-4">Order Items</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4 p-4 bg-neutral-50 rounded-lg">
+                                <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-leaf text-primary"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <h4 class="font-medium text-neutral-900">Organic Moringa Powder</h4>
+                                    <p class="text-sm text-neutral-600">Qty: 1 × $24.99</p>
+                                </div>
+                                <span class="font-semibold text-neutral-900">$24.99</span>
+                            </div>
+                            <div class="flex items-center space-x-4 p-4 bg-neutral-50 rounded-lg">
+                                <div class="w-16 h-16 bg-gradient-to-br from-accent/30 to-accent/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-seedling text-primary"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <h4 class="font-medium text-neutral-900">Ginger & Turmeric Tisane</h4>
+                                    <p class="text-sm text-neutral-600">Qty: 2 × $18.99</p>
+                                </div>
+                                <span class="font-semibold text-neutral-900">$37.98</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address Review -->
+                    <div class="mb-6 p-4 bg-neutral-50 rounded-lg">
+                        <h3 class="font-medium text-neutral-900 mb-2">Shipping Address</h3>
+                        <div id="address-review" class="text-sm text-neutral-600">
+                            <!-- Address will be populated by JavaScript -->
+                        </div>
+                        <button type="button" onclick="goToStep(1)" class="mt-2 text-primary hover:text-primary-600 text-sm font-medium transition-colors">
+                            Change Address
+                        </button>
+                    </div>
+
+                    <!-- Shipping Method Review -->
+                    <div class="mb-6 p-4 bg-neutral-50 rounded-lg">
+                        <h3 class="font-medium text-neutral-900 mb-2">Shipping Method</h3>
+                        <div id="shipping-review" class="text-sm text-neutral-600">
+                            Standard Shipping (5-7 business days) - $5.99
+                        </div>
+                        <button type="button" onclick="goToStep(2)" class="mt-2 text-primary hover:text-primary-600 text-sm font-medium transition-colors">
+                            Change Shipping
+                        </button>
+                    </div>
+
+                    <!-- Payment Section (Mock) -->
+                    <div class="mb-6">
+                        <h3 class="font-medium text-neutral-900 mb-4">Payment Information</h3>
+                        <div class="p-4 bg-warning/10 border border-warning/20 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-info-circle text-warning mr-2"></i>
+                                <p class="text-sm text-warning-800">
+                                    This is a demonstration. No real payment will be processed.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button type="button" onclick="previousStep()" class="px-6 py-3 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 transition-colors">
+                            Back to Shipping
+                        </button>
+                        <button type="submit" class="px-6 py-3 bg-success hover:bg-success-600 text-white font-medium rounded-lg transition-colors">
+                            <i class="fas fa-lock mr-2"></i>
+                            Place Order
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 sticky top-24">
+                <h3 class="text-lg font-heading font-semibold text-neutral-900 mb-4">Order Summary</h3>
+                
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-neutral-600">Subtotal</span>
+                        <span class="text-neutral-900">$62.97</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-neutral-600">Shipping</span>
+                        <span class="text-neutral-900" id="shipping-cost">$5.99</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-neutral-600">Tax</span>
+                        <span class="text-neutral-900">$5.52</span>
+                    </div>
+                    <div class="border-t border-neutral-200 pt-3">
+                        <div class="flex justify-between text-lg font-semibold">
+                            <span class="text-neutral-900">Total</span>
+                            <span class="text-primary" id="order-total">$74.48</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="space-y-3 text-center">
+                    <div class="flex items-center justify-center text-sm text-neutral-600">
+                        <i class="fas fa-shield-alt text-success mr-2"></i>
+                        SSL Encrypted Checkout
+                    </div>
+                    <div class="flex items-center justify-center text-sm text-neutral-600">
+                        <i class="fas fa-undo text-primary mr-2"></i>
+                        30-Day Return Policy
+                    </div>
+                    <div class="flex items-center justify-center text-sm text-neutral-600">
+                        <i class="fas fa-truck text-primary mr-2"></i>
+                        Free Shipping Over $50
+                    </div>
+                </div>
+
+                <!-- Contact Support -->
+                <div class="mt-6 pt-6 border-t border-neutral-200 text-center">
+                    <p class="text-sm text-neutral-600 mb-2">Need help with your order?</p>
+                    <a href="/contact" class="text-primary hover:text-primary-600 text-sm font-medium transition-colors">
+                        Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let currentStep = 1;
+const totalSteps = 3;
+
+function nextStep() {
+    if (validateCurrentStep()) {
+        if (currentStep < totalSteps) {
+            goToStep(currentStep + 1);
+        }
+    }
+}
+
+function previousStep() {
+    if (currentStep > 1) {
+        goToStep(currentStep - 1);
+    }
+}
+
+function goToStep(step) {
+    // Hide all steps
+    for (let i = 1; i <= totalSteps; i++) {
+        document.getElementById(`step-${i}`).classList.add('hidden');
+    }
+    
+    // Show target step
+    document.getElementById(`step-${step}`).classList.remove('hidden');
+    
+    // Update progress indicator
+    updateProgressIndicator(step);
+    
+    currentStep = step;
+
+    // Update review content if going to step 3
+    if (step === 3) {
+        updateReviewContent();
+    }
+}
+
+function updateProgressIndicator(step) {
+    const progressBar = document.getElementById('progress-bar');
+    const progressWidth = (step / totalSteps) * 100;
+    progressBar.style.width = `${progressWidth}%`;
+
+    // Update step indicators
+    for (let i = 1; i <= totalSteps; i++) {
+        const indicator = document.getElementById(`step-${i}-indicator`);
+        const text = document.getElementById(`step-${i}-text`);
+        
+        if (i <= step) {
+            indicator.classList.remove('bg-neutral-200', 'text-neutral-500');
+            indicator.classList.add('bg-primary', 'text-white');
+            text.classList.remove('text-neutral-500');
+            text.classList.add('text-primary', 'font-medium');
+        } else {
+            indicator.classList.remove('bg-primary', 'text-white');
+            indicator.classList.add('bg-neutral-200', 'text-neutral-500');
+            text.classList.remove('text-primary', 'font-medium');
+            text.classList.add('text-neutral-500');
+        }
+    }
+}
+
+function validateCurrentStep() {
+    if (currentStep === 1) {
+        return validateAddressForm();
+    }
+    return true;
+}
+
+function validateAddressForm() {
+    const requiredFields = ['first-name', 'last-name', 'email', 'address', 'city', 'zip', 'country'];
+    let isValid = true;
+
+    requiredFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        const errorElement = field.parentNode.querySelector('.error-message');
+        
+        if (!field.value.trim()) {
+            field.classList.add('border-danger');
+            errorElement.classList.remove('hidden');
+            isValid = false;
+        } else {
+            field.classList.remove('border-danger');
+            errorElement.classList.add('hidden');
+        }
+    });
+
+    // Validate email format
+    const emailField = document.getElementById('email');
+    const emailError = emailField.parentNode.querySelector('.error-message');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (emailField.value.trim() && !emailRegex.test(emailField.value)) {
+        emailField.classList.add('border-danger');
+        emailError.textContent = 'Please enter a valid email address';
+        emailError.classList.remove('hidden');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        showToast('Please fill in all required fields', 'error');
+    }
+
+    return isValid;
+}
+
+function updateReviewContent() {
+    // Update address review
+    const addressReview = document.getElementById('address-review');
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const address = document.getElementById('address').value;
+    const address2 = document.getElementById('address2').value;
+    const city = document.getElementById('city').value;
+    const state = document.getElementById('state').value;
+    const zip = document.getElementById('zip').value;
+    const country = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
+
+    let addressText = `${firstName} ${lastName}<br>`;
+    addressText += `${address}`;
+    if (address2) addressText += `, ${address2}`;
+    addressText += `<br>${city}`;
+    if (state) addressText += `, ${state}`;
+    addressText += ` ${zip}<br>${country}`;
+    
+    addressReview.innerHTML = addressText;
+
+    // Update shipping review
+    const shippingReview = document.getElementById('shipping-review');
+    const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+    const shippingOptions = {
+        'standard': { name: 'Standard Shipping', time: '5-7 business days', cost: 5.99 },
+        'express': { name: 'Express Shipping', time: '2-3 business days', cost: 12.99 },
+        'overnight': { name: 'Overnight Shipping', time: '1 business day', cost: 24.99 }
+    };
+    
+    const shipping = shippingOptions[selectedShipping.value];
+    shippingReview.textContent = `${shipping.name} (${shipping.time}) - $${shipping.cost.toFixed(2)}`;
+    
+    // Update order total
+    document.getElementById('shipping-cost').textContent = `$${shipping.cost.toFixed(2)}`;
+    const subtotal = 62.97;
+    const tax = 5.52;
+    const total = subtotal + shipping.cost + tax;
+    document.getElementById('order-total').textContent = `$${total.toFixed(2)}`;
+}
+
+// Handle form submission
+document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+    submitBtn.disabled = true;
+    
+    // Simulate processing delay
+    setTimeout(() => {
+        window.location.href = '/order-confirmation';
+    }, 2000);
+});
+
+// Update shipping costs when shipping method changes
+document.addEventListener('change', function(e) {
+    if (e.target.name === 'shipping') {
+        updateShippingCosts();
+    }
+});
+
+function updateShippingCosts() {
+    const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+    const costs = {
+        'standard': 5.99,
+        'express': 12.99,
+        'overnight': 24.99
+    };
+    
+    const shippingCost = costs[selectedShipping.value];
+    document.getElementById('shipping-cost').textContent = `$${shippingCost.toFixed(2)}`;
+    
+    const subtotal = 62.97;
+    const tax = 5.52;
+    const total = subtotal + shippingCost + tax;
+    document.getElementById('order-total').textContent = `$${total.toFixed(2)}`;
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    updateProgressIndicator(1);
+});
+</script>
+{% endblock %}

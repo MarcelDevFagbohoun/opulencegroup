@@ -1,151 +1,69 @@
-<section class="py-16 bg-neutral-50">
+<!-- Best Sellers Section -->
+<section class="py-20 bg-gradient-to-b from-neutral-50 to-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
+    
     <!-- Title -->
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">
-        Best Sellers
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+        🏆 Nos Meilleurs Produits
       </h2>
       <p class="text-lg text-neutral-600">
-        Our most popular natural products loved by our customers
+        Découvrez les articles les plus populaires pour votre maison et votre décoration
       </p>
     </div>
 
-    <!-- Product Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+    <!-- Products Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {% for product in best_sellers %}
-        <div class="bg-white border border-neutral-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
+      <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition flex flex-col overflow-hidden group h-full">
 
-          <!-- Product Image -->
-          <div class="relative h-72 overflow-hidden">
-            <img src="{{ product.image.url }}" 
-                 alt="{{ product.name }}" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-t-xl">
+        <!-- Image avec prix -->
+        <div class="relative h-64 w-full">
+          <a href="{% url 'product_detail' product.slug %}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-3xl">
+          </a>
 
-            {% if product.category %}
-            <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
-              {{ product.category.name }}
-            </span>
-            {% endif %}
-
-            <!-- Wishlist Button -->
-            <button onclick="toggleWishlist('{{ product.id }}')" 
-                    class="absolute top-3 right-3 w-9 h-9 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors shadow-sm">
-              {% if request.user.is_authenticated and product in request.user.wishlist.products.all %}
-                <i id="wishlist-icon-{{ product.id }}" class="fas fa-heart text-red-600 text-lg"></i>
-              {% else %}
-                <i id="wishlist-icon-{{ product.id }}" class="far fa-heart text-neutral-600 text-lg"></i>
-              {% endif %}
-            </button>
-          </div>
-
-          <!-- Product Content -->
-          <div class="p-5">
-            <a href="{% url 'product_detail' product.slug %}">
-              <h3 class="font-heading font-semibold text-lg mb-2 text-neutral-900">{{ product.name }}</h3>
-            </a>
-
-            <!-- Rating -->
-            <div class="flex items-center mb-4">
-              <div class="flex items-center space-x-1">
-                {% for i in "12345" %}
-                  {% if forloop.counter <= product.rounded_rating %}
-                    <i class="fas fa-star text-yellow-400 text-sm"></i>
-                  {% else %}
-                    <i class="far fa-star text-neutral-300 text-sm"></i>
-                  {% endif %}
-                {% endfor %}
-              </div>
-            </div>
-
-            <!-- Price + Add to Cart -->
-            <div class="flex items-center justify-between">
-              <span class="text-lg font-bold text-primary">{{ product.price }} FCFA</span>
-              <button onclick="addToCart('{{ product.id }}')" 
-                      class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors shadow-sm hover:shadow-md">
-                Add to Cart
-              </button>
-            </div>
-          </div>
+          <!-- Prix sur l'image -->
+          <span class="absolute top-3 right-3 bg-green-500 text-white text-sm font-bold px-3 py-1 rounded-full shadow-md">
+            {{ product.price|floatformat:0 }} F CFA
+          </span>
         </div>
-      {% empty %}
-        <p class="col-span-3 text-center text-neutral-500">No products available</p>
+
+        <!-- Contenu en dessous -->
+        <div class="p-5 flex flex-col gap-3 flex-1">
+
+          <!-- Nom -->
+          <h3 class="text-gray-900 font-semibold text-base sm:text-lg">
+            <a href="{% url 'product_detail' product.slug %}" class="hover:text-primary transition">
+              {{ product.name }}
+            </a>
+          </h3>
+          <!-- Catégorie en bas -->
+          {% if product.category %}
+          <span class="mt-auto inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm text-center">
+            {{ product.category.name }}
+          </span>
+          {% endif %}
+          
+
+          <!-- WhatsApp Button -->
+          <a href="https://wa.me/{{ site_info.phone_primary|default:'22997000000' }}?text=Bonjour,%20je%20souhaite%20commander%20{{ product.name|urlencode }}%20({{ product.price|floatformat:0 }}F CFA)"
+             target="_blank"
+             class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-2xl text-center font-medium shadow-md flex items-center justify-center gap-2 transition">
+            <i class="fab fa-whatsapp text-xl"></i> Commander
+          </a>
+
+          
+        </div>
+      </div>
       {% endfor %}
     </div>
 
-    <!-- See All -->
+    <!-- WhatsApp Number -->
     <div class="text-center mt-12">
-      <a href="{% url 'shop' %}" 
-         class="inline-flex items-center px-8 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary-600 transition-colors shadow-md hover:shadow-lg">
-        See All Products
-        <i class="fas fa-arrow-right ml-2"></i>
-      </a>
+      <p class="text-neutral-600 mb-2">📞 Commandez directement au</p>
+      <p class="text-green-600 font-bold text-xl">{{ site_info.phone_primary }}</p>
     </div>
+
   </div>
 </section>
-
-<!-- Scripts -->
-<script>
-function addToCart(productId) {
-  fetch(`/cart/add/${productId}/`, {
-    method: "POST",
-    headers: { "X-CSRFToken": getCookie("csrftoken") },
-  })
-  .then(response => {
-    if (response.redirected) {
-      window.location.href = response.url;
-    } else {
-      showToast("Produit ajouté au panier 🛒", "success");
-    }
-  });
-}
-
-function toggleWishlist(productId) {
-  fetch(`/wishlist/toggle/${productId}/`, {
-    method: "POST",
-    headers: { "X-CSRFToken": getCookie("csrftoken") },
-  })
-  .then(response => response.json())
-  .then(data => {
-    const icon = document.getElementById(`wishlist-icon-${productId}`);
-    if (data.status === "added") {
-      icon.classList.remove("far", "text-neutral-600");
-      icon.classList.add("fas", "text-red-600");
-      showToast("Ajouté aux favoris ❤️", "success");
-    } else if (data.status === "removed") {
-      icon.classList.remove("fas", "text-red-600");
-      icon.classList.add("far", "text-neutral-600");
-      showToast("Retiré des favoris 💔", "info");
-    }
-  });
-}
-
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === (name + "=")) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
-
-function showToast(message, type = "success") {
-  const toast = document.createElement("div");
-  toast.className = `fixed top-5 right-5 px-4 py-2 rounded-lg shadow-lg text-white z-50 ${
-    type === "success" ? "bg-green-600" : "bg-blue-600"
-  }`;
-  toast.innerText = message;
-  document.body.appendChild(toast);
-
-  setTimeout(() => {
-    toast.classList.add("opacity-0", "transition", "duration-500");
-    setTimeout(() => toast.remove(), 500);
-  }, 2000);
-}
-</script>

@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}NaturalBio - Premium Natural Herbs & Wellness Products{% endblock %}
+{% block title %}Opulence - Décoration Intérieure & Matériaux de Maison{% endblock %}
 
-{% block meta_description %}Discover premium natural herbs, organic tisanes, essential oils and wellness products from Benin. 100% natural, traceable and sustainable.{% endblock %}
+{% block meta_description %}
+Découvrez nos produits de décoration intérieure et matériaux de maison pour embellir et rénover vos espaces. Style moderne et qualité garantie.
+{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -23,14 +25,24 @@
 {% block content %}
 
 {% include 'section/Hero.html' %}
-{% include 'section/Feature.html' %}
-{% include 'section/categorie.html' %}
+{% include 'section/services.html' %}
+
 {% include 'section/products.html' %}
-{% include 'section/reviews.html' %}
-{% include 'section/Newsletter.html' %}
+{% include 'section/Feature.html' %}
+
+<!-- Calendly inline widget begin -->
+<section class="py-16 bg-neutral-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-6 text-center">
+            Réservez un rendez-vous
+        </h2>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/houenoumarcel897/30min" style="min-width:320px;height:700px;"></div>
+    </div>
+</section>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
 
 {% block extra_js %}
-
 {% endblock %}
 
 {% endblock %}

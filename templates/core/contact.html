@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Contactez Opulence Group | Opulence{% endblock %}
+
+{% block meta_description %}
+Contactez-nous pour vos projets de construction, décoration intérieure et services informatiques.
+{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <nav class="flex items-center text-sm text-gray-600">
+            <a href="/" class="hover:text-green-600 transition-colors">Accueil</a>
+            <i class="fas fa-chevron-right mx-2 text-xs"></i>
+            <span class="text-gray-900 font-medium">Contact</span>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Contactez-nous</h1>
+        <p class="text-gray-600 max-w-2xl mx-auto">Remplissez le formulaire ci-dessous pour nous envoyer un message.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+        <!-- Formulaire -->
+        <div class="bg-white p-8 rounded-2xl shadow-md">
+            {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="text-center text-green-600 font-medium">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form method="POST" class="space-y-4">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div>
+                    {{ form.name.errors }}
+                    {{ form.name }}
+                </div>
+                <div>
+                    {{ form.email.errors }}
+                    {{ form.email }}
+                </div>
+                <div>
+                    {{ form.subject.errors }}
+                    {{ form.subject }}
+                </div>
+                <div>
+                    {{ form.message.errors }}
+                    {{ form.message }}
+                </div>
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-semibold transition">
+                    Envoyer le message
+                </button>
+            </form>
+        </div>
+
+        <!-- Informations de contact -->
+        <div class="space-y-6">
+            <div class="p-6 bg-gray-50 rounded-2xl shadow-md">
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Nos coordonnées</h2>
+                <p class="text-gray-600">Opulence Bulding Group<br>Adresse: 123 Rue Exemple, Cotonou, Bénin</p>
+                <p class="text-gray-600 mt-2"><i class="fas fa-phone-alt mr-2"></i>{{ site_info.phone_primary }}</p>
+                <p class="text-gray-600"><i class="fas fa-envelope mr-2"></i>{{ site_info.email_primary }}</p>
+            </div>
+
+            <div class="p-6 bg-gray-50 rounded-2xl shadow-md">
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Nous suivre</h2>
+                <div class="flex gap-4">
+                    <a href="{{ site_info.facebook }}" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f text-2xl"></i></a>
+                    <a href="{{ site_info.instagram }}" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram text-2xl"></i></a>
+                    <a href="{{ site_info.linkedin }}" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin-in text-2xl"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
